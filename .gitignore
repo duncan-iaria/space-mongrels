@@ -1,0 +1,54 @@
+=====================================
+Space Mongrels
+=====================================
+SpaceMongrelsDeux/Library
+SpaceMongrelsDeux/Temp
+SpaceMongrelsDeux/*.csproj
+SpaceMongrelsDeux/Snoodworks.sln
+SpaceMongrelsDeux/.vs
+SpaceMongrelsDeux/.vscode
+/SpaceMongrelsDeux/Assets/Plugins
+/SpaceMongrelsDeux/Assets/Plugins.meta
+Progress/
+*.sln
+*/**.sln
+*/**.suo
+*.DS_Store
+
+=====================================
+Tac Lab
+=====================================
+TacLab
+
+=====================================
+Art Assets
+=====================================
+Art/ProgressGifs
+Art/Characters/Research
+
+
+=====================================
+Visual Studio / MonoDevelop generated
+=====================================
+ExportedObj/
+obj/
+*.svd
+*.userprefs
+/*.csproj
+*.pidb
+*.suo
+/*.sln
+*.user
+*.unityproj
+*.booproj
+
+============
+OS generated
+============
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

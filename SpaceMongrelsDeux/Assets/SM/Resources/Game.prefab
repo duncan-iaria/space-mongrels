@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000012527375844}
+  m_IsPrefabParent: 1
+--- !u!1 &1000012527375844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4000012137122844}
+  - component: {fileID: 114698014198673224}
+  - component: {fileID: 114803817140995768}
+  - component: {fileID: 114690156665905878}
+  m_Layer: 0
+  m_Name: Game
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000012137122844
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012527375844}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114690156665905878
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012527375844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af5aed3c7e57d20468031ea304d8e185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPawn: {fileID: 0}
+--- !u!114 &114698014198673224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012527375844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e3f8f511eff964891e00ce6ec003c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameName: Space Mongrels
+  isPaused: 0
+  versionNumber: 0
+  featureNumber: 0
+  buildNumber: 1
+  GUI: {fileID: 114240278152417072, guid: 0c2f029f10834484fb359f53bc99a357, type: 2}
+  view: {fileID: 114338634733682898, guid: 481c534be9e392640ad11d0d29c97bcd, type: 2}
+  controller: {fileID: 114690156665905878}
+  inputter: {fileID: 114803817140995768}
+  levelToLoad: 0
+--- !u!114 &114803817140995768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012527375844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 185af1b54928c17449c10f9e98cdac4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 114690156665905878}
+  leftAxisHorizontal: Horizontal
+  leftAxisVertical: Vertical
+  rightAxisHorizontal: RHorizontal
+  rightAxisVertical: RVertical
+  triggerAxisInput: 
+  cancelButton: Cancel

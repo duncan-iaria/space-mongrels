@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: cef9f12574ba0ac4fa54cb805add633e
+timeCreated: 1487601397
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Bahiana
+  fontNames:
+  - Bahiana
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
