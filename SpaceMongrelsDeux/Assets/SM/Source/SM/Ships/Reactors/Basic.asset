@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Basic
   m_EditorClassIdentifier: 
   moveSpeed: 25
-  horizontalDampening: 0.3
+  horizontalDampening: 0.25
   rotationSpeed: 5
