@@ -96,7 +96,7 @@ namespace SM
             currentX = Mathf.Lerp(currentX, wantedX, moveDampening * Time.deltaTime);
             currentY = Mathf.Lerp(currentY, wantedY, moveDampening * Time.deltaTime);
             currentOrthoSize = Mathf.Lerp(currentOrthoSize, wantedOrthoSize, zoomDampening * Time.deltaTime);
-            Debug.Log("Current Ortho size: " + currentOrthoSize);
+            // Debug.Log("Current Ortho size: " + currentOrthoSize);
             shakeTimer += Time.deltaTime;
 
             //If shake is over

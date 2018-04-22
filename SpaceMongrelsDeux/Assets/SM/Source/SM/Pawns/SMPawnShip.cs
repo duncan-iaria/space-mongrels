@@ -56,7 +56,14 @@ namespace SM
             switch (tAxis)
             {
                 case InputAxis.Vertical:
-                    accelerate(new Vector2(0f, tValue));
+                    if (tValue > 0)
+                    {
+                        accelerate(new Vector2(0f, tValue));
+                    }
+                    else
+                    {
+                        accelerate(new Vector2(0f, tValue * horizontalDampening));
+                    }
                     break;
                 case InputAxis.Horizontal:
                     accelerate(new Vector2(tValue, 0f), horizontalDampening);
