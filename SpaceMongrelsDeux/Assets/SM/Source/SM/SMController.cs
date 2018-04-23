@@ -36,7 +36,6 @@ namespace SM
 
         public override void onAxis(InputAxis tAxis, float tValue)
         {
-            // Debug.Log(tAxis + " " + tValue);
             currentPawn.onAxis(tAxis, tValue);
         }
 
