@@ -11,12 +11,15 @@ namespace SM
         public SMReactor reactor;
         // These are set by the ship object
         [HideInInspector]
-        public float moveSpeed, horizontalDampening = .5f, rotationSpeed;
+        public float moveSpeed, horizontalDampening = .5f, rotationSpeed, boostSpeed, boostCooldown, thrustSpeed;
+        public float thrustThreshold = 0.1f;
+
         [HideInInspector]
         public int maxHealth;
 
         protected int currentHealth;
-
+        protected float nextBoostTime;
+        protected bool isThrustEligible = true;
 
         //=======================
         // Initialization
@@ -46,6 +49,9 @@ namespace SM
                 case InputButton.Menu:
                     loadShipInterior();
                     break;
+                case InputButton.Boost:
+                    boost();
+                    break;
                 default:
                     break;
             }
@@ -59,10 +65,12 @@ namespace SM
                     if (tValue > 0)
                     {
                         accelerate(new Vector2(0f, tValue));
+                        thrust(tValue);
                     }
                     else
                     {
                         accelerate(new Vector2(0f, tValue * horizontalDampening));
+                        isThrustEligible = true;
                     }
                     break;
                 case InputAxis.Horizontal:
@@ -83,7 +91,6 @@ namespace SM
         //=======================
         protected virtual void accelerate(Vector2 tVector, float tDampening = 1f)
         {
-            //_rigidbody.AddForce((tVector * moveSpeed) * tDampening * Time.deltaTime);
             _rigidbody.AddForce((transform.right * tVector.x * tDampening) * moveSpeed * Time.deltaTime);
             _rigidbody.AddForce((transform.up * tVector.y) * moveSpeed * Time.deltaTime);
         }
@@ -91,6 +98,27 @@ namespace SM
         protected virtual void rotate(float tRotationValue)
         {
             _rigidbody.AddTorque(tRotationValue * rotationSpeed * Time.deltaTime);
+        }
+
+        // boost is an action taken by the player via a special input button
+        protected virtual void boost()
+        {
+            if (Time.time >= nextBoostTime)
+            {
+                reactor.boost(_rigidbody, boostSpeed);
+                nextBoostTime = Time.time + boostCooldown;
+            }
+        }
+
+        // Thrust is considered when an engine/reactor first accelerates
+        protected virtual void thrust(float tYAxis)
+        {
+            // mini boost
+            if (tYAxis >= thrustThreshold && isThrustEligible)
+            {
+                reactor.boost(_rigidbody, thrustSpeed);
+                isThrustEligible = false;
+            }
         }
 
         //=======================

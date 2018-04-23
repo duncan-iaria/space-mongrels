@@ -28,6 +28,7 @@ namespace SNDL
         public string cycleButton = "Cycle";
         public string acceptButton = "Accept";
         public string menuButton = "Menu";
+        public string boostButton = "Boost";
 
         //left axis
         protected float leftAxisVerticalValue;
@@ -150,6 +151,11 @@ namespace SNDL
             if (Input.GetButtonDown(menuButton))
             {
                 controller.onInputButton(InputButton.Menu);
+            }
+
+            if (Input.GetButtonDown(boostButton))
+            {
+                controller.onInputButton(InputButton.Boost);
             }
         }
     }
