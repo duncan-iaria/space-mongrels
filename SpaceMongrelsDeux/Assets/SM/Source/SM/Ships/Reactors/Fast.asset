@@ -13,4 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 100
   horizontalDampening: 0.4
-  rotationSpeed: 5
+  rotationSpeed: 10
+  boostSpeed: 0
+  boostCooldown: 0
+  thrustSpeed: 0
