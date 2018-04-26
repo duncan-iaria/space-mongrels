@@ -160,7 +160,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1627211460113632}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 54d163308c9dff34e9c2ca184df63924, type: 2}
   m_CullingMode: 0
@@ -189,8 +189,8 @@ MonoBehaviour:
   leadDistanceModifier: 1.5
   zoomDampening: 0.8
   zoomMultiplier: 2.5
-  minZoom: 5
-  maxZoom: 12
+  minZoom: 4.5
+  maxZoom: 10
   isShaking: 0
   shakeDuration: 0.3
   shakeMagnitude: 0.015

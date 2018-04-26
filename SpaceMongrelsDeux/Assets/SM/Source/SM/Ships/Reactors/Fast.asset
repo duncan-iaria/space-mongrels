@@ -14,6 +14,6 @@ MonoBehaviour:
   moveSpeed: 100
   horizontalDampening: 0.4
   rotationSpeed: 10
-  boostSpeed: 0
-  boostCooldown: 0
-  thrustSpeed: 0
+  boostSpeed: 1.5
+  boostCooldown: 3
+  thrustSpeed: 0.3
