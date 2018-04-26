@@ -62,16 +62,7 @@ namespace SM
             switch (tAxis)
             {
                 case InputAxis.Vertical:
-                    if (tValue > 0)
-                    {
-                        accelerate(new Vector2(0f, tValue));
-                        thrust(tValue);
-                    }
-                    else
-                    {
-                        accelerate(new Vector2(0f, tValue * horizontalDampening));
-                        isThrustEligible = true;
-                    }
+                    handleVertical(tValue);
                     break;
                 case InputAxis.Horizontal:
                     accelerate(new Vector2(tValue, 0f), horizontalDampening);
@@ -89,6 +80,21 @@ namespace SM
         //=======================
         // Movement
         //=======================
+        // When pressing forward/backward
+        protected virtual void handleVertical(float tValue)
+        {
+            if (tValue > 0)
+            {
+                accelerate(new Vector2(0f, tValue));
+                thrust(tValue);
+            }
+            else
+            {
+                accelerate(new Vector2(0f, tValue * horizontalDampening));
+                isThrustEligible = true;
+            }
+        }
+
         protected virtual void accelerate(Vector2 tVector, float tDampening = 1f)
         {
             _rigidbody.AddForce((transform.right * tVector.x * tDampening) * moveSpeed * Time.deltaTime);
