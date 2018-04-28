@@ -128,6 +128,17 @@ namespace SM
         }
 
         //=======================
+        // Collision
+        //=======================
+        protected virtual void OnCollisionEnter2D(Collision2D tCollision)
+        {
+            if (_rigidbody)
+            {
+                ship.onCollision(this.gameObject, tCollision);
+            }
+        }
+
+        //=======================
         // Health/Damage
         //=======================
         public void applyDamage(int tDamage)

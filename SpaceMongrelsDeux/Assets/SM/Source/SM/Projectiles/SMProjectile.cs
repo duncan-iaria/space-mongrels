@@ -6,8 +6,14 @@ namespace SM
     {
         public Rigidbody2D rb;
         public Projectile projectile;
+
+        [HideInInspector]
         public float speed;
+
+        [HideInInspector]
         public int damage;
+
+        [HideInInspector]
         public bool isPenetrating = false;
 
         [HideInInspector]

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using SM;
 
 
@@ -38,8 +37,24 @@ public class Tug : SMShip
         }
     }
 
+    public override void onCollision(GameObject tObject, Collision2D tCollision)
+    {
+        SMPawnShip tempShip = tObject.GetComponent<SMPawnShip>();
+        if (tempShip)
+        {
+            int tempImpactDamage = (int)((Mathf.Abs(tCollision.relativeVelocity.x) + Mathf.Abs(tCollision.relativeVelocity.y)) * collisionModifier);
+            takeDamage(tObject, tempImpactDamage);
+        }
+    }
+
     public override void onDeath(GameObject tObject)
     {
+        SMPawnShip tempShip = tObject.GetComponent<SMPawnShip>();
+        if (tempShip)
+        {
+            Destroy(tObject);
+        }
+
         Debug.Log("We Dead :(");
     }
 }
