@@ -5,7 +5,7 @@ using SNDL;
 
 namespace SM
 {
-    public class SMPawnShip : SMPawn
+    public class SMPawnShip : SMPawn, IDamageable
     {
         public SMShip ship;
         public SMReactor reactor;
@@ -16,8 +16,8 @@ namespace SM
 
         [HideInInspector]
         public int maxHealth;
+        public int currentHealth;
 
-        protected int currentHealth;
         protected float nextBoostTime;
         protected bool isThrustEligible = true;
 
@@ -125,6 +125,25 @@ namespace SM
                 reactor.boost(_rigidbody, thrustSpeed);
                 isThrustEligible = false;
             }
+        }
+
+        //=======================
+        // Collision
+        //=======================
+        protected virtual void OnCollisionEnter2D(Collision2D tCollision)
+        {
+            if (_rigidbody)
+            {
+                ship.onCollision(this.gameObject, tCollision);
+            }
+        }
+
+        //=======================
+        // Health/Damage
+        //=======================
+        public void applyDamage(int tDamage)
+        {
+            ship.takeDamage(this.gameObject, tDamage);
         }
 
         //=======================
