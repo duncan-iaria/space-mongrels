@@ -18,4 +18,26 @@ public class Tug : SMShip
             Debug.LogWarning("No ship was found on the GameObject - Have you set up your ship correctly?");
         }
     }
+
+    public override void takeDamage(GameObject tObject, int tAmt)
+    {
+        SMPawnShip tempShip = tObject.GetComponent<SMPawnShip>();
+        if (tempShip)
+        {
+            int tempHealth = tempShip.currentHealth -= tAmt;
+            if (tempHealth <= 0)
+            {
+                onDeath(tObject);
+            }
+            else
+            {
+                tempShip.currentHealth = tempHealth;
+            }
+        }
+    }
+
+    public override void onDeath(GameObject tObject)
+    {
+        Debug.Log("We Dead :(");
+    }
 }
