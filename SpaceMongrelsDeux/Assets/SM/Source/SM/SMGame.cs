@@ -4,100 +4,100 @@ using SNDL;
 
 namespace SM
 {
-	public class SMGame : Game
-	{
-		public SMLevel currentLevel;
+    public class SMGame : Game
+    {
+        public SMLevel currentLevel;
 
-		//Loading
-		public int levelToLoad;
-		protected int currentLevelIndex;
+        //Loading
+        public int levelToLoad;
+        protected int currentLevelIndex;
 
-		//=======================
-		// Pause
-		//=======================
-		//actions taken when pause is toggled
-		protected override void onTogglePause()
-		{
-			Debug.Log( "we here" );
-			if( isPaused )
-			{
-				Time.timeScale = 0f;
-				
-				//open the main menu visually
-				onOpenMainMenu();
+        //=======================
+        // Pause
+        //=======================
+        //actions taken when pause is toggled
+        protected override void onTogglePause()
+        {
+            Debug.Log("we here");
+            if (isPaused)
+            {
+                Time.timeScale = 0f;
 
-				//set controller pawn
-				controller.setCurrentPawn( GetGUI<SMGUI>().menuPawn );
+                //open the main menu visually
+                onOpenMainMenu();
 
-				//log game state
-				Debug.Log( "IS PAUSED!" );
-			}
-			else
-			{
-				Time.timeScale = 1f;
+                //set controller pawn
+                controller.setCurrentPawn(GetGUI<SMGUI>().menuPawn);
 
-				//close the main menu visually
-				onCloseMainMenu();
+                //log game state
+                Debug.Log("IS PAUSED!");
+            }
+            else
+            {
+                Time.timeScale = 1f;
 
-				//set controller pawn - not thrilled at how this works
-				if( currentLevel.levelPawns.Length > 0 )
-				{
-					controller.setCurrentPawn( currentLevel.levelPawns[currentLevel.currentLevelPawnIndex] );
-				}
+                //close the main menu visually
+                onCloseMainMenu();
 
-				//log game state
-				Debug.Log( "IS UNPAUSED!" );
-			}
-		}
+                //set controller pawn - not thrilled at how this works
+                if (currentLevel.levelPawns.Length > 0)
+                {
+                    controller.setCurrentPawn(currentLevel.levelPawns[currentLevel.currentLevelPawnIndex]);
+                }
 
-		//=======================
-		// Level Loading
-		//=======================
-		public virtual void onLoadLevel( int tIndex, float tTransitionDuration, bool  isUsingTrasition = false )
-		{
-			//set the level to be loaded next(because we can't set with invoke)
-			levelToLoad = tIndex;
+                //log game state
+                Debug.Log("IS UNPAUSED!");
+            }
+        }
 
-			//game load level function to execute when the closing transition is complete
-			Invoke( "loadLevel", tTransitionDuration );
+        //=======================
+        // Level Loading
+        //=======================
+        public virtual void onLoadLevel(int tIndex, float tTransitionDuration, bool isUsingTrasition = false)
+        {
+            //set the level to be loaded next(because we can't set with invoke)
+            levelToLoad = tIndex;
 
-			if( isUsingTrasition )
-			{
-				SMGUI tempGUI = GetGUI<SMGUI>();
-				tempGUI.transitionController.startTransition();
-			}
+            //game load level function to execute when the closing transition is complete
+            Invoke("loadLevel", tTransitionDuration);
 
-			//unpause game (so it can load)
-			isPaused = false;
-		}
+            if (isUsingTrasition)
+            {
+                SMGUI tempGUI = GetGUI<SMGUI>();
+                tempGUI.transitionController.startTransition();
+            }
 
-		protected virtual void loadLevel()
-		{
-			SceneManager.LoadScene( levelToLoad );
-		}
+            //unpause game (so it can load)
+            isPaused = false;
+        }
+
+        protected virtual void loadLevel()
+        {
+            SceneManager.LoadScene(levelToLoad);
+        }
 
 
-		protected override void onSceneLoaded( Scene _scene, LoadSceneMode _mode )
-		{
-			currentLevelIndex = levelToLoad;
-		}
+        protected override void onSceneLoaded(Scene _scene, LoadSceneMode _mode)
+        {
+            currentLevelIndex = levelToLoad;
+        }
 
-		//=======================
-		// GUI Controls
-		//=======================
-		public void onOpenMainMenu()
-		{
-			GUI.onOpenMainMenu();
-		}
+        //=======================
+        // GUI Controls
+        //=======================
+        public void onOpenMainMenu()
+        {
+            gameGUI.onOpenMainMenu();
+        }
 
-		public void onCloseMainMenu()
-		{
-			GUI.onCloseMainMenu();
-		}
+        public void onCloseMainMenu()
+        {
+            gameGUI.onCloseMainMenu();
+        }
 
-		public void onToggleMainMenu()
-		{
-			GUI.onTogglMainMenu();
-		}
-	}
+        public void onToggleMainMenu()
+        {
+            gameGUI.onTogglMainMenu();
+        }
+    }
 }
