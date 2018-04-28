@@ -1697,7 +1697,7 @@ MonoBehaviour:
   _cutoff: 0
   _softness: 0.4
   _finalTexture: {fileID: 0}
-  _finalTint: {r: 0.010416412, g: 0.0058391024, b: 0.066176474, a: 1}
+  _finalTint: {r: 1, g: 0, b: 0.35172415, a: 1}
 --- !u!114 &114683767085320634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1832,7 +1832,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 53f8ee0cd42ed5c42afba118fbe42e40, type: 2}
-        m_MethodName: Raise
+        m_MethodName: raise
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
