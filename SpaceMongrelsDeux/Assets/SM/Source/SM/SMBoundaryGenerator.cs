@@ -7,8 +7,8 @@ namespace SM
     public class SMBoundaryGenerator : MonoBehaviour
     {
         public LineRenderer lineRenderer;
-        public List<Vector3> bouys = new List<Vector3>();
         public Vector3[] bouyArray;
+
         // Use this for initialization
         void Start()
         {
@@ -20,13 +20,7 @@ namespace SM
                 bouyArray[i] = this.transform.GetChild(i).transform.position;
             }
 
-            foreach (Transform child in transform)
-            {
-                // bouyArray.( child.transform.position );
-                bouys.Add(child.transform.position);
-            }
-
-
+            lineRenderer.positionCount = tempLength;
             lineRenderer.SetPositions(bouyArray);
         }
     }
