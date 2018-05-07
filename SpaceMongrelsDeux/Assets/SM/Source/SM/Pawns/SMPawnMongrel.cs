@@ -75,6 +75,11 @@ namespace SM
             {
                 currentInteractable.onInteract();
             }
+
+            if (currentInteractableObject != null)
+            {
+                currentInteractableObject.onInteract();
+            }
         }
 
         //=======================
