@@ -53,10 +53,10 @@ namespace SM
         //=======================
         // Level Loading
         //=======================
-        public virtual void onLoadLevel(int tIndex, float tTransitionDuration, bool isUsingTrasition = false)
+        public virtual void onLoadLevel(int tLevelIndex, float tTransitionDuration = 0.5f, bool isUsingTrasition = true)
         {
             //set the level to be loaded next(because we can't set with invoke)
-            levelToLoad = tIndex;
+            levelToLoad = tLevelIndex;
 
             //game load level function to execute when the closing transition is complete
             Invoke("loadLevel", tTransitionDuration);

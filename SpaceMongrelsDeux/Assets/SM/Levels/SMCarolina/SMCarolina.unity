@@ -143,7 +143,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 204975839}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &14405612
 BoxCollider2D:
@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentInteractable: {fileID: 0}
+  currentInteractableObject: {fileID: 0}
   moveSpeed: 2
 --- !u!212 &14405615
 SpriteRenderer:
@@ -335,7 +336,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 204975839}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &25731730
 GameObject:
@@ -1097,7 +1098,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1651242326}
   - {fileID: 16237156}
   - {fileID: 1592531442}
   - {fileID: 14405611}
@@ -5844,7 +5844,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 204975839}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1592531443
 BoxCollider2D:
@@ -5903,6 +5903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentInteractable: {fileID: 0}
+  currentInteractableObject: {fileID: 0}
   moveSpeed: 2
 --- !u!212 &1592531446
 SpriteRenderer:
@@ -6267,7 +6268,7 @@ Transform:
   - {fileID: 2085619319}
   - {fileID: 773273739}
   m_Father: {fileID: 204975839}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1637385143
 GameObject:
@@ -6343,34 +6344,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!1 &1651242325
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1651242326}
-  m_Layer: 0
-  m_Name: TestTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1651242326
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1651242325}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.496, y: 1.417, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 204975839}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1659757407
 GameObject:
   m_ObjectHideFlags: 0
@@ -7216,7 +7189,7 @@ Transform:
   m_Children:
   - {fileID: 1606028839}
   m_Father: {fileID: 204975839}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1947958216
 Animator:
@@ -7244,9 +7217,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1947958214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f4aacdf66a8bfa47bf71fdf2f96f21f, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c001803f937b4045b0cb25788ca13e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: {fileID: 11400000, guid: a375aa3b66b30fa489ec956a280db922, type: 2}
   isEntryTrigger: 1
   onTriggerEntry:
     m_PersistentCalls:
@@ -7281,12 +7255,12 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onInteractEvent:
+  onTriggerDeselect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1947958217}
-        m_MethodName: onLoadLevel
-        m_Mode: 1
+      - m_Target: {fileID: 1606028838}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7297,8 +7271,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  levelToLoad: 2
-  loadTransitionDuration: 0.5
 --- !u!61 &1947958218
 BoxCollider2D:
   m_ObjectHideFlags: 0
