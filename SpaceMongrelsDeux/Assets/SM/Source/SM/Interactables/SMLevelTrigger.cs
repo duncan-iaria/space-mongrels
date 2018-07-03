@@ -1,23 +1,21 @@
 using UnityEngine;
+using UnityEngine.Events;
+using SNDL;
 
 namespace SM
 {
     [CreateAssetMenu(menuName = "SM/Interactables/LevelTrigger", order = 100)]
-    public class SMLevelTrigger : SMInteractable2
+    public class SMLevelTrigger : SMInteractable
     {
-        public string levelToLoad;
+        public int levelToLoadIndex;
 
-        public override void onEnter()
-        {
-            Debug.Log("Entered the Trigger");
-        }
-        public override void onExit()
-        {
-            Debug.Log("Exited the Trigger");
-        }
+        public override void onEnter() { }
+        public override void onExit() { }
+
         public override void onInteract()
         {
-            Debug.Log("Interacted with Trigger: " + levelToLoad);
+            SMGame tempGame = Game.GetGame<SMGame>();
+            tempGame.onLoadLevel(levelToLoadIndex);
         }
     }
 }

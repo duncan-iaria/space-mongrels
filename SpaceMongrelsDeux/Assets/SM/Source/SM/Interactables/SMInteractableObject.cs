@@ -1,19 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 namespace SM
 {
     public class SMInteractableObject : MonoBehaviour
     {
-        public SMInteractable2 interactable;
+        public SMInteractable interactable;
 
         public bool isEntryTrigger;
-        // public UnityEvent onTriggerEntry;
+        public UnityEvent onTriggerEntry;
 
         public bool isExitTrigger;
-        // public UnityEvent onTriggerExit;
+        public UnityEvent onTriggerExit;
 
         // public UnityEvent onInteractEvent;
 
@@ -31,6 +32,10 @@ namespace SM
             if (isEntryTrigger)
             {
                 interactable.onEnter();
+                if (onTriggerEntry != null)
+                {
+                    onTriggerEntry.Invoke();
+                }
             }
         }
 
@@ -47,6 +52,10 @@ namespace SM
             if (isExitTrigger)
             {
                 interactable.onExit();
+                if (onTriggerExit != null)
+                {
+                    onTriggerExit.Invoke();
+                }
             }
         }
 
