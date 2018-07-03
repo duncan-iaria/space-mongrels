@@ -11,6 +11,7 @@ namespace SM
 
         public override void onEnter() { }
         public override void onExit() { }
+        public override void onDeselect() { }
 
         public override void onInteract()
         {

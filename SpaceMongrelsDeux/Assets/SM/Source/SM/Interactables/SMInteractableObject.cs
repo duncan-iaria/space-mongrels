@@ -16,7 +16,7 @@ namespace SM
         public bool isExitTrigger;
         public UnityEvent onTriggerExit;
 
-        // public UnityEvent onInteractEvent;
+        public UnityEvent onTriggerDeselect;
 
         protected void OnTriggerEnter2D(Collider2D other)
         {
@@ -25,6 +25,11 @@ namespace SM
 
             if (tempPawn != null)
             {
+                if (tempPawn.currentInteractableObject)
+                {
+                    tempPawn.currentInteractableObject.onDeselect();
+                }
+
                 tempPawn.currentInteractableObject = this;
             }
 
@@ -41,12 +46,15 @@ namespace SM
 
         protected void OnTriggerExit2D(Collider2D other)
         {
-            //if its a pawn, set as current interactable
+            //if its a pawn, unset as current interactable
             SMPawn tempPawn = other.GetComponent<SMPawn>();
 
             if (tempPawn != null)
             {
-                tempPawn.currentInteractableObject = null;
+                if (tempPawn.currentInteractable != null && tempPawn.currentInteractable == this)
+                {
+                    tempPawn.currentInteractableObject = null;
+                }
             }
 
             if (isExitTrigger)
@@ -59,9 +67,17 @@ namespace SM
             }
         }
 
-        //event that happnens when interacted with 
-        //Must be set in inpsector, CORE of how this component works
-        //Select a function from the Possible list before
+        //If another object becomes selected, deselect this one
+        public void onDeselect()
+        {
+            interactable.onDeselect();
+            if (onTriggerDeselect != null)
+            {
+                onTriggerDeselect.Invoke();
+            }
+        }
+
+        //event that happnens when interacted with
         public virtual void onInteract()
         {
             interactable.onInteract();

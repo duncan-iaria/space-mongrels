@@ -9,5 +9,6 @@ namespace SM
         public abstract void onEnter();
         public abstract void onExit();
         public abstract void onInteract();
+        public abstract void onDeselect();
     }
 }
