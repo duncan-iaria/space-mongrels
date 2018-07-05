@@ -14,3 +14,5 @@ MonoBehaviour:
   range: 5
   scanSpeed: 1
   sortRate: 1
+  targetReticuleSource: {fileID: 1632033107223162, guid: 5abe3c465add4dc46b755251ed2c38fb,
+    type: 2}
