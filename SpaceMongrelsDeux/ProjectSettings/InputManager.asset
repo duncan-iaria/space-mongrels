@@ -374,13 +374,29 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Cycle
+    m_Name: CycleLeft
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: tab
     positiveButton: 
     altNegativeButton: joystick button 4
-    altPositiveButton: joystick button 5
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: CycleRight
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: tab
+    positiveButton: 
+    altNegativeButton: joystick button 5
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000

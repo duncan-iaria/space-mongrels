@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 50159128291491386}
   - component: {fileID: 114556981515953000}
   - component: {fileID: 60451754347784930}
+  - component: {fileID: 58436843777587986}
+  - component: {fileID: 114717268397964872}
   m_Layer: 0
   m_Name: Tug
   m_TagString: Untagged
@@ -93,6 +95,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &58436843777587986
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1153810678485890}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 5
 --- !u!60 &60451754347784930
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -137,8 +154,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentInteractable: {fileID: 0}
+  currentInteractableObject: {fileID: 0}
   ship: {fileID: 11400000, guid: aa0486dcbc8702e4eb3236e1dc3c105a, type: 2}
   reactor: {fileID: 11400000, guid: 9c17780c0b6780045b395f7d69b6a5af, type: 2}
+  sensorController: {fileID: 114717268397964872}
   moveSpeed: 0
   horizontalDampening: 0
   rotationSpeed: 0
@@ -148,6 +167,22 @@ MonoBehaviour:
   thrustThreshold: 0.1
   maxHealth: 0
   currentHealth: 0
+--- !u!114 &114717268397964872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1153810678485890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3152500bf3b924abd09d852cbf9d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensor: {fileID: 11400000, guid: 3417d04bf545bce4ea3bc45ba40fc389, type: 2}
+  sensorCollider: {fileID: 0}
+  range: 0
+  scanSpeed: 0
+  sortRate: 0
 --- !u!212 &212379932658670230
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -161,6 +196,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -205,6 +241,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

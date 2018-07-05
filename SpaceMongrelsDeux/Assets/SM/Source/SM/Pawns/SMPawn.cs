@@ -30,5 +30,10 @@ namespace SM
         //=======================
         public override void onInputButton(InputButton tButton) { }
         public override void onAxis(InputAxis tAxis, float tValue) { }
+
+        public Transform getTransform()
+        {
+            return this.transform;
+        }
     }
 }
