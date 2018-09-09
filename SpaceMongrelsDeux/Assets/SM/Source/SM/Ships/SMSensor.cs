@@ -18,8 +18,8 @@ namespace SM
         public abstract void initialize(GameObject tObject);
         public abstract void addTarget(ITargetable tTarget);
         public abstract void removeTarget(ITargetable tTarget);
-        public abstract bool sortTargets();
-        public abstract void selectNextTarget();
-        public abstract void selectPreviousTarget();
+        public abstract bool sortTargets(Vector3 tSensorOrigin);
+        public abstract void selectNextTarget(Vector3 tSensorOrigin);
+        public abstract void selectPreviousTarget(Vector3 tSensorOrigin);
     }
 }

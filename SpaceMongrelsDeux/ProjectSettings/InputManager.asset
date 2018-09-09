@@ -377,8 +377,8 @@ InputManager:
     m_Name: CycleLeft
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: tab
-    positiveButton: 
+    negativeButton: 
+    positiveButton: '['
     altNegativeButton: joystick button 4
     altPositiveButton: 
     gravity: 1000
@@ -393,8 +393,8 @@ InputManager:
     m_Name: CycleRight
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: tab
-    positiveButton: 
+    negativeButton: 
+    positiveButton: ']'
     altNegativeButton: joystick button 5
     altPositiveButton: 
     gravity: 1000
@@ -425,7 +425,7 @@ InputManager:
     m_Name: Menu
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: q
+    negativeButton: 
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 

@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bbce8f8a86cc034fb25810aa5a3fc42, type: 3}
   m_Name: SensorMk1
   m_EditorClassIdentifier: 
-  range: 5
+  range: 10
   scanSpeed: 1
   sortRate: 1
   targetReticuleSource: {fileID: 1632033107223162, guid: 5abe3c465add4dc46b755251ed2c38fb,

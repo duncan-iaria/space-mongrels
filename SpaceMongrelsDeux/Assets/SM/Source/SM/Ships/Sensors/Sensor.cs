@@ -30,43 +30,52 @@ namespace SM
             targetList.Remove(tTarget);
         }
 
-        public override bool sortTargets()
+        public override bool sortTargets(Vector3 tSensorOrigin)
         {
             if (targetList.Count > 0)
             {
-                //SORT THE TARGETS
-                // Debug.Log("WE've GOT TARGETs: " + targetList[0]);
-                // Debug.Log("WE've GOT TARGETs: " + targetList.Count);
+                targetList.Sort(delegate (ITargetable targetA, ITargetable targetB)
+                {
+                    return Vector2.Distance(tSensorOrigin, targetA.getTransform().position)
+                    .CompareTo(Vector2.Distance(tSensorOrigin, targetB.getTransform().position));
+                });
                 return true;
             }
             else return false;
         }
 
-        public override void selectNextTarget()
+        public override void selectNextTarget(Vector3 tSensorOrigin)
         {
-            if (sortTargets())
+            if (sortTargets(tSensorOrigin))
             {
-                int nextTargetIndex;
-                nextTargetIndex = selectedTargetIndex + 1 > targetList.Count - 1 ? 0 : selectedTargetIndex + 1;
-                setTargetReticule(targetList[nextTargetIndex]);
+                // increment the selected target and set the reticule
+                selectedTargetIndex = selectedTargetIndex + 1 > targetList.Count - 1 ? 0 : selectedTargetIndex + 1;
+                setTargetReticule(targetList[selectedTargetIndex]);
             }
         }
 
-        public override void selectPreviousTarget()
+        public override void selectPreviousTarget(Vector3 tSensorOrigin)
         {
-            if (sortTargets())
+            if (sortTargets(tSensorOrigin))
             {
-                int nextTargetIndex;
-                nextTargetIndex = selectedTargetIndex - 1 < targetList.Count ? targetList.Count - 1 : selectedTargetIndex - 1;
-                setTargetReticule(targetList[nextTargetIndex]);
+                // decrement the selected target and set the reticule
+                selectedTargetIndex = selectedTargetIndex - 1 < 0 ? targetList.Count - 1 : selectedTargetIndex - 1;
+                setTargetReticule(targetList[selectedTargetIndex]);
             }
         }
 
         protected void setTargetReticule(ITargetable tTarget)
         {
             tTarget.setSelected(targetReticule);
-            // Transform tTargetTransform = tTarget.GameObject.Transform; 
-            //targetReticule
+        }
+
+        // simple utility to print the target list to the console
+        private void logTargetList()
+        {
+            targetList.ForEach(delegate (ITargetable tTarget)
+            {
+                Debug.Log(tTarget.getTransform().gameObject);
+            });
         }
     }
 }

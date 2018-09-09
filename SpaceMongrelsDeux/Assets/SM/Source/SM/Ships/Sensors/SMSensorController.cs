@@ -7,13 +7,13 @@ namespace SM
     public class SMSensorController : MonoBehaviour
     {
         public SMSensor sensor;
-        public CircleCollider2D sensorCollider;
         public List<ITargetable> targetList = new List<ITargetable>();
 
         [HideInInspector]
         public float range, scanSpeed, sortRate;
 
-        private int selectedIndex = 0;
+        [HideInInspector]
+        public CircleCollider2D sensorCollider;
 
         void Start()
         {
@@ -38,12 +38,12 @@ namespace SM
 
         public void selectNextTarget()
         {
-            sensor.selectNextTarget();
+            sensor.selectNextTarget(this.transform.position);
         }
 
         public void selectPreviousTarget()
         {
-            sensor.selectPreviousTarget();
+            sensor.selectPreviousTarget(this.transform.position);
         }
 
         protected virtual void OnTriggerEnter2D(Collider2D tCollider)
