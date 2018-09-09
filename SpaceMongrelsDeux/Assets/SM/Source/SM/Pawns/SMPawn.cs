@@ -8,6 +8,7 @@ namespace SM
         public SMInteractable currentInteractable;
         public SMInteractableObject currentInteractableObject;
         protected Rigidbody2D _rigidbody;
+        protected SMGame _game;
 
         protected override void Awake()
         {
@@ -15,6 +16,7 @@ namespace SM
 
             //store a ref to the rigidbody
             _rigidbody = GetComponent<Rigidbody2D>();
+            _game = Game.GetGame<SMGame>();
         }
 
         //Universal Input controls

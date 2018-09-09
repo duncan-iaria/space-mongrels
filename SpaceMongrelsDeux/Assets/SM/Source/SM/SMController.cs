@@ -69,18 +69,5 @@ namespace SM
                 currentPawn.onPause();
             }
         }
-
-        public override void onPressCycle()
-        {
-            // currentPawn.onInputButton(InputButton.Cycle);
-            // currentPawn.onPressedCycle();
-            // cyclePawns();
-        }
-
-        //cycle possible pawns (based on the level)
-        public virtual void cyclePawns()
-        {
-            Game.GetGame<SMGame>().currentLevel.cyclePawns();
-        }
     }
 }
