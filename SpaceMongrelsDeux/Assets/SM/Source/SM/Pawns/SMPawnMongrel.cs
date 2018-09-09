@@ -63,6 +63,12 @@ namespace SM
                 case InputButton.Accept:
                     onAccept();
                     break;
+                case InputButton.CycleRight:
+                    onSelectNextPawn();
+                    break;
+                case InputButton.CycleLeft:
+                    onSelectPreviousPawn();
+                    break;
                 default:
                     break;
             }
@@ -80,6 +86,16 @@ namespace SM
             {
                 currentInteractableObject.onInteract();
             }
+        }
+
+        protected virtual void onSelectNextPawn()
+        {
+            _game.currentLevel.selectNextPawn();
+        }
+
+        protected virtual void onSelectPreviousPawn()
+        {
+            _game.currentLevel.selectPreviousPawn();
         }
 
         //=======================
