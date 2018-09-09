@@ -12,6 +12,7 @@ namespace SM
             SMSensorController tempSensorController = tObject.GetComponent<SMSensorController>();
             if (tempSensorController != null)
             {
+                selectedTargetIndex = -1;
                 tempSensorController.range = range;
                 tempSensorController.sensorCollider.radius = range;
                 tempSensorController.scanSpeed = scanSpeed;
@@ -27,7 +28,26 @@ namespace SM
 
         public override void removeTarget(ITargetable tTarget)
         {
-            targetList.Remove(tTarget);
+            if( selectedTargetIndex >= 0 )
+            {                
+                ITargetable currentSelectedTarget = targetList[selectedTargetIndex];
+                int removedTargetIndex = targetList.IndexOf( tTarget );
+                targetList.Remove(tTarget);
+
+                if( removedTargetIndex == selectedTargetIndex )
+                {
+                    unsetTargetReticule();
+                } 
+                else
+                {
+                    // update the selectedTargetIndex to the new index position of the selectedTarget
+                    selectedTargetIndex = targetList.IndexOf( currentSelectedTarget );
+                }
+            }
+            else 
+            {
+                targetList.Remove(tTarget);
+            }
         }
 
         public override bool sortTargets(Vector3 tSensorOrigin)
@@ -66,7 +86,14 @@ namespace SM
 
         protected void setTargetReticule(ITargetable tTarget)
         {
+            targetReticule.SetActive( true );
             tTarget.setSelected(targetReticule);
+        }
+
+        protected void unsetTargetReticule()
+        {
+            selectedTargetIndex = -1;
+            targetReticule.SetActive( false );    
         }
 
         // simple utility to print the target list to the console

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace SM
 {
 
@@ -12,7 +13,7 @@ namespace SM
         public GameObject targetReticuleSource;
         public List<ITargetable> targetList = new List<ITargetable>();
 
-        protected int selectedTargetIndex = 0;
+        protected int selectedTargetIndex = -1;
         protected GameObject targetReticule;
 
         public abstract void initialize(GameObject tObject);
