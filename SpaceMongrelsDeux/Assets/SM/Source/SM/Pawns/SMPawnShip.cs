@@ -5,18 +5,18 @@ using SNDL;
 
 namespace SM
 {
-    public class SMPawnShip : SMPawn, IDamageable
+    public class SMPawnShip : SMPawn, IDamageable, ITargetable
     {
         public SMShip ship;
         public SMReactor reactor;
+        public SMSensorController sensorController;
         // These are set by the ship object
         [HideInInspector]
         public float moveSpeed, horizontalDampening = .5f, rotationSpeed, boostSpeed, boostCooldown, thrustSpeed;
         public float thrustThreshold = 0.1f;
 
         [HideInInspector]
-        public int maxHealth;
-        public int currentHealth;
+        public int maxHealth, currentHealth;
 
         protected float nextBoostTime;
         protected bool isThrustEligible = true;
@@ -51,6 +51,12 @@ namespace SM
                     break;
                 case InputButton.Boost:
                     boost();
+                    break;
+                case InputButton.CycleRight:
+                    sensorController.selectNextTarget();
+                    break;
+                case InputButton.CycleLeft:
+                    sensorController.selectPreviousTarget();
                     break;
                 default:
                     break;
@@ -153,6 +159,18 @@ namespace SM
         {
             SMGame tempGame = SMGame.GetGame<SMGame>();
             tempGame.onLoadLevel(1, .5f, true);
+        }
+
+        //=======================
+        // Targeting
+        //=======================
+        public void setSelected(GameObject tReticule)
+        {
+            if (tReticule != null)
+            {
+                tReticule.transform.SetPositionAndRotation(this.transform.position, Quaternion.identity);
+                tReticule.transform.SetParent(this.transform);
+            }
         }
     }
 }

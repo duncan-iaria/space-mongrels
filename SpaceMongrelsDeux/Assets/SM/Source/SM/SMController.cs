@@ -72,8 +72,9 @@ namespace SM
 
         public override void onPressCycle()
         {
-            //currentPawn.onPressedCycle();
-            cyclePawns();
+            // currentPawn.onInputButton(InputButton.Cycle);
+            // currentPawn.onPressedCycle();
+            // cyclePawns();
         }
 
         //cycle possible pawns (based on the level)

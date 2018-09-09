@@ -11,6 +11,8 @@ namespace SNDL
         Cancel,
         Accept,
         Cycle,
+        CycleRight,
+        CycleLeft,
         Menu,
         Boost,
     }
