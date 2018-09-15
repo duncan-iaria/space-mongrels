@@ -631,7 +631,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 598862681}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.87, y: 14.64, z: 0}
+  m_LocalPosition: {x: -6.16, y: -5.2, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 2094068084}
@@ -648,14 +648,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c001803f937b4045b0cb25788ca13e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactable: {fileID: 11400000, guid: a0b5bb4f4a784594b810a157bb469fa1, type: 2}
-  isEntryTrigger: 1
+  interactable: {fileID: 11400000, guid: deccbb39a367e7b4ea0a40eec12ba223, type: 2}
+  isEntryTrigger: 0
   onTriggerEntry:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  isExitTrigger: 1
+  isExitTrigger: 0
   onTriggerExit:
     m_PersistentCalls:
       m_Calls: []

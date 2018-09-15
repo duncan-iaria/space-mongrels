@@ -11,6 +11,7 @@ namespace SM
         //Loading
         public int levelToLoad;
         protected int currentLevelIndex;
+        protected string levelToLoadName;
 
         //=======================
         // Pause
@@ -71,9 +72,29 @@ namespace SM
             isPaused = false;
         }
 
+        public virtual void onLoadLevelByName(string tLevelName, float tTransitionDuration = 0.5f, bool isUsingTrasition = true)
+        {
+            levelToLoadName = tLevelName;
+            Invoke("loadLevelByName", tTransitionDuration);
+
+            if (isUsingTrasition)
+            {
+                SMGUI tempGUI = GetGUI<SMGUI>();
+                tempGUI.transitionController.startTransition();
+            }
+
+            //unpause game (so it can load)
+            isPaused = false;
+        }
+
         protected virtual void loadLevel()
         {
             SceneManager.LoadScene(levelToLoad);
+        }
+
+        protected virtual void loadLevelByName()
+        {
+            SceneManager.LoadScene(levelToLoadName);
         }
 
 

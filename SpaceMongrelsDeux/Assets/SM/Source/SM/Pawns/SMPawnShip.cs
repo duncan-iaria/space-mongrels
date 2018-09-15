@@ -52,6 +52,9 @@ namespace SM
                 case InputButton.Boost:
                     boost();
                     break;
+                case InputButton.Accept:
+                    onAccept();
+                    break;
                 case InputButton.CycleRight:
                     sensorController.selectNextTarget();
                     break;
@@ -130,6 +133,23 @@ namespace SM
             {
                 reactor.boost(_rigidbody, thrustSpeed);
                 isThrustEligible = false;
+            }
+        }
+
+        //=======================
+        // Controls
+        //=======================
+        protected virtual void onAccept()
+        {
+            //if an interactable is set, trigger it
+            if (currentInteractable != null)
+            {
+                currentInteractable.onInteract();
+            }
+
+            if (currentInteractableObject != null)
+            {
+                currentInteractableObject.onInteract();
             }
         }
 
