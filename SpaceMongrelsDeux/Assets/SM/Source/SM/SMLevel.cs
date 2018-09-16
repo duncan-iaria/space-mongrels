@@ -8,14 +8,14 @@ namespace SM
         [Header("Pawns")]
         public Pawn[] levelPawns;
         public Camera testCam; //cam for setting up the scene and checking stuff
-        public bool isAdditiveLevel = false;
+        public SMLevelData levelData;
         public int currentLevelPawnIndex
         {
             get { return _currentLevelPawnIndex; }
             set
             {
                 _currentLevelPawnIndex = value;
-                updatePawnControllerAndView(value);
+                setPawnControllerAndViewByIndex(value);
             }
         }
 
@@ -29,6 +29,7 @@ namespace SM
 
         protected virtual void onLevelBegin()
         {
+            SMGame tempGame = Game.GetGame<SMGame>();
             //turn off the test camera if it exists
             if (testCam != null)
             {
@@ -36,18 +37,23 @@ namespace SM
             }
 
             //if it's not an additive level, set this as the current level
-            if (!isAdditiveLevel)
+            if (!levelData.isAdditiveLevel)
             {
-                Game.GetGame<SMGame>().currentLevel = this;
+                tempGame.currentLevel = this;
             }
 
-            //set the current level pawn as the current pawn, if there is one
-            if (levelPawns.Length > 0)
+            if (levelData.levelType == LevelType.Exterior)
             {
-                game.controller.setCurrentPawn(levelPawns[currentLevelPawnIndex]);
-
-                //set the view
-                game.view.setTarget(levelPawns[currentLevelPawnIndex].transform);
+                SMPawnShip tempPawn = Instantiate(tempGame.currentShipPawn) as SMPawnShip;
+                setPawnControllerAndViewByPawn(tempPawn);
+            }
+            else
+            {
+                //set the current level pawn as the current pawn, if there is one
+                if (levelPawns.Length > 0)
+                {
+                    setPawnControllerAndViewByIndex(currentLevelPawnIndex);
+                }
             }
         }
 
@@ -74,10 +80,16 @@ namespace SM
             }
         }
 
-        protected virtual void updatePawnControllerAndView(int tPawnIndex)
+        protected virtual void setPawnControllerAndViewByIndex(int tPawnIndex)
         {
             game.controller.setCurrentPawn(levelPawns[tPawnIndex]);
             game.view.setTarget(levelPawns[tPawnIndex].transform);
+        }
+
+        protected virtual void setPawnControllerAndViewByPawn(SMPawn tPawn)
+        {
+            game.controller.setCurrentPawn(tPawn);
+            game.view.setTarget(tPawn.transform);
         }
     }
 }

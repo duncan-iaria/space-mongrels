@@ -7,7 +7,6 @@ namespace SM
     public class SMSensorController : MonoBehaviour
     {
         public SMSensor sensor;
-        public List<ITargetable> targetList = new List<ITargetable>();
 
         [HideInInspector]
         public float range, scanSpeed, sortRate;
@@ -44,6 +43,11 @@ namespace SM
         public void selectPreviousTarget()
         {
             sensor.selectPreviousTarget(this.transform.position);
+        }
+
+        public void clearAllTargets()
+        {
+            sensor.clearTargetList();
         }
 
         protected virtual void OnTriggerEnter2D(Collider2D tCollider)

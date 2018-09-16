@@ -5,12 +5,10 @@ namespace SM
     //##########################
     // Enum Declaration
     //##########################
-    public enum GateState
+    public enum LevelType
     {
-        Open,
-        Opening,
-        Closing,
-        Closed
+        Interior,
+        Exterior
     }
 }
 

@@ -6,11 +6,20 @@ namespace SM
 {
     public class SMGame : Game
     {
-        public SMLevel currentLevel;
+        protected SMLevel _currentLevel;
+        public SMLevel currentLevel
+        {
+            get { return _currentLevel; }
+            set { _currentLevel = value; }
+        }
+
+        public SMPawnShip currentShipPawn;
+        public SMPawnMongrel currentMongrelPawn;
 
         //Loading
         public int levelToLoad;
         protected int currentLevelIndex;
+        protected string levelToLoadName;
 
         //=======================
         // Pause
@@ -18,7 +27,6 @@ namespace SM
         //actions taken when pause is toggled
         protected override void onTogglePause()
         {
-            Debug.Log("we here");
             if (isPaused)
             {
                 Time.timeScale = 0f;
@@ -71,9 +79,29 @@ namespace SM
             isPaused = false;
         }
 
+        public virtual void onLoadLevelByName(string tLevelName, float tTransitionDuration = 0.5f, bool isUsingTrasition = true)
+        {
+            levelToLoadName = tLevelName;
+            Invoke("loadLevelByName", tTransitionDuration);
+
+            if (isUsingTrasition)
+            {
+                SMGUI tempGUI = GetGUI<SMGUI>();
+                tempGUI.transitionController.startTransition();
+            }
+
+            //unpause game (so it can load)
+            isPaused = false;
+        }
+
         protected virtual void loadLevel()
         {
             SceneManager.LoadScene(levelToLoad);
+        }
+
+        protected virtual void loadLevelByName()
+        {
+            SceneManager.LoadScene(levelToLoadName);
         }
 
 

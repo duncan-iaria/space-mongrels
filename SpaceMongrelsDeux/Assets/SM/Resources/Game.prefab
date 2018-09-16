@@ -71,7 +71,10 @@ MonoBehaviour:
   view: {fileID: 114338634733682898, guid: 481c534be9e392640ad11d0d29c97bcd, type: 2}
   controller: {fileID: 114690156665905878}
   inputter: {fileID: 114803817140995768}
-  currentLevel: {fileID: 0}
+  currentShipPawn: {fileID: 114556981515953000, guid: edecc155bacf8844cae61888d169f4d8,
+    type: 2}
+  currentMongrelPawn: {fileID: 114885935134080932, guid: 696e6528193a24a4ba579654fbabaa47,
+    type: 2}
   levelToLoad: 0
 --- !u!114 &114803817140995768
 MonoBehaviour:
@@ -91,7 +94,8 @@ MonoBehaviour:
   rightAxisVertical: RVertical
   cancelButton: Cancel
   pauseButton: Pause
-  cycleButton: Cycle
+  cycleRightButton: CycleRight
+  cycleLeftButton: CycleLeft
   acceptButton: Accept
   menuButton: Menu
   boostButton: Boost

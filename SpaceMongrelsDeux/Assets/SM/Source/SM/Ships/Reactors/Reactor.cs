@@ -28,7 +28,6 @@ public class Reactor : SMReactor
     {
         if (tRigidbody)
         {
-            Debug.Log("boost engaged");
             tRigidbody.AddRelativeForce(Vector2.up * tBoostSpeed, ForceMode2D.Impulse);
         }
     }
