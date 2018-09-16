@@ -25,7 +25,7 @@ namespace SM
 
             if (tempPawn != null)
             {
-                if (tempPawn.currentInteractable)
+                if (tempPawn.currentInteractable != null)
                 {
                     tempPawn.currentInteractable.onDeselect();
                 }
