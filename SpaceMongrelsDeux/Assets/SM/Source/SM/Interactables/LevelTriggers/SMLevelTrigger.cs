@@ -9,7 +9,7 @@ namespace SM
     {
         public bool isLoadByIndex = false;
         public int levelToLoadIndex;
-        public string levelToLoadName;
+        public SMLevelData levelToLoadData;
 
         public override void onEnter() { }
         public override void onExit() { }
@@ -17,7 +17,6 @@ namespace SM
 
         public override void onInteract()
         {
-            Debug.Log("level trigger");
             SMGame tempGame = Game.GetGame<SMGame>();
             if (isLoadByIndex)
             {
@@ -25,8 +24,7 @@ namespace SM
             }
             else
             {
-                Debug.Log("level load by name");
-                tempGame.onLoadLevelByName(levelToLoadName);
+                tempGame.onLoadLevelByName(levelToLoadData.levelName);
             }
         }
     }

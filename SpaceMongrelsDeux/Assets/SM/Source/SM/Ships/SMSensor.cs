@@ -19,6 +19,7 @@ namespace SM
         public abstract void initialize(GameObject tObject);
         public abstract void addTarget(ITargetable tTarget);
         public abstract void removeTarget(ITargetable tTarget);
+        public abstract void clearTargetList();
         public abstract bool sortTargets(Vector3 tSensorOrigin);
         public abstract void selectNextTarget(Vector3 tSensorOrigin);
         public abstract void selectPreviousTarget(Vector3 tSensorOrigin);

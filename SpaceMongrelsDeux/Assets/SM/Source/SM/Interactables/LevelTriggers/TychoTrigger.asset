@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLoadByIndex: 0
   levelToLoadIndex: 0
-  levelToLoadName: SMTycho
+  levelToLoadData: {fileID: 11400000, guid: ac7f5a1956b2d61478144171ea20d57c, type: 2}

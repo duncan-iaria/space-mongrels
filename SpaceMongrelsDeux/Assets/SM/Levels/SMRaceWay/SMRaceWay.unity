@@ -1029,6 +1029,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1153810678485890, guid: edecc155bacf8844cae61888d169f4d8, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edecc155bacf8844cae61888d169f4d8, type: 2}
   m_IsPrefabParent: 0
@@ -1140,12 +1144,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4164325340823978, guid: edecc155bacf8844cae61888d169f4d8,
     type: 2}
   m_PrefabInternal: {fileID: 1033701054}
---- !u!114 &1472207092 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114556981515953000, guid: edecc155bacf8844cae61888d169f4d8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1033701054}
-  m_Script: {fileID: 11500000, guid: c0f8c07fd1e3a524fa90a698db179abd, type: 3}
 --- !u!1001 &1502108152
 Prefab:
   m_ObjectHideFlags: 0
@@ -1521,10 +1519,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: RaceWay
-  levelPawns:
-  - {fileID: 1472207092}
+  levelPawns: []
   testCam: {fileID: 1805721227}
-  isAdditiveLevel: 0
+  levelData: {fileID: 11400000, guid: eaeb9510e9373724da3864b19ed51387, type: 2}
   introAnimation: CloseUpToZoomOut
 --- !u!4 &2094068084
 Transform:

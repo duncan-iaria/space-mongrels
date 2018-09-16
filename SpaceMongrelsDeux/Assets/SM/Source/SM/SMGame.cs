@@ -6,7 +6,15 @@ namespace SM
 {
     public class SMGame : Game
     {
-        public SMLevel currentLevel;
+        protected SMLevel _currentLevel;
+        public SMLevel currentLevel
+        {
+            get { return _currentLevel; }
+            set { _currentLevel = value; }
+        }
+
+        public SMPawnShip currentShipPawn;
+        public SMPawnMongrel currentMongrelPawn;
 
         //Loading
         public int levelToLoad;
@@ -19,7 +27,6 @@ namespace SM
         //actions taken when pause is toggled
         protected override void onTogglePause()
         {
-            Debug.Log("we here");
             if (isPaused)
             {
                 Time.timeScale = 0f;

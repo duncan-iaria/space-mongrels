@@ -7,6 +7,7 @@ namespace SM
     [CreateAssetMenu(menuName = "SM/Ships/Sensor", order = 99)]
     public class Sensor : SMSensor
     {
+        protected SMSensorController sensorController;
         public override void initialize(GameObject tObject)
         {
             SMSensorController tempSensorController = tObject.GetComponent<SMSensorController>();
@@ -28,23 +29,23 @@ namespace SM
 
         public override void removeTarget(ITargetable tTarget)
         {
-            if( selectedTargetIndex >= 0 )
-            {                
+            if (selectedTargetIndex >= 0)
+            {
                 ITargetable currentSelectedTarget = targetList[selectedTargetIndex];
-                int removedTargetIndex = targetList.IndexOf( tTarget );
+                int removedTargetIndex = targetList.IndexOf(tTarget);
                 targetList.Remove(tTarget);
 
-                if( removedTargetIndex == selectedTargetIndex )
+                if (removedTargetIndex == selectedTargetIndex)
                 {
                     unsetTargetReticule();
-                } 
+                }
                 else
                 {
                     // update the selectedTargetIndex to the new index position of the selectedTarget
-                    selectedTargetIndex = targetList.IndexOf( currentSelectedTarget );
+                    selectedTargetIndex = targetList.IndexOf(currentSelectedTarget);
                 }
             }
-            else 
+            else
             {
                 targetList.Remove(tTarget);
             }
@@ -86,14 +87,19 @@ namespace SM
 
         protected void setTargetReticule(ITargetable tTarget)
         {
-            targetReticule.SetActive( true );
+            targetReticule.SetActive(true);
             tTarget.setSelected(targetReticule);
         }
 
         protected void unsetTargetReticule()
         {
             selectedTargetIndex = -1;
-            targetReticule.SetActive( false );    
+            targetReticule.SetActive(false);
+        }
+
+        public override void clearTargetList()
+        {
+            targetList.Clear();
         }
 
         // simple utility to print the target list to the console

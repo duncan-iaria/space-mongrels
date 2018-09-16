@@ -8,9 +8,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8a0026c1dc6bed4d99efdda8e3a24c7, type: 3}
-  m_Name: RacewayTrigger
+  m_Script: {fileID: 11500000, guid: 393e2aea2810c624186e9e80c099503b, type: 3}
+  m_Name: CarolinaData
   m_EditorClassIdentifier: 
-  isLoadByIndex: 0
-  levelToLoadIndex: 0
-  levelToLoadName: SMRaceWay
+  levelName: SMCarolina
+  displayName: Carolina
+  isAdditiveLevel: 0
+  connectedLevels: []

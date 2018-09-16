@@ -36,6 +36,7 @@ namespace SM
             {
                 ship.initialize(gameObject);
                 reactor.initialize(gameObject);
+                sensorController.clearAllTargets();
             }
         }
 
