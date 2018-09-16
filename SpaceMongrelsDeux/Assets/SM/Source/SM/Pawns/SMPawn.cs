@@ -6,7 +6,6 @@ namespace SM
     public class SMPawn : Pawn
     {
         public SMInteractable currentInteractable;
-        public SMInteractableObject currentInteractableObject;
         protected Rigidbody2D _rigidbody;
         protected SMGame _game;
 

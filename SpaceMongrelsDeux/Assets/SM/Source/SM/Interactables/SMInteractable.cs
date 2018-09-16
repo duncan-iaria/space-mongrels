@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using SNDL;
 
 namespace SM
 {
-    public class SMInteractableObject : MonoBehaviour
+    public class SMInteractable : MonoBehaviour
     {
-        public SMInteractable interactable;
+        public Interactable interactable;
 
         public bool isEntryTrigger;
         public UnityEvent onTriggerEntry;
@@ -25,12 +25,12 @@ namespace SM
 
             if (tempPawn != null)
             {
-                if (tempPawn.currentInteractableObject)
+                if (tempPawn.currentInteractable != null)
                 {
-                    tempPawn.currentInteractableObject.onDeselect();
+                    tempPawn.currentInteractable.onDeselect();
                 }
 
-                tempPawn.currentInteractableObject = this;
+                tempPawn.currentInteractable = this;
             }
 
             //invoke event
@@ -53,7 +53,7 @@ namespace SM
             {
                 if (tempPawn.currentInteractable != null && tempPawn.currentInteractable == this)
                 {
-                    tempPawn.currentInteractableObject = null;
+                    tempPawn.currentInteractable = null;
                 }
             }
 

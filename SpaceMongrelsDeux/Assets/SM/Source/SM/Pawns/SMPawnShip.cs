@@ -142,15 +142,9 @@ namespace SM
         //=======================
         protected virtual void onAccept()
         {
-            //if an interactable is set, trigger it
             if (currentInteractable != null)
             {
                 currentInteractable.onInteract();
-            }
-
-            if (currentInteractableObject != null)
-            {
-                currentInteractableObject.onInteract();
             }
         }
 

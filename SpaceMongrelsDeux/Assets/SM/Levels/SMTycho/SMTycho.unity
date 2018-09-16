@@ -615,8 +615,8 @@ GameObject:
   m_Component:
   - component: {fileID: 598862682}
   - component: {fileID: 598862684}
-  - component: {fileID: 598862683}
   - component: {fileID: 598862685}
+  - component: {fileID: 598862683}
   m_Layer: 0
   m_Name: Gate
   m_TagString: Untagged

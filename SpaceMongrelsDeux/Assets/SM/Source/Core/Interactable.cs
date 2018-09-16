@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SM
+namespace SNDL
 {
-    public abstract class SMInteractable : ScriptableObject
+    public abstract class Interactable : ScriptableObject
     {
         public abstract void onEnter();
         public abstract void onExit();
