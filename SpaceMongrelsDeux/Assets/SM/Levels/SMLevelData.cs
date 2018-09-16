@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace SM
@@ -10,8 +8,8 @@ namespace SM
     {
         public string levelName;
         public string displayName;
-        public LevelType levelType;
         public bool isAdditiveLevel = false;
+        public LevelType levelType;
         public List<SMLevelData> connectedLevels = new List<SMLevelData>();
     }
 }
