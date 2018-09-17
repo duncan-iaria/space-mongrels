@@ -39,7 +39,7 @@ namespace SM
             //if it's not an additive level, set this as the current level
             if (!levelData.isAdditiveLevel)
             {
-                tempGame.currentLevel = this;
+                tempGame.currentExteriorLevel = this;
             }
 
             if (levelData.levelType == LevelType.Exterior)

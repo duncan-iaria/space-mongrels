@@ -6,18 +6,28 @@ namespace SM
 {
     public class SMGame : Game
     {
-        protected SMLevel _currentLevel;
-        public SMLevel currentLevel
-        {
-            get { return _currentLevel; }
-            set { _currentLevel = value; }
-        }
-
+        [Header("Pawns")]
         public SMPawnShip currentShipPawn;
         public SMPawnMongrel currentMongrelPawn;
 
-        //Loading
-        public int levelToLoad;
+        [Header("Levels")]
+
+        protected SMLevel _currentExteriorLevel;
+        public SMLevel currentExteriorLevel
+        {
+            get { return _currentExteriorLevel; }
+            set { _currentExteriorLevel = value; }
+        }
+
+        protected SMLevel _currentInteriorLevel;
+        public SMLevel currentInteriorLevel
+        {
+            get { return _currentInteriorLevel; }
+            set { _currentInteriorLevel = value; }
+        }
+
+        protected SMLevel currentLevel;
+        public int levelToLoadIndex;
         protected int currentLevelIndex;
         protected string levelToLoadName;
 
@@ -64,7 +74,7 @@ namespace SM
         public virtual void onLoadLevel(int tLevelIndex, float tTransitionDuration = 0.5f, bool isUsingTrasition = true)
         {
             //set the level to be loaded next(because we can't set with invoke)
-            levelToLoad = tLevelIndex;
+            levelToLoadIndex = tLevelIndex;
 
             //game load level function to execute when the closing transition is complete
             Invoke("loadLevel", tTransitionDuration);
@@ -94,9 +104,24 @@ namespace SM
             isPaused = false;
         }
 
+        public virtual void onLoadLevelByData(SMLevelData tData, float tTransitionDuration = 0.5f, bool isUsingTrasition = true)
+        {
+            if (tData != null)
+            {
+                if (tData.levelType == LevelType.Interior)
+                {
+                    //load interior
+                }
+                else
+                {
+                    //load exterior
+                }
+            }
+        }
+
         protected virtual void loadLevel()
         {
-            SceneManager.LoadScene(levelToLoad);
+            SceneManager.LoadScene(levelToLoadIndex);
         }
 
         protected virtual void loadLevelByName()
@@ -104,10 +129,9 @@ namespace SM
             SceneManager.LoadScene(levelToLoadName);
         }
 
-
         protected override void onSceneLoaded(Scene _scene, LoadSceneMode _mode)
         {
-            currentLevelIndex = levelToLoad;
+            currentLevelIndex = levelToLoadIndex;
         }
 
         //=======================

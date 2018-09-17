@@ -172,8 +172,13 @@ namespace SM
         //=======================
         protected virtual void loadShipInterior()
         {
-            SMGame tempGame = SMGame.GetGame<SMGame>();
-            tempGame.onLoadLevel(1, .5f, true);
+            if (ship.interiorLevel != null)
+            {
+                SMGame tempGame = SMGame.GetGame<SMGame>();
+
+                tempGame.onLoadLevelByName(ship.interiorLevel.levelName, .5f, true);
+            }
+            // tempGame.onLoadLevel(1, .5f, true);
         }
 
         //=======================
