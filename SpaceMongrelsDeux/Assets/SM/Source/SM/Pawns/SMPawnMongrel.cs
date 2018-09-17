@@ -84,12 +84,12 @@ namespace SM
 
         protected virtual void onSelectNextPawn()
         {
-            _game.currentInteriorLevel.selectNextPawn();
+            _game.currentLevel.selectNextPawn();
         }
 
         protected virtual void onSelectPreviousPawn()
         {
-            _game.currentInteriorLevel.selectPreviousPawn();
+            _game.currentLevel.selectPreviousPawn();
         }
 
         //=======================
@@ -142,7 +142,6 @@ namespace SM
 
             //turn off update loop
             enabled = false;
-            Debug.Log("Pawn Unset Actions");
         }
 
     }

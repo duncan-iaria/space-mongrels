@@ -66,30 +66,10 @@ namespace SM
         // Scene Loading
         //=======================
         //Start Scene Loading - GUI directly called from main menu
-        public override void onLoadScene(int _sceneIndex)
+        public void onPressStart(SMLevelData tLevelData)
         {
-            SMGame.GetGame<SMGame>().onLoadLevel(_sceneIndex, transitionDuration);
+            SMGame.GetGame<SMGame>().loadLevel(tLevelData, transitionDuration);
             transitionController.startTransition();
-        }
-
-        //End scene loading - triggered by event from SceneManagement
-        protected override void onSceneLoaded(Scene _scene, LoadSceneMode _mode)
-        {
-            //when a scene was loaded, assuming it's not an additive scene, end the transition and hide the menu
-            //if( _mode != LoadSceneMode.Additive )
-            //{
-            //	//if it's the initial scene
-            //	if( _scene.buildIndex == 0 )
-            //	{
-            //		onOpenMainMenu();
-            //		SMGame.instance.controller.setCurrentPawn( menuPawn );
-            //	}
-            //	//if it's any other scene
-            //	else
-            //	{
-            //		transitionController.endTransition();
-            //	}
-            //}
         }
 
         public void EventTest()

@@ -175,8 +175,7 @@ namespace SM
             if (ship.interiorLevel != null)
             {
                 SMGame tempGame = SMGame.GetGame<SMGame>();
-
-                tempGame.onLoadLevelByName(ship.interiorLevel.levelName, .5f, true);
+                tempGame.loadLevel(ship.interiorLevel);
             }
             // tempGame.onLoadLevel(1, .5f, true);
         }

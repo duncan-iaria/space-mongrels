@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using SNDL;
 
 namespace SM
@@ -39,11 +40,12 @@ namespace SM
             //if it's not an additive level, set this as the current level
             if (!levelData.isAdditiveLevel)
             {
-                tempGame.currentExteriorLevel = this;
+                tempGame.currentLevel = this;
             }
 
             if (levelData.levelType == LevelType.Exterior)
             {
+                Debug.Log("HEEEY SM RACEWAY");
                 SMPawnShip tempPawn = Instantiate(tempGame.currentShipPawn) as SMPawnShip;
                 setPawnControllerAndViewByPawn(tempPawn);
             }
@@ -90,6 +92,26 @@ namespace SM
         {
             game.controller.setCurrentPawn(tPawn);
             game.view.setTarget(tPawn.transform);
+        }
+
+        protected virtual void OnEnable()
+        {
+            SceneManager.activeSceneChanged += onSceneChange;
+        }
+
+        protected virtual void OnDisable()
+        {
+            SceneManager.activeSceneChanged -= onSceneChange;
+        }
+
+        protected virtual void onSceneChange(Scene tCurrent, Scene tNext)
+        {
+            Debug.Log("next scene :" + tNext.name);
+            // if it's an interior level and THIS interior
+            if (tNext.name == levelData.levelName)
+            {
+                onLevelBegin();
+            }
         }
     }
 }

@@ -11,25 +11,23 @@ namespace SM
         public SMPawnMongrel currentMongrelPawn;
 
         [Header("Levels")]
+        public SMLevelManager levelManager;
+        public SMLevel currentLevel;
 
-        protected SMLevel _currentExteriorLevel;
-        public SMLevel currentExteriorLevel
-        {
-            get { return _currentExteriorLevel; }
-            set { _currentExteriorLevel = value; }
-        }
-
-        protected SMLevel _currentInteriorLevel;
-        public SMLevel currentInteriorLevel
-        {
-            get { return _currentInteriorLevel; }
-            set { _currentInteriorLevel = value; }
-        }
-
-        protected SMLevel currentLevel;
-        public int levelToLoadIndex;
         protected int currentLevelIndex;
-        protected string levelToLoadName;
+        protected SMLevelData levelToLoad;
+
+        //=======================
+        // Init
+        //=======================
+        protected override void initialize()
+        {
+            base.initialize();
+            if (levelManager != null)
+            {
+                levelManager.init(this);
+            }
+        }
 
         //=======================
         // Pause
@@ -71,68 +69,30 @@ namespace SM
         //=======================
         // Level Loading
         //=======================
-        public virtual void onLoadLevel(int tLevelIndex, float tTransitionDuration = 0.5f, bool isUsingTrasition = true)
-        {
-            //set the level to be loaded next(because we can't set with invoke)
-            levelToLoadIndex = tLevelIndex;
-
-            //game load level function to execute when the closing transition is complete
-            Invoke("loadLevel", tTransitionDuration);
-
-            if (isUsingTrasition)
-            {
-                SMGUI tempGUI = GetGUI<SMGUI>();
-                tempGUI.transitionController.startTransition();
-            }
-
-            //unpause game (so it can load)
-            isPaused = false;
-        }
-
-        public virtual void onLoadLevelByName(string tLevelName, float tTransitionDuration = 0.5f, bool isUsingTrasition = true)
-        {
-            levelToLoadName = tLevelName;
-            Invoke("loadLevelByName", tTransitionDuration);
-
-            if (isUsingTrasition)
-            {
-                SMGUI tempGUI = GetGUI<SMGUI>();
-                tempGUI.transitionController.startTransition();
-            }
-
-            //unpause game (so it can load)
-            isPaused = false;
-        }
-
-        public virtual void onLoadLevelByData(SMLevelData tData, float tTransitionDuration = 0.5f, bool isUsingTrasition = true)
+        public virtual void loadLevel(SMLevelData tData, float tTransitionDuration = 0.5f, bool isUsingTrasition = true)
         {
             if (tData != null)
             {
-                if (tData.levelType == LevelType.Interior)
+                levelToLoad = tData;
+
+                Invoke("onLoadLevel", tTransitionDuration);
+                if (isUsingTrasition)
                 {
-                    //load interior
+                    SMGUI tempGUI = GetGUI<SMGUI>();
+                    tempGUI.transitionController.startTransition();
                 }
-                else
-                {
-                    //load exterior
-                }
+
+                isPaused = false;
             }
         }
 
-        protected virtual void loadLevel()
+        protected virtual void onLoadLevel()
         {
-            SceneManager.LoadScene(levelToLoadIndex);
-        }
-
-        protected virtual void loadLevelByName()
-        {
-            SceneManager.LoadScene(levelToLoadName);
+            levelManager.loadLevelByData(levelToLoad);
         }
 
         protected override void onSceneLoaded(Scene _scene, LoadSceneMode _mode)
-        {
-            currentLevelIndex = levelToLoadIndex;
-        }
+        { }
 
         //=======================
         // GUI Controls
