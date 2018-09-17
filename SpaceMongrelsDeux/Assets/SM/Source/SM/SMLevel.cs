@@ -110,6 +110,7 @@ namespace SM
             // if it's an interior level and THIS interior
             if (tNext.name == levelData.levelName)
             {
+                Debug.Log("ON BEGIN CALLED ON :" + tNext.name);
                 onLevelBegin();
             }
         }
