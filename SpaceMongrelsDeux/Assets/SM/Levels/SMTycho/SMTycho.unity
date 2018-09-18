@@ -1467,10 +1467,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7241298f7f399174f9be4b442fce0434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: 
+  levelName: SMTycho
   levelPawns: []
   testCam: {fileID: 1805721227}
   levelData: {fileID: 11400000, guid: ac7f5a1956b2d61478144171ea20d57c, type: 2}
+  currentLoadedLevels: {fileID: 11400000, guid: 4b93516bd041fe9438ea9a970aa74a3a,
+    type: 2}
 --- !u!4 &2094068084
 Transform:
   m_ObjectHideFlags: 0

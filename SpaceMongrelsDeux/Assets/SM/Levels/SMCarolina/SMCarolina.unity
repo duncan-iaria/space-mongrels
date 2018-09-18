@@ -202,7 +202,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentInteractable: {fileID: 0}
-  currentInteractableObject: {fileID: 0}
   moveSpeed: 2
 --- !u!212 &14405615
 SpriteRenderer:
@@ -1087,6 +1086,8 @@ MonoBehaviour:
   - {fileID: 14405614}
   testCam: {fileID: 16237152}
   levelData: {fileID: 11400000, guid: aad9c83621739d2429410c4a5ea8317c, type: 2}
+  currentLoadedLevels: {fileID: 11400000, guid: 4b93516bd041fe9438ea9a970aa74a3a,
+    type: 2}
 --- !u!4 &204975839
 Transform:
   m_ObjectHideFlags: 0

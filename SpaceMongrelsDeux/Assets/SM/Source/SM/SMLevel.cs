@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using SNDL;
 
@@ -7,9 +8,10 @@ namespace SM
     public class SMLevel : Level
     {
         [Header("Pawns")]
-        public Pawn[] levelPawns;
+        public List<Pawn> levelPawns = new List<Pawn>();
         public Camera testCam; //cam for setting up the scene and checking stuff
         public SMLevelData levelData;
+        public SMLevelSet currentLoadedLevels;
         public int currentLevelPawnIndex
         {
             get { return _currentLevelPawnIndex; }
@@ -31,6 +33,8 @@ namespace SM
         protected virtual void onLevelBegin()
         {
             SMGame tempGame = Game.GetGame<SMGame>();
+            levelName = levelData.levelName;
+
             //turn off the test camera if it exists
             if (testCam != null)
             {
@@ -45,21 +49,35 @@ namespace SM
 
             if (levelData.levelType == LevelType.Exterior)
             {
-                Debug.Log("HEEEY SM RACEWAY");
-                SMPawnShip tempPawn = Instantiate(tempGame.currentShipPawn) as SMPawnShip;
-                setPawnControllerAndViewByPawn(tempPawn);
+                if (levelPawns.Count > 0)
+                {
+                    currentLevelPawnIndex = 0;
+                }
+                else
+                {
+                    SMPawnShip tempPawn = Instantiate(tempGame.currentShipPawn) as SMPawnShip;
+                    setPawnControllerAndViewByPawn(tempPawn);
+                    levelPawns.Add(tempPawn);
+                    currentLevelPawnIndex = 0;
+                }
             }
             else
             {
                 //set the current level pawn as the current pawn, if there is one
-                if (levelPawns.Length > 0)
+                if (levelPawns.Count > 0)
                 {
                     setPawnControllerAndViewByIndex(currentLevelPawnIndex);
                 }
             }
         }
 
-        //sets it to the current pawn index (for being called outside of the class)
+        // hook for the level manager
+        public void reinitializeLevel()
+        {
+            onLevelBegin();
+        }
+
+        // sets it to the current pawn index (for being called outside of the class)
         public virtual void setLevelCurrentPawn()
         {
             game.controller.setCurrentPawn(levelPawns[currentLevelPawnIndex]);
@@ -68,17 +86,17 @@ namespace SM
         //for cycling between multiple pawns. if there are multiple
         public virtual void selectNextPawn()
         {
-            if (levelPawns.Length > 1)
+            if (levelPawns.Count > 1)
             {
-                currentLevelPawnIndex = currentLevelPawnIndex >= levelPawns.Length - 1 ? 0 : currentLevelPawnIndex + 1;
+                currentLevelPawnIndex = currentLevelPawnIndex >= levelPawns.Count - 1 ? 0 : currentLevelPawnIndex + 1;
             }
         }
 
         public virtual void selectPreviousPawn()
         {
-            if (levelPawns.Length > 1)
+            if (levelPawns.Count > 1)
             {
-                currentLevelPawnIndex = currentLevelPawnIndex <= 0 ? levelPawns.Length - 1 : currentLevelPawnIndex - 1;
+                currentLevelPawnIndex = currentLevelPawnIndex <= 0 ? levelPawns.Count - 1 : currentLevelPawnIndex - 1;
             }
         }
 
@@ -96,23 +114,12 @@ namespace SM
 
         protected virtual void OnEnable()
         {
-            SceneManager.activeSceneChanged += onSceneChange;
+            currentLoadedLevels.add(this);
         }
 
         protected virtual void OnDisable()
         {
-            SceneManager.activeSceneChanged -= onSceneChange;
-        }
-
-        protected virtual void onSceneChange(Scene tCurrent, Scene tNext)
-        {
-            Debug.Log("next scene :" + tNext.name);
-            // if it's an interior level and THIS interior
-            if (tNext.name == levelData.levelName)
-            {
-                Debug.Log("ON BEGIN CALLED ON :" + tNext.name);
-                onLevelBegin();
-            }
+            currentLoadedLevels.remove(this);
         }
     }
 }

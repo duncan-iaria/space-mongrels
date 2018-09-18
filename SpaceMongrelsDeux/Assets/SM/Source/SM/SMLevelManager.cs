@@ -9,9 +9,10 @@ namespace SM
     [CreateAssetMenu(menuName = "SM/Levels/Manager", order = 100)]
     public class SMLevelManager : LevelManager
     {
-        SMLevelData currentExteriorLevel;
-        SMLevelData currentInteriorLevel;
+        public SMLevelSet currentLoadedLevels;
 
+        protected SMLevelData currentExteriorLevel;
+        protected SMLevelData currentInteriorLevel;
         protected SMGame game;
         protected string levelToLoadName;
 
@@ -20,57 +21,70 @@ namespace SM
             game = tGame;
         }
 
-        public virtual void loadLevelByData(SMLevelData tData)
+        public virtual void loadLevelByData(SMLevelData tLevelData)
         {
-            if (tData != null)
+            if (tLevelData != null)
             {
-                if (tData.levelType == LevelType.Interior)
+                if (tLevelData.levelType == LevelType.Interior)
                 {
-                    // load interior
-                    Debug.Log("interior");
-
-                    // if the scene is the same as what's already loaded
-                    if (currentInteriorLevel != null && currentInteriorLevel.levelName == tData.levelName)
-                    {
-                        Scene tempScene = SceneManager.GetSceneByName(tData.levelName);
-                        if (tempScene.isLoaded)
-                        {
-                            SceneManager.SetActiveScene(tempScene);
-                        }
-                        else
-                        {
-                            loadLevelByName(tData.levelName, LoadSceneMode.Additive);
-                        }
-                    }
-                    else
-                    {
-                        loadLevelByName(tData.levelName, LoadSceneMode.Additive);
-                    }
+                    loadInteriorLevel(tLevelData);
                 }
                 else
                 {
-                    // load exterior
-                    Debug.Log("exterior");
-                    if (currentExteriorLevel != null && currentExteriorLevel.levelName == tData.levelName)
-                    {
-                        Scene tempScene = SceneManager.GetSceneByName(tData.levelName);
-                        if (tempScene.isLoaded)
-                        {
-                            Debug.Log("EXTERIOR ALREADY LOADED");
-                            SceneManager.SetActiveScene(tempScene);
-                        }
-                        else
-                        {
-                            loadLevelByName(tData.levelName, LoadSceneMode.Single);
-                        }
-                    }
-                    else
-                    {
-                        loadLevelByName(tData.levelName);
-                    }
+                    loadExteriorLevel(tLevelData);
                 }
 
-                setCurrentLevel(tData);
+                setCurrentLevel(tLevelData);
+            }
+        }
+
+        protected void loadInteriorLevel(SMLevelData tLevelData)
+        {
+            // load interior
+            Debug.Log("interior");
+
+            // if the scene is the same as what's already loaded
+            if (currentInteriorLevel != null && currentInteriorLevel.levelName == tLevelData.levelName)
+            {
+                Scene tempScene = SceneManager.GetSceneByName(tLevelData.levelName);
+                if (tempScene.isLoaded)
+                {
+                    SMLevel tempLoadedLevel = getLoadedLevelByData(tLevelData);
+                    tempLoadedLevel.reinitializeLevel();
+                }
+                else
+                {
+                    loadLevelByName(tLevelData.levelName, LoadSceneMode.Additive);
+                }
+            }
+            else
+            {
+                loadLevelByName(tLevelData.levelName, LoadSceneMode.Additive);
+            }
+        }
+
+        protected void loadExteriorLevel(SMLevelData tLevelData)
+        {
+            // load exterior
+            Debug.Log("exterior");
+
+            if (currentExteriorLevel != null && currentExteriorLevel.levelName == tLevelData.levelName)
+            {
+                Scene tempScene = SceneManager.GetSceneByName(tLevelData.levelName);
+                if (tempScene.isLoaded)
+                {
+                    Debug.Log("EXTERIOR ALREADY LOADED");
+                    SMLevel tempLoadedLevel = getLoadedLevelByData(tLevelData);
+                    tempLoadedLevel.reinitializeLevel();
+                }
+                else
+                {
+                    loadLevelByName(tLevelData.levelName, LoadSceneMode.Single);
+                }
+            }
+            else
+            {
+                loadLevelByName(tLevelData.levelName);
             }
         }
 
@@ -87,9 +101,26 @@ namespace SM
             Debug.Log("current level set");
         }
 
+        protected virtual SMLevel getLoadedLevelByData(SMLevelData tData)
+        {
+            Debug.Log("currentLoadedLevels count: " + currentLoadedLevels.items.Count);
+            for (int i = currentLoadedLevels.items.Count - 1; i >= 0; --i)
+            {
+                Debug.Log("currentLoadedLevels iterator at: " + i);
+
+                if (tData.levelName == currentLoadedLevels.items[i].levelName)
+                {
+                    return currentLoadedLevels.items[i];
+                }
+            }
+
+            Debug.Log("No loaded level found.");
+            return null;
+        }
+
         protected virtual void loadLevelByName(string tLevelName, LoadSceneMode tSceneMode = LoadSceneMode.Single)
         {
-            Scene tempScene = SceneManager.GetSceneByName(tLevelName);
+            // Scene tempScene = SceneManager.GetSceneByName(tLevelName);
             SceneManager.LoadScene(tLevelName, tSceneMode);
         }
     }

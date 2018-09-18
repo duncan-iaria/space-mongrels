@@ -56,7 +56,7 @@ namespace SM
                 onCloseMainMenu();
 
                 //set controller pawn - not thrilled at how this works
-                if (currentLevel.levelPawns.Length > 0)
+                if (currentLevel.levelPawns.Count > 0)
                 {
                     controller.setCurrentPawn(currentLevel.levelPawns[currentLevel.currentLevelPawnIndex]);
                 }

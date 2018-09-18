@@ -13,4 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipName: Dixie
   maxHealth: 75
+  interiorLevel: {fileID: 11400000, guid: aad9c83621739d2429410c4a5ea8317c, type: 2}
   collisionModifier: 3

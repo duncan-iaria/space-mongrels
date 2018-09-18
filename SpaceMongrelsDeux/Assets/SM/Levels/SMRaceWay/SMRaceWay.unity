@@ -1522,6 +1522,8 @@ MonoBehaviour:
   levelPawns: []
   testCam: {fileID: 1805721227}
   levelData: {fileID: 11400000, guid: eaeb9510e9373724da3864b19ed51387, type: 2}
+  currentLoadedLevels: {fileID: 11400000, guid: 4b93516bd041fe9438ea9a970aa74a3a,
+    type: 2}
   introAnimation: CloseUpToZoomOut
 --- !u!4 &2094068084
 Transform:
