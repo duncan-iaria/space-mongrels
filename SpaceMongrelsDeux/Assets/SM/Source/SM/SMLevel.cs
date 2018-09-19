@@ -32,8 +32,9 @@ namespace SM
 
         protected virtual void onLevelBegin()
         {
-            SMGame tempGame = Game.GetGame<SMGame>();
             levelName = levelData.levelName;
+            SMGame tempGame = Game.GetGame<SMGame>();
+            tempGame.setCurrentLevel(levelData);
 
             //turn off the test camera if it exists
             if (testCam != null)
@@ -41,33 +42,40 @@ namespace SM
                 testCam.gameObject.SetActive(false);
             }
 
-            //if it's not an additive level, set this as the current level
-            if (!levelData.isAdditiveLevel)
-            {
-                tempGame.currentLevel = this;
-            }
-
             if (levelData.levelType == LevelType.Exterior)
             {
-                if (levelPawns.Count > 0)
-                {
-                    currentLevelPawnIndex = 0;
-                }
-                else
-                {
-                    SMPawnShip tempPawn = Instantiate(tempGame.currentShipPawn) as SMPawnShip;
-                    setPawnControllerAndViewByPawn(tempPawn);
-                    levelPawns.Add(tempPawn);
-                    currentLevelPawnIndex = 0;
-                }
+                loadExteriorLevel();
             }
             else
             {
-                //set the current level pawn as the current pawn, if there is one
-                if (levelPawns.Count > 0)
-                {
-                    setPawnControllerAndViewByIndex(currentLevelPawnIndex);
-                }
+                loadInteriorLevel();
+            }
+        }
+
+        protected virtual void loadInteriorLevel()
+        {
+            transform.position = levelData.interiorOffset.value;
+
+            //set the current level pawn as the current pawn, if there is one
+            if (levelPawns.Count > 0)
+            {
+                setPawnControllerAndViewByIndex(currentLevelPawnIndex, true);
+            }
+        }
+
+        protected virtual void loadExteriorLevel()
+        {
+            SMGame tempGame = Game.GetGame<SMGame>();
+            if (levelPawns.Count > 0)
+            {
+                currentLevelPawnIndex = 0;
+            }
+            else
+            {
+                SMPawnShip tempPawn = Instantiate(tempGame.currentShipPawn) as SMPawnShip;
+                setPawnControllerAndViewByPawn(tempPawn);
+                levelPawns.Add(tempPawn);
+                currentLevelPawnIndex = 0;
             }
         }
 
@@ -100,16 +108,18 @@ namespace SM
             }
         }
 
-        protected virtual void setPawnControllerAndViewByIndex(int tPawnIndex)
+        protected virtual void setPawnControllerAndViewByIndex(int tPawnIndex, bool isImmediate = false)
         {
+            Debug.Log("we set by index");
             game.controller.setCurrentPawn(levelPawns[tPawnIndex]);
-            game.view.setTarget(levelPawns[tPawnIndex].transform);
+            game.view.setTarget(levelPawns[tPawnIndex].transform, isImmediate);
         }
 
         protected virtual void setPawnControllerAndViewByPawn(SMPawn tPawn)
         {
+            Debug.Log("we set by pawn");
             game.controller.setCurrentPawn(tPawn);
-            game.view.setTarget(tPawn.transform);
+            game.view.setTarget(tPawn.transform, true);
         }
 
         protected virtual void OnEnable()

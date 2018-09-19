@@ -84,12 +84,12 @@ namespace SM
 
         protected virtual void onSelectNextPawn()
         {
-            _game.currentLevel.selectNextPawn();
+            _game.levelManager.getCurrentLevel().selectNextPawn();
         }
 
         protected virtual void onSelectPreviousPawn()
         {
-            _game.currentLevel.selectPreviousPawn();
+            _game.levelManager.getCurrentLevel().selectPreviousPawn();
         }
 
         //=======================

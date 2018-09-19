@@ -9,8 +9,9 @@ namespace SM
     [CreateAssetMenu(menuName = "SM/Levels/Manager", order = 100)]
     public class SMLevelManager : LevelManager
     {
+        public SMLevelData currentLevel;
         public SMLevelSet currentLoadedLevels;
-
+        public SMLevelData defaultExteriorLevel;
         protected SMLevelData currentExteriorLevel;
         protected SMLevelData currentInteriorLevel;
         protected SMGame game;
@@ -54,12 +55,12 @@ namespace SM
                 }
                 else
                 {
-                    loadLevelByName(tLevelData.levelName, LoadSceneMode.Additive);
+                    loadLevelByName(tLevelData.levelName);
                 }
             }
             else
             {
-                loadLevelByName(tLevelData.levelName, LoadSceneMode.Additive);
+                loadLevelByName(tLevelData.levelName);
             }
         }
 
@@ -79,16 +80,26 @@ namespace SM
                 }
                 else
                 {
-                    loadLevelByName(tLevelData.levelName, LoadSceneMode.Single);
+                    swapExteriorLoadedLevel(tLevelData);
                 }
             }
             else
             {
-                loadLevelByName(tLevelData.levelName);
+                swapExteriorLoadedLevel(tLevelData);
             }
         }
 
-        protected void setCurrentLevel(SMLevelData tLevelData)
+        protected void swapExteriorLoadedLevel(SMLevelData tNextLevel)
+        {
+            if (currentExteriorLevel != null && getLoadedLevelByData(currentExteriorLevel) != null)
+            {
+                unloadLevelByName(currentExteriorLevel.levelName);
+            }
+
+            loadLevelByName(tNextLevel.levelName);
+        }
+
+        public void setCurrentLevel(SMLevelData tLevelData)
         {
             if (tLevelData.levelType == LevelType.Interior)
             {
@@ -98,16 +109,19 @@ namespace SM
             {
                 currentExteriorLevel = tLevelData;
             }
-            Debug.Log("current level set");
+
+            currentLevel = tLevelData;
+        }
+
+        public virtual SMLevel getCurrentLevel()
+        {
+            return getLoadedLevelByData(currentLevel);
         }
 
         protected virtual SMLevel getLoadedLevelByData(SMLevelData tData)
         {
-            Debug.Log("currentLoadedLevels count: " + currentLoadedLevels.items.Count);
             for (int i = currentLoadedLevels.items.Count - 1; i >= 0; --i)
             {
-                Debug.Log("currentLoadedLevels iterator at: " + i);
-
                 if (tData.levelName == currentLoadedLevels.items[i].levelName)
                 {
                     return currentLoadedLevels.items[i];
@@ -118,10 +132,26 @@ namespace SM
             return null;
         }
 
-        protected virtual void loadLevelByName(string tLevelName, LoadSceneMode tSceneMode = LoadSceneMode.Single)
+        public void loadCurrentExteriorLevel()
         {
-            // Scene tempScene = SceneManager.GetSceneByName(tLevelName);
+            if (currentExteriorLevel != null)
+            {
+                loadLevelByData(currentExteriorLevel);
+            }
+            else
+            {
+                loadLevelByData(defaultExteriorLevel);
+            }
+        }
+
+        protected virtual void loadLevelByName(string tLevelName, LoadSceneMode tSceneMode = LoadSceneMode.Additive)
+        {
             SceneManager.LoadScene(tLevelName, tSceneMode);
+        }
+
+        protected virtual void unloadLevelByName(string tLevelName)
+        {
+            SceneManager.UnloadSceneAsync(tLevelName);
         }
     }
 }

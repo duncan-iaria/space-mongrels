@@ -14,4 +14,6 @@ MonoBehaviour:
   levelName: SMCarolina
   displayName: Carolina
   isAdditiveLevel: 0
+  levelType: 0
+  interiorOffset: {fileID: 11400000, guid: 0290ec212f3945140b49c7c775a96dc9, type: 2}
   connectedLevels: []

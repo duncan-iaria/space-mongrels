@@ -12,9 +12,7 @@ namespace SM
 
         [Header("Levels")]
         public SMLevelManager levelManager;
-        public SMLevel currentLevel;
 
-        protected int currentLevelIndex;
         protected SMLevelData levelToLoad;
 
         //=======================
@@ -50,6 +48,7 @@ namespace SM
             }
             else
             {
+                SMLevel currentLevel = levelManager.getCurrentLevel();
                 Time.timeScale = 1f;
 
                 //close the main menu visually
@@ -89,6 +88,16 @@ namespace SM
         protected virtual void onLoadLevel()
         {
             levelManager.loadLevelByData(levelToLoad);
+        }
+
+        public virtual SMLevel getCurrentLevel()
+        {
+            return levelManager.getCurrentLevel();
+        }
+
+        public virtual void setCurrentLevel(SMLevelData tLevelData)
+        {
+            levelManager.setCurrentLevel(tLevelData);
         }
 
         protected override void onSceneLoaded(Scene _scene, LoadSceneMode _mode)

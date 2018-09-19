@@ -6,6 +6,6 @@ namespace SNDL
 {
     public class LevelManager : ScriptableObject
     {
-        public Level currentLevel;
+        // public Level level;
     }
 }
