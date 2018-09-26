@@ -136,11 +136,11 @@ namespace SM
         {
             if (currentExteriorLevel != null)
             {
-                loadLevelByData(currentExteriorLevel);
+                game.loadLevel(currentExteriorLevel);
             }
             else
             {
-                loadLevelByData(defaultExteriorLevel);
+                game.loadLevel(defaultExteriorLevel);
             }
         }
 

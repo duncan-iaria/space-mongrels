@@ -11,29 +11,36 @@ namespace SM
         public List<Pawn> levelPawns = new List<Pawn>();
         public Camera testCam; //cam for setting up the scene and checking stuff
         public SMLevelData levelData;
-        public SMLevelSet currentLoadedLevels;
         public int currentLevelPawnIndex
         {
             get { return _currentLevelPawnIndex; }
             set
             {
                 _currentLevelPawnIndex = value;
-                setPawnControllerAndViewByIndex(value);
+                // setPawnControllerAndViewByIndex(value);
             }
         }
 
+        protected SMLevelSet currentLoadedLevels;
         protected int _currentLevelPawnIndex;
 
         protected override void Awake()
         {
             base.Awake();
+            init();
             onLevelBegin();
+        }
+
+        protected virtual void init()
+        {
+            SMGame tempGame = (SMGame)game;
+            currentLoadedLevels = tempGame.levelManager.currentLoadedLevels;
         }
 
         protected virtual void onLevelBegin()
         {
             levelName = levelData.levelName;
-            SMGame tempGame = Game.GetGame<SMGame>();
+            SMGame tempGame = (SMGame)game;
             tempGame.setCurrentLevel(levelData);
 
             //turn off the test camera if it exists
@@ -52,6 +59,8 @@ namespace SM
             }
         }
 
+        public virtual void loadLevel() { }
+
         protected virtual void loadInteriorLevel()
         {
             transform.position = levelData.interiorOffset.value;
@@ -69,6 +78,8 @@ namespace SM
             if (levelPawns.Count > 0)
             {
                 currentLevelPawnIndex = 0;
+                setPawnControllerAndViewByIndex(currentLevelPawnIndex, true);
+
             }
             else
             {

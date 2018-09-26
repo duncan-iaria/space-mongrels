@@ -11,6 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf46ee7a27322cb468aa5a9ed551eb3f, type: 3}
   m_Name: SMLevelManager
   m_EditorClassIdentifier: 
-  currentLevel: {fileID: 0}
+  currentLevel: {fileID: 11400000, guid: ac7f5a1956b2d61478144171ea20d57c, type: 2}
   currentLoadedLevels: {fileID: 11400000, guid: 4b93516bd041fe9438ea9a970aa74a3a,
+    type: 2}
+  defaultExteriorLevel: {fileID: 11400000, guid: eaeb9510e9373724da3864b19ed51387,
     type: 2}

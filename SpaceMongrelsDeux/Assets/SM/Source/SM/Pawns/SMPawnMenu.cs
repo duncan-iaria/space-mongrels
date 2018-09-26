@@ -9,11 +9,11 @@ namespace SM
         public EventSystem eventSystem;
         public GameObject selectedObject;
 
-        //for closing out of menu a few levels deep(effectively resetting "selectedObject")
+        // for closing out of menu a few levels deep(effectively resetting "selectedObject")
         protected GameObject initSelectedObject;
 
         [Header("Menu Objects")]
-        //for comparing if we can go back or close menu when pressing back
+        // for comparing if we can go back or close menu when pressing back
         public GameObject topLevelMenu;
         public GameObject currentMenu;
         public GameObject previousMenu;
@@ -22,14 +22,14 @@ namespace SM
 
         protected override void Awake()
         {
-            //save initial selection for resetting when closed
+            // save initial selection for resetting when closed
             initSelectedObject = selectedObject;
         }
 
         //=======================
         // Nav Controls
         //=======================
-        //catch the left axis input
+        // catch the left axis input
         public override void onLeftAxis(Vector2 _axis)
         {
             if (_axis != Vector2.zero && buttonSelected == false)

@@ -69,7 +69,6 @@ namespace SM
         public void onPressStart(SMLevelData tLevelData)
         {
             SMGame.GetGame<SMGame>().loadLevel(tLevelData, transitionDuration);
-            transitionController.startTransition();
         }
 
         public void EventTest()
