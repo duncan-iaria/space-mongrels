@@ -7,11 +7,9 @@ namespace SM
 
     public class SMLevelExterior : SMLevel
     {
-        protected virtual void loadLevel()
+        protected override void loadLevel(SMGame tGame)
         {
             Debug.Log("loading exterior");
-
-            SMGame tempGame = (SMGame)game;
 
             if (levelPawns.Count > 0)
             {
@@ -21,7 +19,7 @@ namespace SM
             }
             else
             {
-                SMPawnShip tempPawn = Instantiate(tempGame.currentShipPawn) as SMPawnShip;
+                SMPawnShip tempPawn = Instantiate(tGame.currentShipPawn) as SMPawnShip;
                 setPawnControllerAndViewByPawn(tempPawn);
                 levelPawns.Add(tempPawn);
                 currentLevelPawnIndex = 0;

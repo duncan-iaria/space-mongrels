@@ -49,46 +49,10 @@ namespace SM
                 testCam.gameObject.SetActive(false);
             }
 
-            if (levelData.levelType == LevelType.Exterior)
-            {
-                loadExteriorLevel();
-            }
-            else
-            {
-                loadInteriorLevel();
-            }
+            loadLevel(tempGame);
         }
 
-        public virtual void loadLevel() { }
-
-        protected virtual void loadInteriorLevel()
-        {
-            transform.position = levelData.interiorOffset.value;
-
-            //set the current level pawn as the current pawn, if there is one
-            if (levelPawns.Count > 0)
-            {
-                setPawnControllerAndViewByIndex(currentLevelPawnIndex, true);
-            }
-        }
-
-        protected virtual void loadExteriorLevel()
-        {
-            SMGame tempGame = Game.GetGame<SMGame>();
-            if (levelPawns.Count > 0)
-            {
-                currentLevelPawnIndex = 0;
-                setPawnControllerAndViewByIndex(currentLevelPawnIndex, true);
-
-            }
-            else
-            {
-                SMPawnShip tempPawn = Instantiate(tempGame.currentShipPawn) as SMPawnShip;
-                setPawnControllerAndViewByPawn(tempPawn);
-                levelPawns.Add(tempPawn);
-                currentLevelPawnIndex = 0;
-            }
-        }
+        protected virtual void loadLevel(SMGame tGame) { }
 
         // hook for the level manager
         public void reinitializeLevel()
@@ -108,6 +72,7 @@ namespace SM
             if (levelPawns.Count > 1)
             {
                 currentLevelPawnIndex = currentLevelPawnIndex >= levelPawns.Count - 1 ? 0 : currentLevelPawnIndex + 1;
+                setPawnControllerAndViewByIndex(currentLevelPawnIndex);
             }
         }
 
@@ -116,6 +81,7 @@ namespace SM
             if (levelPawns.Count > 1)
             {
                 currentLevelPawnIndex = currentLevelPawnIndex <= 0 ? levelPawns.Count - 1 : currentLevelPawnIndex - 1;
+                setPawnControllerAndViewByIndex(currentLevelPawnIndex);
             }
         }
 

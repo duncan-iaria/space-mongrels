@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SM
 {
-    public class SMTycho : SMLevel
+    public class SMTycho : SMLevelExterior
     {
         protected override void onLevelBegin()
         {

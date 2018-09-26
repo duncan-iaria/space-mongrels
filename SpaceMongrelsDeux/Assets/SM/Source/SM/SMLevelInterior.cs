@@ -7,7 +7,7 @@ namespace SM
 
     public class SMLevelInterior : SMLevel
     {
-        protected virtual void loadLevel()
+        protected override void loadLevel(SMGame tGame)
         {
             transform.position = levelData.interiorOffset.value;
             Debug.Log("loading interior");
