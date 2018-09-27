@@ -91,12 +91,12 @@ namespace SM
 
         protected void swapExteriorLoadedLevel(SMLevelData tNextLevel)
         {
+            loadLevelByName(tNextLevel.levelName);
+
             if (currentExteriorLevel != null && getLoadedLevelByData(currentExteriorLevel) != null)
             {
                 unloadLevelByName(currentExteriorLevel.levelName);
             }
-
-            loadLevelByName(tNextLevel.levelName);
         }
 
         public void setCurrentLevel(SMLevelData tLevelData)
