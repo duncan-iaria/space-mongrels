@@ -10,7 +10,6 @@ namespace SM
         protected override void loadLevel(SMGame tGame)
         {
             transform.position = levelData.interiorOffset.value;
-            Debug.Log("loading interior");
 
             // set the current level pawn as the current pawn, if there is one
             if (levelPawns != null)

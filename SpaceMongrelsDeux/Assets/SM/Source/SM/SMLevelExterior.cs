@@ -9,8 +9,6 @@ namespace SM
     {
         protected override void loadLevel(SMGame tGame)
         {
-            Debug.Log("loading exterior");
-
             if (levelPawns.Count > 0)
             {
                 currentLevelPawnIndex = 0;

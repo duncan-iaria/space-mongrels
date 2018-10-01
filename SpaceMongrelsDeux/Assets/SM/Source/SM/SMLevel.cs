@@ -41,7 +41,14 @@ namespace SM
         {
             levelName = levelData.levelName;
             SMGame tempGame = (SMGame)game;
+
+            SMLevel tempPreviousLevel = tempGame.getCurrentLevel();
+            if (tempPreviousLevel != null)
+            {
+                Debug.Log("prev level: " + tempPreviousLevel.levelName);
+            }
             tempGame.setCurrentLevel(levelData);
+
 
             //turn off the test camera if it exists
             if (testCam != null)
@@ -87,14 +94,14 @@ namespace SM
 
         protected virtual void setPawnControllerAndViewByIndex(int tPawnIndex, bool isImmediate = false)
         {
-            Debug.Log("we set by index");
+            // Debug.Log("we set by index");
             game.controller.setCurrentPawn(levelPawns[tPawnIndex]);
             game.view.setTarget(levelPawns[tPawnIndex].transform, isImmediate);
         }
 
         protected virtual void setPawnControllerAndViewByPawn(SMPawn tPawn)
         {
-            Debug.Log("we set by pawn");
+            // Debug.Log("we set by pawn");
             game.controller.setCurrentPawn(tPawn);
             game.view.setTarget(tPawn.transform, true);
         }

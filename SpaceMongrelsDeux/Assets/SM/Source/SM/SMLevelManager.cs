@@ -67,8 +67,6 @@ namespace SM
         protected void loadExteriorLevel(SMLevelData tLevelData)
         {
             // load exterior
-            Debug.Log("exterior");
-
             if (currentExteriorLevel != null && currentExteriorLevel.levelName == tLevelData.levelName)
             {
                 Scene tempScene = SceneManager.GetSceneByName(tLevelData.levelName);
@@ -120,6 +118,7 @@ namespace SM
 
         protected virtual SMLevel getLoadedLevelByData(SMLevelData tData)
         {
+            Debug.Log("current level via manager: " + currentLevel);
             for (int i = currentLoadedLevels.items.Count - 1; i >= 0; --i)
             {
                 if (tData.levelName == currentLoadedLevels.items[i].levelName)
@@ -128,7 +127,7 @@ namespace SM
                 }
             }
 
-            Debug.Log("No loaded level found.");
+            // Debug.Log("No loaded level found.");
             return null;
         }
 
