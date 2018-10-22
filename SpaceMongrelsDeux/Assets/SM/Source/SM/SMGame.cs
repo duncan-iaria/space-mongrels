@@ -92,12 +92,12 @@ namespace SM
 
         public virtual SMLevel getCurrentLevel()
         {
-            Debug.Log("current level via thing:" + levelManager.currentLevel);
             return levelManager.getCurrentLevel();
         }
 
         public virtual void setCurrentLevel(SMLevelData tLevelData)
         {
+            Debug.Log("Setting current level: " + tLevelData.levelName);
             levelManager.setCurrentLevel(tLevelData);
         }
 

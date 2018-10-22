@@ -617,6 +617,7 @@ GameObject:
   - component: {fileID: 598862684}
   - component: {fileID: 598862685}
   - component: {fileID: 598862683}
+  - component: {fileID: 598862686}
   m_Layer: 0
   m_Name: Gate
   m_TagString: Untagged
@@ -726,6 +727,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.32
+--- !u!114 &598862686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 598862681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9164ff6c935fba240a1fa397cb56f954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceLevel: {fileID: 11400000, guid: eaeb9510e9373724da3864b19ed51387, type: 2}
 --- !u!1001 &811509353
 Prefab:
   m_ObjectHideFlags: 0
@@ -1471,8 +1484,8 @@ MonoBehaviour:
   levelPawns: []
   testCam: {fileID: 1805721227}
   levelData: {fileID: 11400000, guid: ac7f5a1956b2d61478144171ea20d57c, type: 2}
-  currentLoadedLevels: {fileID: 11400000, guid: 4b93516bd041fe9438ea9a970aa74a3a,
-    type: 2}
+  spawnPoints:
+  - {fileID: 598862686}
 --- !u!4 &2094068084
 Transform:
   m_ObjectHideFlags: 0

@@ -9,9 +9,9 @@ namespace SM
     [CreateAssetMenu(menuName = "SM/Levels/Manager", order = 100)]
     public class SMLevelManager : LevelManager
     {
-        public SMLevelData currentLevel;
         public SMLevelSet currentLoadedLevels;
         public SMLevelData defaultExteriorLevel;
+        public SMLevelData currentLevel;
         protected SMLevelData currentExteriorLevel;
         protected SMLevelData currentInteriorLevel;
         protected SMGame game;
@@ -20,6 +20,7 @@ namespace SM
         public virtual void init(SMGame tGame)
         {
             game = tGame;
+            SceneManager.CreateScene("The Void");
         }
 
         public virtual void loadLevelByData(SMLevelData tLevelData)
@@ -34,8 +35,6 @@ namespace SM
                 {
                     loadExteriorLevel(tLevelData);
                 }
-
-                setCurrentLevel(tLevelData);
             }
         }
 
@@ -113,12 +112,12 @@ namespace SM
 
         public virtual SMLevel getCurrentLevel()
         {
+            Debug.Log("current level is: " + currentLevel.levelName);
             return getLoadedLevelByData(currentLevel);
         }
 
         protected virtual SMLevel getLoadedLevelByData(SMLevelData tData)
         {
-            Debug.Log("current level via manager: " + currentLevel);
             for (int i = currentLoadedLevels.items.Count - 1; i >= 0; --i)
             {
                 if (tData.levelName == currentLoadedLevels.items[i].levelName)
@@ -127,7 +126,7 @@ namespace SM
                 }
             }
 
-            // Debug.Log("No loaded level found.");
+            Debug.LogWarning("No loaded level found." + tData.levelName + " was passed in");
             return null;
         }
 

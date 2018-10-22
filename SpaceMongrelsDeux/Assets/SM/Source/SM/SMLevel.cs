@@ -5,6 +5,8 @@ using SNDL;
 
 namespace SM
 {
+    // current flow
+    // Awake -> init -> onLevelBegin -> loadLevel
     public class SMLevel : Level
     {
         [Header("Pawns")]
@@ -21,6 +23,7 @@ namespace SM
             }
         }
 
+
         protected SMLevelSet currentLoadedLevels;
         protected int _currentLevelPawnIndex;
 
@@ -35,6 +38,16 @@ namespace SM
         {
             SMGame tempGame = (SMGame)game;
             currentLoadedLevels = tempGame.levelManager.currentLoadedLevels;
+            SMLevel tempPreviousLevel = tempGame.getCurrentLevel();
+
+            if (tempPreviousLevel != null && tempPreviousLevel.levelData.levelType == LevelType.Exterior)
+            {
+                // spawnPawn(tempPreviousLevel);
+            }
+            else
+            {
+                // spawnPawn();
+            }
         }
 
         protected virtual void onLevelBegin()
@@ -47,19 +60,23 @@ namespace SM
             {
                 Debug.Log("prev level: " + tempPreviousLevel.levelName);
             }
+
             tempGame.setCurrentLevel(levelData);
 
-
-            //turn off the test camera if it exists
+            // turn off the test camera if it exists
             if (testCam != null)
             {
                 testCam.gameObject.SetActive(false);
             }
 
-            loadLevel(tempGame);
+            // for exterior/interior
+            loadLevel(tempGame, tempPreviousLevel);
         }
 
         protected virtual void loadLevel(SMGame tGame) { }
+        protected virtual void loadLevel(SMGame tGame, SMLevel tPreviousLevel) { }
+        // protected virtual void spawnPawn(SMLevel tPreviousLevel) { }
+        // protected virtual void spawnPawn() { }
 
         // hook for the level manager
         public void reinitializeLevel()
@@ -94,14 +111,12 @@ namespace SM
 
         protected virtual void setPawnControllerAndViewByIndex(int tPawnIndex, bool isImmediate = false)
         {
-            // Debug.Log("we set by index");
             game.controller.setCurrentPawn(levelPawns[tPawnIndex]);
             game.view.setTarget(levelPawns[tPawnIndex].transform, isImmediate);
         }
 
         protected virtual void setPawnControllerAndViewByPawn(SMPawn tPawn)
         {
-            // Debug.Log("we set by pawn");
             game.controller.setCurrentPawn(tPawn);
             game.view.setTarget(tPawn.transform, true);
         }
