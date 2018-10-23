@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SM
 {
-    public class SMRaceWay : SMLevel
+    public class SMRaceWay : SMLevelExterior
     {
         public string introAnimation;
 

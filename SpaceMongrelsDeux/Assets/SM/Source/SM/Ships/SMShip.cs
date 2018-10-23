@@ -7,6 +7,7 @@ namespace SM
     {
         public string shipName;
         public int maxHealth;
+        public SMLevelData interiorLevel;
         public float collisionModifier = 1;
 
         public abstract void initialize(GameObject tObject);

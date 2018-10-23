@@ -1181,6 +1181,7 @@ MonoBehaviour:
   menuPawn: {fileID: 114720690002472284}
   transitionController: {fileID: 114089281205497828}
   transitionDuration: 0.5
+  startLevel: {fileID: 0}
 --- !u!114 &114304567891784206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1447,12 +1448,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114240278152417072}
-        m_MethodName: onLoadScene
-        m_Mode: 3
+        m_MethodName: onPressStart
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_ObjectArgument: {fileID: 11400000, guid: aad9c83621739d2429410c4a5ea8317c,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: SM.SMLevelData, Assembly-CSharp
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

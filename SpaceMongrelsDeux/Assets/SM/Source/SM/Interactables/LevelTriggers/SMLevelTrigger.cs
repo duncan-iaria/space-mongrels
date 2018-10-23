@@ -7,8 +7,6 @@ namespace SM
     [CreateAssetMenu(menuName = "SM/Interactables/LevelTrigger", order = 100)]
     public class SMLevelTrigger : Interactable
     {
-        public bool isLoadByIndex = false;
-        public int levelToLoadIndex;
         public SMLevelData levelToLoadData;
 
         public override void onEnter() { }
@@ -18,14 +16,7 @@ namespace SM
         public override void onInteract()
         {
             SMGame tempGame = Game.GetGame<SMGame>();
-            if (isLoadByIndex)
-            {
-                tempGame.onLoadLevel(levelToLoadIndex);
-            }
-            else
-            {
-                tempGame.onLoadLevelByName(levelToLoadData.levelName);
-            }
+            tempGame.loadLevel(levelToLoadData);
         }
     }
 }

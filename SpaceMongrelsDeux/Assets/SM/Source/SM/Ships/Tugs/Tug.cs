@@ -21,7 +21,6 @@ public class Tug : SMShip
 
     public override void takeDamage(GameObject tObject, int tAmt)
     {
-        Debug.Log("Take damage called on ship");
         SMPawnShip tempShip = tObject.GetComponent<SMPawnShip>();
         if (tempShip)
         {

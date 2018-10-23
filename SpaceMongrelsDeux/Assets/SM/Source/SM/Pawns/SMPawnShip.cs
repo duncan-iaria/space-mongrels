@@ -172,8 +172,15 @@ namespace SM
         //=======================
         protected virtual void loadShipInterior()
         {
-            SMGame tempGame = SMGame.GetGame<SMGame>();
-            tempGame.onLoadLevel(1, .5f, true);
+            if (ship.interiorLevel != null)
+            {
+                SMGame tempGame = SMGame.GetGame<SMGame>();
+                tempGame.loadLevel(ship.interiorLevel);
+            }
+            else
+            {
+                Debug.LogWarning("No Interior found to load.");
+            }
         }
 
         //=======================

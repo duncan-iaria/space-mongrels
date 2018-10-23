@@ -75,7 +75,8 @@ MonoBehaviour:
     type: 2}
   currentMongrelPawn: {fileID: 114885935134080932, guid: 696e6528193a24a4ba579654fbabaa47,
     type: 2}
-  levelToLoad: 0
+  levelManager: {fileID: 11400000, guid: 033a6571be2a5f94197b830da090f065, type: 2}
+  currentLevel: {fileID: 0}
 --- !u!114 &114803817140995768
 MonoBehaviour:
   m_ObjectHideFlags: 1
