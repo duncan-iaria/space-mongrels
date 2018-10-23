@@ -43,7 +43,6 @@ namespace SM
         {
             if (tValue != 0 && buttonSelected == false)
             {
-                //Debug.Log( "Snoot2" );
                 eventSystem.SetSelectedGameObject(selectedObject);
                 buttonSelected = true;
             }

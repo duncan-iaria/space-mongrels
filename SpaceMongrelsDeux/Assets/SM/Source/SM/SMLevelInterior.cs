@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace SM
 {
-
     public class SMLevelInterior : SMLevel
     {
         protected override void loadLevel(SMGame tGame, SMLevel tPreviousLevel)
@@ -22,6 +21,5 @@ namespace SM
                 Debug.LogWarning("Did you forget to assign level pawns?");
             }
         }
-
     }
 }

@@ -177,6 +177,10 @@ namespace SM
                 SMGame tempGame = SMGame.GetGame<SMGame>();
                 tempGame.loadLevel(ship.interiorLevel);
             }
+            else
+            {
+                Debug.LogWarning("No Interior found to load.");
+            }
         }
 
         //=======================

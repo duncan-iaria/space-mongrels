@@ -15,7 +15,6 @@ namespace SM
             {
                 currentLevelPawnIndex = 0;
                 setPawnControllerAndViewByIndex(currentLevelPawnIndex, true);
-
             }
             else
             {
