@@ -40,9 +40,6 @@ namespace SM
 
         protected void loadInteriorLevel(SMLevelData tLevelData)
         {
-            // load interior
-            Debug.Log("interior");
-
             // if the scene is the same as what's already loaded
             if (currentInteriorLevel != null && currentInteriorLevel.levelName == tLevelData.levelName)
             {
@@ -71,7 +68,6 @@ namespace SM
                 Scene tempScene = SceneManager.GetSceneByName(tLevelData.levelName);
                 if (tempScene.isLoaded)
                 {
-                    Debug.Log("EXTERIOR ALREADY LOADED");
                     SMLevel tempLoadedLevel = getLoadedLevelByData(tLevelData);
                     tempLoadedLevel.reinitializeLevel();
                 }
@@ -112,8 +108,11 @@ namespace SM
 
         public virtual SMLevel getCurrentLevel()
         {
-            Debug.Log("current level is: " + currentLevel.levelName);
-            return getLoadedLevelByData(currentLevel);
+            if (currentLoadedLevels.items.Count > 0)
+            {
+                return getLoadedLevelByData(currentLevel);
+            }
+            else return null;
         }
 
         protected virtual SMLevel getLoadedLevelByData(SMLevelData tData)
@@ -126,7 +125,7 @@ namespace SM
                 }
             }
 
-            Debug.LogWarning("No loaded level found." + tData.levelName + " was passed in");
+            Debug.LogWarning("No loaded level found." + tData.levelName + " was passed in.");
             return null;
         }
 

@@ -19,7 +19,6 @@ namespace SM
             }
             else
             {
-                Debug.Log("prev level" + tPreviousLevel);
                 SMPawnShip tempPawn = Instantiate(tGame.currentShipPawn, getSpawnPoint(tPreviousLevel), Quaternion.identity) as SMPawnShip;
                 tempPawn.transform.parent = this.transform;
 
@@ -30,11 +29,6 @@ namespace SM
                 currentLevelPawnIndex = 0;
             }
         }
-
-        // protected override void spawnPawn(SMLevel tPreviousLevel)
-        // {
-
-        // }
 
         protected Vector3 getSpawnPoint(SMLevel tPreviousLevel)
         {

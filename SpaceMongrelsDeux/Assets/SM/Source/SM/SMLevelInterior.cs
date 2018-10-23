@@ -7,7 +7,7 @@ namespace SM
 
     public class SMLevelInterior : SMLevel
     {
-        protected override void loadLevel(SMGame tGame)
+        protected override void loadLevel(SMGame tGame, SMLevel tPreviousLevel)
         {
             transform.position = levelData.interiorOffset.value;
 
@@ -16,6 +16,10 @@ namespace SM
             {
                 int tempPawnIndex = levelPawns.Count > 0 ? currentLevelPawnIndex : 0;
                 setPawnControllerAndViewByIndex(tempPawnIndex, true);
+            }
+            else
+            {
+                Debug.LogWarning("Did you forget to assign level pawns?");
             }
         }
 

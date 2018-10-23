@@ -5,7 +5,7 @@ using SNDL;
 
 namespace SM
 {
-    // current flow
+    // current level flow
     // Awake -> init -> onLevelBegin -> loadLevel
     public class SMLevel : Level
     {
@@ -19,10 +19,8 @@ namespace SM
             set
             {
                 _currentLevelPawnIndex = value;
-                // setPawnControllerAndViewByIndex(value);
             }
         }
-
 
         protected SMLevelSet currentLoadedLevels;
         protected int _currentLevelPawnIndex;
@@ -38,28 +36,13 @@ namespace SM
         {
             SMGame tempGame = (SMGame)game;
             currentLoadedLevels = tempGame.levelManager.currentLoadedLevels;
-            SMLevel tempPreviousLevel = tempGame.getCurrentLevel();
-
-            if (tempPreviousLevel != null && tempPreviousLevel.levelData.levelType == LevelType.Exterior)
-            {
-                // spawnPawn(tempPreviousLevel);
-            }
-            else
-            {
-                // spawnPawn();
-            }
+            levelName = levelData.levelName;
         }
 
         protected virtual void onLevelBegin()
         {
-            levelName = levelData.levelName;
             SMGame tempGame = (SMGame)game;
-
             SMLevel tempPreviousLevel = tempGame.getCurrentLevel();
-            if (tempPreviousLevel != null)
-            {
-                Debug.Log("prev level: " + tempPreviousLevel.levelName);
-            }
 
             tempGame.setCurrentLevel(levelData);
 
@@ -73,10 +56,8 @@ namespace SM
             loadLevel(tempGame, tempPreviousLevel);
         }
 
-        protected virtual void loadLevel(SMGame tGame) { }
+        // stub for children classes
         protected virtual void loadLevel(SMGame tGame, SMLevel tPreviousLevel) { }
-        // protected virtual void spawnPawn(SMLevel tPreviousLevel) { }
-        // protected virtual void spawnPawn() { }
 
         // hook for the level manager
         public void reinitializeLevel()

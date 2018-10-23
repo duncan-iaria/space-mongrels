@@ -97,12 +97,10 @@ namespace SM
 
         public virtual void setCurrentLevel(SMLevelData tLevelData)
         {
-            Debug.Log("Setting current level: " + tLevelData.levelName);
             levelManager.setCurrentLevel(tLevelData);
         }
 
-        protected override void onSceneLoaded(Scene _scene, LoadSceneMode _mode)
-        { }
+        protected override void onSceneLoaded(Scene _scene, LoadSceneMode _mode) { }
 
         //=======================
         // GUI Controls
