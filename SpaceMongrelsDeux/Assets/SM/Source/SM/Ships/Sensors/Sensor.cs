@@ -25,6 +25,7 @@ namespace SM
         public override void addTarget(ITargetable tTarget)
         {
             targetList.Add(tTarget);
+            logTargetList();
         }
 
         public override void removeTarget(ITargetable tTarget)

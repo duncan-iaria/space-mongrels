@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 598862685}
   - component: {fileID: 598862683}
   - component: {fileID: 598862686}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,18 +333,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: {fileID: 11400000, guid: deccbb39a367e7b4ea0a40eec12ba223, type: 2}
-  isEntryTrigger: 0
+  isEntryTrigger: 1
   onTriggerEntry:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  isExitTrigger: 0
+  isNotification: 1
+  notificationMessage: Raceway
+  onNotification: {fileID: 11400000, guid: 7876e7e4ae1498749b9ea777de41fc8a, type: 2}
+  isExitTrigger: 1
   onTriggerExit:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  onDeactivateNotification: {fileID: 11400000, guid: 4602f1cb696a88249b31fff04c21ee59,
+    type: 2}
   onTriggerDeselect:
     m_PersistentCalls:
       m_Calls: []
@@ -409,7 +414,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.32
+  m_Radius: 0.64
 --- !u!114 &598862686
 MonoBehaviour:
   m_ObjectHideFlags: 0

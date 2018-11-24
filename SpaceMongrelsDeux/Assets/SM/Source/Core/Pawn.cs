@@ -34,7 +34,10 @@ namespace SNDL
         }
 
         //actions taken when pawn is set
-        public virtual void onPawnSet() { }
+        public virtual void onPawnSet()
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
+        }
 
         //actions taken when pawn is unset
         public virtual void onPawnUnset() { }
