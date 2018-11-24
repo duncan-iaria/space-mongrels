@@ -37,6 +37,7 @@ namespace SM
             SMGame tempGame = (SMGame)game;
             currentLoadedLevels = tempGame.levelManager.currentLoadedLevels;
             levelName = levelData.levelName;
+            tempGame.GetGUI<SMGUI>().displayLevelName(levelData.displayName);
         }
 
         protected virtual void onLevelBegin()

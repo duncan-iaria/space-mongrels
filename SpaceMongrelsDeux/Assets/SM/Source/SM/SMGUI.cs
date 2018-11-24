@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using SNDL;
 
 namespace SM
 {
+    [System.Serializable]
+    public class StringEvent : UnityEvent<string> { }
+
     public class SMGUI : SNDL.GameGUI
     {
         [Header("GUI Elements")]
@@ -11,6 +15,7 @@ namespace SM
         public SMPawnMenu menuPawn;
         public SMTransition transitionController;
         public float transitionDuration = .5f;
+        public StringEvent onDisplayLevelName;
 
         protected Animator animator;
 
@@ -19,7 +24,7 @@ namespace SM
         //=======================
         protected virtual void Awake()
         {
-            //get the animator
+            // get the animator
             animator = GetComponent<Animator>();
         }
 
@@ -74,6 +79,14 @@ namespace SM
         public void EventTest()
         {
             Debug.Log("Test Event Has Fired");
+        }
+
+        public void displayLevelName(string tLevelName)
+        {
+            if (onDisplayLevelName != null)
+            {
+                onDisplayLevelName.Invoke(tLevelName);
+            }
         }
     }
 }
