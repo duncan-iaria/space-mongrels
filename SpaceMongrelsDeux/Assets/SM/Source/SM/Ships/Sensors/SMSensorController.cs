@@ -68,5 +68,9 @@ namespace SM
             }
         }
 
+        public void OnDisable()
+        {
+            sensor.clearTargetList();
+        }
     }
 }

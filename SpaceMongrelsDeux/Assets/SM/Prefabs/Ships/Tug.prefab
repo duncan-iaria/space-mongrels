@@ -11,6 +11,23 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1153810678485890}
   m_IsPrefabParent: 1
+--- !u!1 &1149731792792606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4546658609883582}
+  - component: {fileID: 114657652479426284}
+  - component: {fileID: 58166339376888578}
+  m_Layer: 9
+  m_Name: Sensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1153810678485890
 GameObject:
   m_ObjectHideFlags: 0
@@ -23,8 +40,6 @@ GameObject:
   - component: {fileID: 50159128291491386}
   - component: {fileID: 114556981515953000}
   - component: {fileID: 60451754347784930}
-  - component: {fileID: 58436843777587986}
-  - component: {fileID: 114717268397964872}
   m_Layer: 0
   m_Name: Tug
   m_TagString: Untagged
@@ -59,8 +74,22 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4811366661481550}
+  - {fileID: 4546658609883582}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4546658609883582
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1149731792792606}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4164325340823978}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4811366661481550
 Transform:
@@ -95,12 +124,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58436843777587986
+--- !u!58 &58166339376888578
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1153810678485890}
+  m_GameObject: {fileID: 1149731792792606}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -109,7 +138,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 1
 --- !u!60 &60451754347784930
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -154,10 +183,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentInteractable: {fileID: 0}
-  currentInteractableObject: {fileID: 0}
   ship: {fileID: 11400000, guid: aa0486dcbc8702e4eb3236e1dc3c105a, type: 2}
   reactor: {fileID: 11400000, guid: 9c17780c0b6780045b395f7d69b6a5af, type: 2}
-  sensorController: {fileID: 114717268397964872}
+  sensorController: {fileID: 114657652479426284}
   moveSpeed: 0
   horizontalDampening: 0
   rotationSpeed: 0
@@ -167,22 +195,22 @@ MonoBehaviour:
   thrustThreshold: 0.1
   maxHealth: 0
   currentHealth: 0
---- !u!114 &114717268397964872
+--- !u!114 &114657652479426284
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1153810678485890}
+  m_GameObject: {fileID: 1149731792792606}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b3152500bf3b924abd09d852cbf9d54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sensor: {fileID: 11400000, guid: 3417d04bf545bce4ea3bc45ba40fc389, type: 2}
-  sensorCollider: {fileID: 0}
   range: 0
   scanSpeed: 0
   sortRate: 0
+  sensorCollider: {fileID: 0}
 --- !u!212 &212379932658670230
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -216,7 +244,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -580703973
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 28e8c5a876e8b6040bea3ae5e6459c47, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -261,7 +289,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -580703973
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 926720ecebc6c6f4aaa4d1ff42bf8d7d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

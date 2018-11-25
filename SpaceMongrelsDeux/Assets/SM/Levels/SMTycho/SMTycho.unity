@@ -284,6 +284,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2183675b2b4db04dbecbadaf98b4ca6, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &461298869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 461298870}
+  m_Layer: 0
+  m_Name: NotificationLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &461298870
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 461298869}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.448, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 598862682}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &521775201 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4562196801848360, guid: e2183675b2b4db04dbecbadaf98b4ca6,
@@ -301,7 +329,8 @@ GameObject:
   - component: {fileID: 598862685}
   - component: {fileID: 598862683}
   - component: {fileID: 598862686}
-  m_Layer: 0
+  - component: {fileID: 598862687}
+  m_Layer: 8
   m_Name: Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +346,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.16, y: -5.2, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 461298870}
   m_Father: {fileID: 2094068084}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -333,18 +363,80 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: {fileID: 11400000, guid: deccbb39a367e7b4ea0a40eec12ba223, type: 2}
-  isEntryTrigger: 0
+  isEntryTrigger: 1
   onTriggerEntry:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 598862687}
+        m_MethodName: setNofiticationEvent
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 7876e7e4ae1498749b9ea777de41fc8a,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: SM.NotificationEvent, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 598862687}
+        m_MethodName: setMessage
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Raceway
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 598862687}
+        m_MethodName: sendNotification
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  isExitTrigger: 0
+  isNotification: 0
+  notificationMessage: Raceway
+  onNotification: {fileID: 11400000, guid: 7876e7e4ae1498749b9ea777de41fc8a, type: 2}
+  isExitTrigger: 1
   onTriggerExit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 598862687}
+        m_MethodName: setNofiticationEvent
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 4602f1cb696a88249b31fff04c21ee59,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: SM.NotificationEvent, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 598862687}
+        m_MethodName: sendNotification
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  onDeactivateNotification: {fileID: 11400000, guid: 4602f1cb696a88249b31fff04c21ee59,
+    type: 2}
   onTriggerDeselect:
     m_PersistentCalls:
       m_Calls: []
@@ -409,7 +501,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.32
+  m_Radius: 0.64
 --- !u!114 &598862686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,6 +514,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sourceLevel: {fileID: 11400000, guid: eaeb9510e9373724da3864b19ed51387, type: 2}
+--- !u!114 &598862687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 598862681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d68fc5987ea4eb438d9cc353da1d137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: 
+  notificationLocation: {fileID: 461298870}
+  notificationEvent: {fileID: 11400000, guid: 7876e7e4ae1498749b9ea777de41fc8a, type: 2}
 --- !u!1 &949648852
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,10 @@ namespace SM
         public float scanSpeed;
         public float sortRate;
         public GameObject targetReticuleSource;
+
+        // TODO this is an inheirent problem in using a SO here,
+        // as it writes to a single list
+        // so technically right now enemies will write to the same list
         public List<ITargetable> targetList = new List<ITargetable>();
 
         protected int selectedTargetIndex = -1;
