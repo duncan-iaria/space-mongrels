@@ -13,14 +13,10 @@ namespace SM
         [Header("Entry")]
         public bool isEntryTrigger;
         public UnityEvent onTriggerEntry;
-        public bool isNotification;
-        public string notificationMessage;
-        public NotificationEvent onNotification;
 
         [Header("Exit")]
         public bool isExitTrigger;
         public UnityEvent onTriggerExit;
-        public NotificationEvent onDeactivateNotification;
 
         [Header("Deselect")]
         public UnityEvent onTriggerDeselect;
@@ -48,11 +44,6 @@ namespace SM
                 {
                     onTriggerEntry.Invoke();
                 }
-
-                if (isNotification && onNotification != null)
-                {
-                    onNotification.raise(notificationMessage, this.transform.position);
-                }
             }
         }
 
@@ -75,11 +66,6 @@ namespace SM
                 if (onTriggerExit != null)
                 {
                     onTriggerExit.Invoke();
-                }
-
-                if (isNotification && onDeactivateNotification != null)
-                {
-                    onDeactivateNotification.raise("", Vector3.zero);
                 }
             }
         }
