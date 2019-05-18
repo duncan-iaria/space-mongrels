@@ -614,7 +614,7 @@ PlayerSettings:
   facebookStatus: 1
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 6
   cloudProjectId: 1594bc0c-28c6-4be2-b768-614ac39f5fda
   framebufferDepthMemorylessMode: 0
   projectName: SpaceMongrelsDeux
