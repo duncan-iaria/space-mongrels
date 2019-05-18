@@ -36,7 +36,6 @@ namespace SM
 
         public override void onAxis(InputAxis tAxis, float tValue)
         {
-            // Debug.Log(tAxis + " " + tValue);
             currentPawn.onAxis(tAxis, tValue);
         }
 
@@ -69,18 +68,6 @@ namespace SM
             {
                 currentPawn.onPause();
             }
-        }
-
-        public override void onPressCycle()
-        {
-            //currentPawn.onPressedCycle();
-            cyclePawns();
-        }
-
-        //cycle possible pawns (based on the level)
-        public virtual void cyclePawns()
-        {
-            Game.GetGame<SMGame>().currentLevel.cyclePawns();
         }
     }
 }

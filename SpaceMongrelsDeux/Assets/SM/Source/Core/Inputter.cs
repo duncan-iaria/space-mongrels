@@ -25,9 +25,12 @@ namespace SNDL
         [Header("Buttons")]
         public string cancelButton = "Cancel";
         public string pauseButton = "Pause";
-        public string cycleButton = "Cycle";
+        // public string cycleButton = "Cycle";
+        public string cycleRightButton = "CycleRight";
+        public string cycleLeftButton = "CycleLeft";
         public string acceptButton = "Accept";
         public string menuButton = "Menu";
+        public string boostButton = "Boost";
 
         //left axis
         protected float leftAxisVerticalValue;
@@ -135,10 +138,22 @@ namespace SNDL
                 controller.onPressPause();
             }
 
-            if (Input.GetButtonDown(cycleButton))
+            // if (Input.GetButtonDown(cycleButton))
+            // {
+            //     // controller.onPressCycle();
+            //     controller.onInputButton(InputButton.Cycle);
+            // }
+
+            if (Input.GetButtonDown(cycleLeftButton))
             {
-                controller.onPressCycle();
-                //controller.onInputButton( InputButton.Cycle );
+                // controller.onPressCycle();
+                controller.onInputButton(InputButton.CycleLeft);
+            }
+
+            if (Input.GetButtonDown(cycleRightButton))
+            {
+                // controller.onPressCycle();
+                controller.onInputButton(InputButton.CycleRight);
             }
 
             //PAWN
@@ -150,6 +165,11 @@ namespace SNDL
             if (Input.GetButtonDown(menuButton))
             {
                 controller.onInputButton(InputButton.Menu);
+            }
+
+            if (Input.GetButtonDown(boostButton))
+            {
+                controller.onInputButton(InputButton.Boost);
             }
         }
     }

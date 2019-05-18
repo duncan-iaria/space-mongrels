@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPawn: {fileID: 0}
+  previousPawn: {fileID: 0}
 --- !u!114 &114698014198673224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -66,15 +67,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameName: Space Mongrels
-  isPaused: 0
-  versionNumber: 0
-  featureNumber: 0
-  buildNumber: 1
-  GUI: {fileID: 114240278152417072, guid: 0c2f029f10834484fb359f53bc99a357, type: 2}
+  gameGUI: {fileID: 114240278152417072, guid: 0c2f029f10834484fb359f53bc99a357, type: 2}
   view: {fileID: 114338634733682898, guid: 481c534be9e392640ad11d0d29c97bcd, type: 2}
   controller: {fileID: 114690156665905878}
   inputter: {fileID: 114803817140995768}
-  levelToLoad: 0
+  currentShipPawn: {fileID: 114556981515953000, guid: edecc155bacf8844cae61888d169f4d8,
+    type: 2}
+  currentMongrelPawn: {fileID: 114885935134080932, guid: 696e6528193a24a4ba579654fbabaa47,
+    type: 2}
+  levelManager: {fileID: 11400000, guid: 033a6571be2a5f94197b830da090f065, type: 2}
+  currentLevel: {fileID: 0}
 --- !u!114 &114803817140995768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -91,5 +93,10 @@ MonoBehaviour:
   leftAxisVertical: Vertical
   rightAxisHorizontal: RHorizontal
   rightAxisVertical: RVertical
-  triggerAxisInput: 
   cancelButton: Cancel
+  pauseButton: Pause
+  cycleRightButton: CycleRight
+  cycleLeftButton: CycleLeft
+  acceptButton: Accept
+  menuButton: Menu
+  boostButton: Boost

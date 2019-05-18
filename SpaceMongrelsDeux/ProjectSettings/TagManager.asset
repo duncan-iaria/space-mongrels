@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Interaction
+  - Sensor
+  - Player
   - 
   - 
   - 
@@ -40,6 +40,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Space
+    uniqueID: 4088623749
     locked: 0
   - name: Background
     uniqueID: 1949387833

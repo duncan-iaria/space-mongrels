@@ -2,15 +2,18 @@
 
 namespace SNDL
 {
-	//##########################
-	// Enum Declaration
-	//##########################
-	public enum InputButton
-	{
-		Pause,
-		Cancel,
-		Accept,
-		Cycle,
-		Menu,
-	}
+    //##########################
+    // Enum Declaration
+    //##########################
+    public enum InputButton
+    {
+        Pause,
+        Cancel,
+        Accept,
+        Cycle,
+        CycleRight,
+        CycleLeft,
+        Menu,
+        Boost,
+    }
 }

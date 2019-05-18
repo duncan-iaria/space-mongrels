@@ -7,7 +7,12 @@ namespace SM
     {
         public string shipName;
         public int maxHealth;
+        public SMLevelData interiorLevel;
+        public float collisionModifier = 1;
 
         public abstract void initialize(GameObject tObject);
+        public abstract void takeDamage(GameObject tObject, int tAmt);
+        public abstract void onCollision(GameObject tObject, Collision2D tCollision);
+        public abstract void onDeath(GameObject tObject);
     }
 }

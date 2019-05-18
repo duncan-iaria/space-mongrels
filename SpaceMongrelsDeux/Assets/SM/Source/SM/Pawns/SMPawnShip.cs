@@ -5,18 +5,21 @@ using SNDL;
 
 namespace SM
 {
-    public class SMPawnShip : SMPawn
+    public class SMPawnShip : SMPawn, IDamageable, ITargetable
     {
         public SMShip ship;
         public SMReactor reactor;
+        public SMSensorController sensorController;
         // These are set by the ship object
         [HideInInspector]
-        public float moveSpeed, horizontalDampening = .5f, rotationSpeed;
+        public float moveSpeed, horizontalDampening = .5f, rotationSpeed, boostSpeed, boostCooldown, thrustSpeed;
+        public float thrustThreshold = 0.1f;
+
         [HideInInspector]
-        public int maxHealth;
+        public int maxHealth, currentHealth;
 
-        protected int currentHealth;
-
+        protected float nextBoostTime;
+        protected bool isThrustEligible = true;
 
         //=======================
         // Initialization
@@ -33,6 +36,7 @@ namespace SM
             {
                 ship.initialize(gameObject);
                 reactor.initialize(gameObject);
+                sensorController.clearAllTargets();
             }
         }
 
@@ -46,6 +50,18 @@ namespace SM
                 case InputButton.Menu:
                     loadShipInterior();
                     break;
+                case InputButton.Boost:
+                    boost();
+                    break;
+                case InputButton.Accept:
+                    onAccept();
+                    break;
+                case InputButton.CycleRight:
+                    sensorController.selectNextTarget();
+                    break;
+                case InputButton.CycleLeft:
+                    sensorController.selectPreviousTarget();
+                    break;
                 default:
                     break;
             }
@@ -56,7 +72,7 @@ namespace SM
             switch (tAxis)
             {
                 case InputAxis.Vertical:
-                    accelerate(new Vector2(0f, tValue));
+                    handleVertical(tValue);
                     break;
                 case InputAxis.Horizontal:
                     accelerate(new Vector2(tValue, 0f), horizontalDampening);
@@ -74,9 +90,23 @@ namespace SM
         //=======================
         // Movement
         //=======================
+        // When pressing forward/backward
+        protected virtual void handleVertical(float tValue)
+        {
+            if (tValue > 0)
+            {
+                accelerate(new Vector2(0f, tValue));
+                thrust(tValue);
+            }
+            else
+            {
+                accelerate(new Vector2(0f, tValue * horizontalDampening));
+                isThrustEligible = true;
+            }
+        }
+
         protected virtual void accelerate(Vector2 tVector, float tDampening = 1f)
         {
-            //_rigidbody.AddForce((tVector * moveSpeed) * tDampening * Time.deltaTime);
             _rigidbody.AddForce((transform.right * tVector.x * tDampening) * moveSpeed * Time.deltaTime);
             _rigidbody.AddForce((transform.up * tVector.y) * moveSpeed * Time.deltaTime);
         }
@@ -86,13 +116,83 @@ namespace SM
             _rigidbody.AddTorque(tRotationValue * rotationSpeed * Time.deltaTime);
         }
 
+        // boost is an action taken by the player via a special input button
+        protected virtual void boost()
+        {
+            if (Time.time >= nextBoostTime)
+            {
+                reactor.boost(_rigidbody, boostSpeed);
+                nextBoostTime = Time.time + boostCooldown;
+            }
+        }
+
+        // Thrust is considered when an engine/reactor first accelerates
+        protected virtual void thrust(float tYAxis)
+        {
+            // mini boost
+            if (tYAxis >= thrustThreshold && isThrustEligible)
+            {
+                reactor.boost(_rigidbody, thrustSpeed);
+                isThrustEligible = false;
+            }
+        }
+
+        //=======================
+        // Controls
+        //=======================
+        protected virtual void onAccept()
+        {
+            if (currentInteractable != null)
+            {
+                currentInteractable.onInteract();
+            }
+        }
+
+        //=======================
+        // Collision
+        //=======================
+        protected virtual void OnCollisionEnter2D(Collision2D tCollision)
+        {
+            if (_rigidbody)
+            {
+                ship.onCollision(this.gameObject, tCollision);
+            }
+        }
+
+        //=======================
+        // Health/Damage
+        //=======================
+        public void applyDamage(int tDamage)
+        {
+            ship.takeDamage(this.gameObject, tDamage);
+        }
+
         //=======================
         // Return to Interior
         //=======================
         protected virtual void loadShipInterior()
         {
-            SMGame tempGame = SMGame.GetGame<SMGame>();
-            tempGame.onLoadLevel(1, .5f, true);
+            if (ship.interiorLevel != null)
+            {
+                SMGame tempGame = SMGame.GetGame<SMGame>();
+                tempGame.loadLevel(ship.interiorLevel);
+            }
+            else
+            {
+                Debug.LogWarning("No Interior found to load.");
+            }
+        }
+
+        //=======================
+        // Targeting
+        //=======================
+        public void setSelected(GameObject tReticule)
+        {
+            if (tReticule != null)
+            {
+                tReticule.transform.SetPositionAndRotation(this.transform.position, Quaternion.identity);
+                tReticule.transform.SetParent(this.transform);
+            }
         }
     }
 }
