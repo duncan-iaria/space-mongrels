@@ -1380,6 +1380,7 @@ MonoBehaviour:
   levelData: {fileID: 11400000, guid: ac7f5a1956b2d61478144171ea20d57c, type: 2}
   spawnPoints:
   - {fileID: 598862686}
+  - {fileID: 918438320}
 --- !u!4 &2094068084
 Transform:
   m_ObjectHideFlags: 0
