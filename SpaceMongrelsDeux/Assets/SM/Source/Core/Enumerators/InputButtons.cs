@@ -15,5 +15,6 @@ namespace SNDL
         CycleLeft,
         Menu,
         Boost,
+        SpecialAction1,
     }
 }

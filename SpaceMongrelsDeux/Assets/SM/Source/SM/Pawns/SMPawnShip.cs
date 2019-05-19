@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using SNDL;
+using UnityEngine;
 
 namespace SM
 {
@@ -10,6 +10,8 @@ namespace SM
         public SMShip ship;
         public SMReactor reactor;
         public SMSensorController sensorController;
+        public SMTurretController turretController;
+
         // These are set by the ship object
         [HideInInspector]
         public float moveSpeed, horizontalDampening = .5f, rotationSpeed, boostSpeed, boostCooldown, thrustSpeed;
@@ -32,7 +34,7 @@ namespace SM
 
         protected virtual void rebuildShipData()
         {
-            if (ship != null && reactor != null)
+            if(ship != null && reactor != null)
             {
                 ship.initialize(gameObject);
                 reactor.initialize(gameObject);
@@ -45,7 +47,7 @@ namespace SM
         //=======================
         public override void onInputButton(InputButton tButton)
         {
-            switch (tButton)
+            switch(tButton)
             {
                 case InputButton.Menu:
                     loadShipInterior();
@@ -62,6 +64,9 @@ namespace SM
                 case InputButton.CycleLeft:
                     sensorController.selectPreviousTarget();
                     break;
+                case InputButton.SpecialAction1:
+                    turretController.toggleWeaponsFree();
+                    break;
                 default:
                     break;
             }
@@ -69,7 +74,7 @@ namespace SM
 
         public override void onAxis(InputAxis tAxis, float tValue)
         {
-            switch (tAxis)
+            switch(tAxis)
             {
                 case InputAxis.Vertical:
                     handleVertical(tValue);
@@ -93,7 +98,7 @@ namespace SM
         // When pressing forward/backward
         protected virtual void handleVertical(float tValue)
         {
-            if (tValue > 0)
+            if(tValue > 0)
             {
                 accelerate(new Vector2(0f, tValue));
                 thrust(tValue);
@@ -119,7 +124,7 @@ namespace SM
         // boost is an action taken by the player via a special input button
         protected virtual void boost()
         {
-            if (Time.time >= nextBoostTime)
+            if(Time.time >= nextBoostTime)
             {
                 reactor.boost(_rigidbody, boostSpeed);
                 nextBoostTime = Time.time + boostCooldown;
@@ -130,7 +135,7 @@ namespace SM
         protected virtual void thrust(float tYAxis)
         {
             // mini boost
-            if (tYAxis >= thrustThreshold && isThrustEligible)
+            if(tYAxis >= thrustThreshold && isThrustEligible)
             {
                 reactor.boost(_rigidbody, thrustSpeed);
                 isThrustEligible = false;
@@ -142,7 +147,7 @@ namespace SM
         //=======================
         protected virtual void onAccept()
         {
-            if (currentInteractable != null)
+            if(currentInteractable != null)
             {
                 currentInteractable.onInteract();
             }
@@ -153,7 +158,7 @@ namespace SM
         //=======================
         protected virtual void OnCollisionEnter2D(Collision2D tCollision)
         {
-            if (_rigidbody)
+            if(_rigidbody)
             {
                 ship.onCollision(this.gameObject, tCollision);
             }
@@ -172,7 +177,7 @@ namespace SM
         //=======================
         protected virtual void loadShipInterior()
         {
-            if (ship.interiorLevel != null)
+            if(ship.interiorLevel != null)
             {
                 SMGame tempGame = SMGame.GetGame<SMGame>();
                 tempGame.loadLevel(ship.interiorLevel);
@@ -188,7 +193,7 @@ namespace SM
         //=======================
         public void setSelected(GameObject tReticule)
         {
-            if (tReticule != null)
+            if(tReticule != null)
             {
                 tReticule.transform.SetPositionAndRotation(this.transform.position, Quaternion.identity);
                 tReticule.transform.SetParent(this.transform);

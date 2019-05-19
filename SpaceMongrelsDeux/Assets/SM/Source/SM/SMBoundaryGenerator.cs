@@ -9,8 +9,12 @@ namespace SM
         public LineRenderer lineRenderer;
         public Vector3[] bouyArray;
 
-        // Use this for initialization
         void Start()
+        {
+            createBoundary();
+        }
+
+        void createBoundary()
         {
             int tempLength = this.transform.childCount;
             bouyArray = new Vector3[tempLength];

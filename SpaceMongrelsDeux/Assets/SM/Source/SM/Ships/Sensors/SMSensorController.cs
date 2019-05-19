@@ -7,6 +7,7 @@ namespace SM
     public class SMSensorController : MonoBehaviour
     {
         public SMSensor sensor;
+        public ITargetable currentTarget = null;
 
         [HideInInspector]
         public float range, scanSpeed, sortRate;
@@ -37,12 +38,12 @@ namespace SM
 
         public void selectNextTarget()
         {
-            sensor.selectNextTarget(this.transform.position);
+            currentTarget = sensor.selectNextTarget(this.transform.position);
         }
 
         public void selectPreviousTarget()
         {
-            sensor.selectPreviousTarget(this.transform.position);
+            currentTarget = sensor.selectPreviousTarget(this.transform.position);
         }
 
         public void clearAllTargets()

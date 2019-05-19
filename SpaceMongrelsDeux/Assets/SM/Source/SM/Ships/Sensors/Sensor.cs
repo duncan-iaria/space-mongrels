@@ -56,34 +56,44 @@ namespace SM
         {
             if (targetList.Count > 0)
             {
-                targetList.Sort(delegate (ITargetable targetA, ITargetable targetB)
+                targetList.Sort(delegate(ITargetable targetA, ITargetable targetB)
                 {
                     return Vector2.Distance(tSensorOrigin, targetA.getTransform().position)
-                    .CompareTo(Vector2.Distance(tSensorOrigin, targetB.getTransform().position));
+                        .CompareTo(Vector2.Distance(tSensorOrigin, targetB.getTransform().position));
                 });
                 return true;
             }
             else return false;
         }
 
-        public override void selectNextTarget(Vector3 tSensorOrigin)
+        public override ITargetable selectNextTarget(Vector3 tSensorOrigin)
         {
             if (sortTargets(tSensorOrigin))
             {
                 // increment the selected target and set the reticule
                 selectedTargetIndex = selectedTargetIndex + 1 > targetList.Count - 1 ? 0 : selectedTargetIndex + 1;
-                setTargetReticule(targetList[selectedTargetIndex]);
+
+                ITargetable tempTarget = targetList[selectedTargetIndex];
+                setTargetReticule(tempTarget);
+                return tempTarget;
             }
+
+            return null;
         }
 
-        public override void selectPreviousTarget(Vector3 tSensorOrigin)
+        public override ITargetable selectPreviousTarget(Vector3 tSensorOrigin)
         {
             if (sortTargets(tSensorOrigin))
             {
                 // decrement the selected target and set the reticule
                 selectedTargetIndex = selectedTargetIndex - 1 < 0 ? targetList.Count - 1 : selectedTargetIndex - 1;
-                setTargetReticule(targetList[selectedTargetIndex]);
+
+                ITargetable tempTarget = targetList[selectedTargetIndex];
+                setTargetReticule(tempTarget);
+                return tempTarget;
             }
+
+            return null;
         }
 
         protected void setTargetReticule(ITargetable tTarget)
@@ -106,7 +116,7 @@ namespace SM
         // simple utility to print the target list to the console
         private void logTargetList()
         {
-            targetList.ForEach(delegate (ITargetable tTarget)
+            targetList.ForEach(delegate(ITargetable tTarget)
             {
                 Debug.Log(tTarget.getTransform().gameObject);
             });
