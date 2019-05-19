@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SM/Levels/SMTycho/SMTycho.unity
     guid: 2481070b95a92424fb2bdf99af7e92f6
+  - enabled: 1
+    path: Assets/SM/Levels/SMThunderbolt/SMThunderbolt.unity
+    guid: aaab48a7991ab5047a06d7a948a0f2c7
   m_configObjects: {}

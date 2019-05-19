@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using SNDL;
+using UnityEngine;
 
 namespace SM
 {
@@ -11,7 +11,7 @@ namespace SM
 
         protected override void loadLevel(SMGame tGame, SMLevel tPreviousLevel)
         {
-            if (levelPawns.Count > 0)
+            if(levelPawns.Count > 0)
             {
                 currentLevelPawnIndex = 0;
                 setPawnControllerAndViewByIndex(currentLevelPawnIndex, true);
@@ -31,11 +31,11 @@ namespace SM
 
         protected Vector3 getSpawnPoint(SMLevel tPreviousLevel)
         {
-            if (spawnPoints.Length > 0 && tPreviousLevel != null)
+            if(spawnPoints.Length > 0 && tPreviousLevel != null)
             {
                 for (int i = spawnPoints.Length - 1; i >= 0; --i)
                 {
-                    if (spawnPoints[i].sourceLevel.levelName == tPreviousLevel.levelName)
+                    if(spawnPoints[i].sourceLevel.levelName == tPreviousLevel.levelName)
                     {
                         return spawnPoints[i].transform.position;
                     }

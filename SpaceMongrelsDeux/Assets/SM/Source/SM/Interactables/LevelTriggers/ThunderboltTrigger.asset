@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86ee1d5db31424d4c88374331e652c2c, type: 3}
-  m_Name: BoltTurret
+  m_Script: {fileID: 11500000, guid: b8a0026c1dc6bed4d99efdda8e3a24c7, type: 3}
+  m_Name: ThunderboltTrigger
   m_EditorClassIdentifier: 
-  turretName: Bolt Turret
-  damage: 1
-  rotationSpeed: 1
-  reloadTime: 0.5
-  accuracy: 50
+  levelToLoadData: {fileID: 11400000, guid: 114cac2f3b1562c4286ef1f83303bf93, type: 2}
