@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace SM
 {
-    public class SMRaceWay : SMLevelExterior
+  public class SMRaceWay : SMLevelExterior
+  {
+    public string introAnimation;
+
+    protected override void onLevelBegin()
     {
-        public string introAnimation;
+      base.onLevelBegin();
 
-        protected override void onLevelBegin()
-        {
-            base.onLevelBegin();
-
-            // game.view.setTarget( levelPawns[currentLevelPawnIndex].transform, true );
-            game.view.playAnimation(introAnimation);
-        }
+      // game.view.setTarget( levelPawns[currentLevelPawnIndex].transform, true );
+      game.view.playAnimation(introAnimation);
     }
+  }
 }
