@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SM/Levels/SMThunderbolt/SMThunderbolt.unity
     guid: aaab48a7991ab5047a06d7a948a0f2c7
+  - enabled: 1
+    path: Assets/SM/Levels/SMOrespring/SMOrespring.unity
+    guid: f44d7fba671e44ec68563bafbcf87509
   m_configObjects: {}

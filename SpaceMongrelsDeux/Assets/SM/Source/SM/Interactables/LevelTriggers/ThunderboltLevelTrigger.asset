@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8a0026c1dc6bed4d99efdda8e3a24c7, type: 3}
-  m_Name: ThunderboltTrigger
+  m_Name: ThunderboltLevelTrigger
   m_EditorClassIdentifier: 
   levelToLoadData: {fileID: 11400000, guid: 114cac2f3b1562c4286ef1f83303bf93, type: 2}
