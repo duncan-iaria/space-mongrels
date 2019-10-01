@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SM
@@ -14,6 +12,15 @@ namespace SM
     public float damage, rotationSpeed, accuracy;
 
     public bool isWeaponsFree = false;
+
+    public float nextFireTime;
+    public bool IsFireEligible
+    {
+      get
+      {
+        return Time.time >= nextFireTime ? true : false;
+      }
+    }
 
     void Start()
     {
@@ -32,9 +39,11 @@ namespace SM
     {
       if (isWeaponsFree && sensor.currentTarget != null)
       {
-        turret.rotateTowardTarget(sensor.currentTarget.getTransform());
+        Transform tempTarget = sensor.currentTarget.getTransform();
+        turret.rotateTowardTarget(tempTarget);
 
         //TODO implement firing behaviour HERE
+        turret.fireWeapon(tempTarget);
       }
     }
 

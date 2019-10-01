@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: BoltTurret
   m_EditorClassIdentifier: 
   turretName: Bolt Turret
-  damage: 1
+  projectile: {fileID: 3971880998717913754, guid: d26ec1ebc862d470c9dfe9417efdff29,
+    type: 3}
+  damageMultiplier: 1
   rotationSpeed: 1
   reloadTime: 0.5
+  firingArc: 0.85
   accuracy: 50
