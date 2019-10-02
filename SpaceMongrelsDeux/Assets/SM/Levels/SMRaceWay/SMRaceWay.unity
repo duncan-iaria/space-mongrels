@@ -2216,6 +2216,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StandardBolt
       objectReference: {fileID: 0}
+    - target: {fileID: 3751899453617478398, guid: d26ec1ebc862d470c9dfe9417efdff29,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7966454197595295543, guid: d26ec1ebc862d470c9dfe9417efdff29,
         type: 3}
       propertyPath: m_LocalPosition.x

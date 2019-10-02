@@ -3,7 +3,7 @@ using UnityEngine;
 namespace SM
 {
   [CreateAssetMenu(menuName = "SM/Ships/Turret", order = 98)]
-  public class Turret : SMTurret
+  public class BoltTurret : Turret
   {
     public override void initialize(SMTurretController tTurretController)
     {

@@ -1,14 +1,16 @@
-using System.Collections;
 using UnityEngine;
 
 namespace SM
 {
-  public abstract class SMTurret : ScriptableObject
+  public abstract class Turret : ScriptableObject
   {
     public string turretName;
     public SMProjectile projectile;
     public int damageMultiplier = 1;
-    public float rotationSpeed, reloadTime;
+    public float reloadTime;
+
+    [Range(0, 2)]
+    public float rotationSpeed;
 
 
     [Range(0, 1)]

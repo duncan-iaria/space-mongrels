@@ -4,7 +4,7 @@ namespace SM
 {
   public class SMTurretController : MonoBehaviour
   {
-    public SMTurret turret;
+    public Turret turret;
     public SMSensorController sensor;
 
     //set by attached turret
