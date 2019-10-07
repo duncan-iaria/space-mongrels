@@ -37,12 +37,16 @@ namespace SM
 
     void Update()
     {
-      if (isWeaponsFree && sensor.currentTarget != null)
+      if (isWeaponsFree)
       {
         Transform tempTarget = sensor.currentTarget.getTransform();
-        turret.rotateTowardTarget(tempTarget);
 
-        //TODO implement firing behaviour HERE
+        if (tempTarget == null)
+        {
+          return;
+        }
+
+        turret.rotateTowardTarget(tempTarget);
         turret.fireWeapon(tempTarget);
       }
     }

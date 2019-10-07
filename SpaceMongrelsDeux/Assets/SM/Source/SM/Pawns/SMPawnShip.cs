@@ -191,6 +191,7 @@ namespace SM
     //=======================
     // Targeting
     //=======================
+    // TODO current unused, but we may want to make use?
     public void setSelected(GameObject tReticule)
     {
       if (tReticule != null)
