@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18a4e44f84050e4b8b12b3f595f061f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turret: {fileID: 11400000, guid: f4dde467895e84a40a524455eff89c14, type: 2}
+  turret: {fileID: 11400000, guid: 58604010c6b0f4a39a336d3e8fd1ca5f, type: 2}
   sensor: {fileID: 114657652479426284}
   damage: 0
   rotationSpeed: 0

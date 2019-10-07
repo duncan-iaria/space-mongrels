@@ -8,7 +8,7 @@ namespace SM
     public Projectile projectile;
 
     [HideInInspector]
-    public float speed;
+    public float speed, lifeTimeInSeconds;
 
     [HideInInspector]
     public int damage;
@@ -27,6 +27,9 @@ namespace SM
       projectile.initialize(this.gameObject);
       rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
       animator = gameObject.GetComponent<Animator>();
+
+      // Destroy these objects after awhile (Recycle some day)
+      Invoke("onCollision", lifeTimeInSeconds);
     }
 
     //when a projectile collids with anything
@@ -66,6 +69,11 @@ namespace SM
     public void onCollisionAnimationComplete()
     {
       Destroy(this.gameObject);
+    }
+
+    public void OnDestroy()
+    {
+      CancelInvoke("onCollision");
     }
   }
 }
