@@ -32,6 +32,9 @@ namespace SNDL
         public string menuButton = "Menu";
         public string boostButton = "Boost";
 
+        // probably X
+        public string specialAction1 = "SpecialAction1";
+
         //left axis
         protected float leftAxisVerticalValue;
         protected float leftAxisHorizontalValue;
@@ -50,7 +53,7 @@ namespace SNDL
         {
             handleButtonInput();
 
-            if (controller.currentPawn != null)
+            if(controller.currentPawn != null)
             {
                 //handle left vertical - old way - only forwarding when value
                 //if( handleAxis( leftAxisVertical, ref leftAxisVerticalValue ) != 0 )
@@ -73,12 +76,11 @@ namespace SNDL
                 controller.onAxis(InputAxis.RightVertical, handleAxis(rightAxisVertical, ref rightAxisVerticalValue));
                 controller.onAxis(InputAxis.RightHorizontal, handleAxis(rightAxisHorizontal, ref rightAxisHorizontalValue));
 
-
                 //HANDLE IF PAUSED - STILL FORWARD INPUT RAW INPUT
-                if (Game.instance.isPaused)
+                if(Game.instance.isPaused)
                 {
                     //handleAxisVert
-                    if (handleAxisRaw(leftAxisVertical, ref leftAxisVerticalValue) != 0)
+                    if(handleAxisRaw(leftAxisVertical, ref leftAxisVerticalValue) != 0)
                     {
                         controller.onAxis(InputAxis.Vertical, leftAxisVerticalValue);
                     }
@@ -95,7 +97,7 @@ namespace SNDL
         {
             float tempAxis = Input.GetAxis(tAxisName);
 
-            if (tempAxis != tPrevious)
+            if(tempAxis != tPrevious)
             {
                 tPrevious = tempAxis;
                 return tempAxis;
@@ -111,7 +113,7 @@ namespace SNDL
         {
             float tempAxis = Input.GetAxisRaw(tAxisName);
 
-            if (tempAxis != tPrevious)
+            if(tempAxis != tPrevious)
             {
                 tPrevious = tempAxis;
                 return tempAxis;
@@ -128,12 +130,12 @@ namespace SNDL
         protected virtual void handleButtonInput()
         {
             //GLOBAL
-            if (Input.GetButtonDown(cancelButton))
+            if(Input.GetButtonDown(cancelButton))
             {
                 controller.onPressCancel();
             }
 
-            if (Input.GetButtonDown(pauseButton))
+            if(Input.GetButtonDown(pauseButton))
             {
                 controller.onPressPause();
             }
@@ -144,32 +146,38 @@ namespace SNDL
             //     controller.onInputButton(InputButton.Cycle);
             // }
 
-            if (Input.GetButtonDown(cycleLeftButton))
+            if(Input.GetButtonDown(cycleLeftButton))
             {
                 // controller.onPressCycle();
                 controller.onInputButton(InputButton.CycleLeft);
             }
 
-            if (Input.GetButtonDown(cycleRightButton))
+            if(Input.GetButtonDown(cycleRightButton))
             {
                 // controller.onPressCycle();
                 controller.onInputButton(InputButton.CycleRight);
             }
 
             //PAWN
-            if (Input.GetButtonDown(acceptButton))
+            if(Input.GetButtonDown(acceptButton))
             {
                 controller.onInputButton(InputButton.Accept);
             }
 
-            if (Input.GetButtonDown(menuButton))
+            if(Input.GetButtonDown(menuButton))
             {
                 controller.onInputButton(InputButton.Menu);
             }
 
-            if (Input.GetButtonDown(boostButton))
+            if(Input.GetButtonDown(boostButton))
             {
                 controller.onInputButton(InputButton.Boost);
+            }
+
+            if(Input.GetButtonDown(specialAction1))
+            {
+                Debug.Log("you pressed special action button!");
+                controller.onInputButton(InputButton.SpecialAction1);
             }
         }
     }

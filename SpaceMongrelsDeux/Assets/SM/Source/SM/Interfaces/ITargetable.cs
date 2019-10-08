@@ -2,9 +2,10 @@
 
 namespace SM
 {
-    public interface ITargetable
-    {
-        void setSelected(GameObject tReticule);
-        Transform getTransform();
-    }
+  public interface ITargetable
+  {
+    // TODO is this method depricated now?
+    void setSelected(GameObject tReticule);
+    Transform getTransform();
+  }
 }
