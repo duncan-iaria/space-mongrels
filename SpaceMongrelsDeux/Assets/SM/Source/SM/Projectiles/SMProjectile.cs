@@ -20,7 +20,8 @@ namespace SM
     public GameObject source;
 
     private Animator animator;
-    private int onCollisionAnimatorHash = Animator.StringToHash("onCollision");
+    private int onCollisionHash = Animator.StringToHash("onCollision");
+    private int onPenetrateHash = Animator.StringToHash("onPenetrate");
 
     void Start()
     {
@@ -46,11 +47,18 @@ namespace SM
 
       tempTarget.applyDamage(damage);
 
-      //if it's not a penetrable round
-      if (!isPenetrating)
+      if (isPenetrating)
       {
+        onPenetrate();
+      } else {
         onCollision();
       }
+    }
+
+    private void onPenetrate() 
+    {
+      Debug.Log("penetrating");
+      animator.SetTrigger(onPenetrateHash);
     }
 
     private void onCollision()
@@ -58,7 +66,7 @@ namespace SM
       if (animator != null)
       {
         rb.velocity = Vector3.zero;
-        animator.SetTrigger(onCollisionAnimatorHash);
+        animator.SetTrigger(onCollisionHash);
       }
       else
       {
