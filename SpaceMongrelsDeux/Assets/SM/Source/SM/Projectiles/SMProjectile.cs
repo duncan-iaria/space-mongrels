@@ -50,14 +50,15 @@ namespace SM
       if (isPenetrating)
       {
         onPenetrate();
-      } else {
+      }
+      else
+      {
         onCollision();
       }
     }
 
-    private void onPenetrate() 
+    private void onPenetrate()
     {
-      Debug.Log("penetrating");
       animator.SetTrigger(onPenetrateHash);
     }
 
