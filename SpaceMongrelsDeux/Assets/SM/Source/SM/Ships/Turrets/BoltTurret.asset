@@ -17,6 +17,6 @@ MonoBehaviour:
     type: 3}
   damageMultiplier: 1
   reloadTime: 0.25
-  rotationSpeed: 1
+  rotationSpeed: 1.25
   firingArc: 0.75
-  accuracy: 50
+  accuracy: 0.75

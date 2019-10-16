@@ -38,12 +38,30 @@ namespace SM
       {
         if (projectile != null)
         {
-          SMProjectile tempProjectile = Instantiate(projectile, turretController.transform.position, turretController.transform.rotation);
+          Quaternion tempRotation = turretController.transform.rotation * calcAccuracyDeviation();
+          SMProjectile tempProjectile = Instantiate(projectile, turretController.transform.position, tempRotation);
           tempProjectile.source = turretController.transform.parent.gameObject;
         }
       }
 
       turretController.nextFireTime = Time.time + reloadTime;
+    }
+
+    //generates random rotations for projectiles based on turret's accuracy
+    public virtual Quaternion calcAccuracyDeviation()
+    {
+      // conversion to inverse of accuracy rating
+      // so with an acc of .7 you'd have .3
+      float tempAccuracy = 1 - accuracy;
+
+      // generates a random number between a negative value of the calculated number and the normal number
+      // this is to get a spread ( -.3 to .3 ), then mult that by 10
+      float randomAccuracy = Random.Range(-tempAccuracy, tempAccuracy) * 10;
+
+      // save that number as a quaternion effecting only the Z axis, and return it
+      Quaternion tempDeviation = Quaternion.Euler(0f, 0f, randomAccuracy);
+
+      return tempDeviation;
     }
   }
 }

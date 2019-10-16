@@ -13,10 +13,12 @@ namespace SM
     public float rotationSpeed;
 
 
+    [Tooltip("How pointed at the target you need to be before firing")]
     [Range(0, 1)]
     public float firingArc;
 
-    [Range(0, 100)]
+    [Tooltip("Rotation variation from the muzzle spawn point")]
+    [Range(0, 1)]
     public float accuracy;
 
     protected SMTurretController turretController;
