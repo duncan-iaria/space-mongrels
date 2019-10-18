@@ -19,4 +19,4 @@ MonoBehaviour:
   reloadTime: 0.75
   rotationSpeed: 0.75
   firingArc: 0.7
-  accuracy: 0
+  accuracy: 0.5

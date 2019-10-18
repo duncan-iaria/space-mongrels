@@ -924,6 +924,22 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1716315155309789948, guid: edecc155bacf8844cae61888d169f4d8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8408215
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716315155309789948, guid: edecc155bacf8844cae61888d169f4d8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5413124
+      objectReference: {fileID: 0}
+    - target: {fileID: 5361110490568133260, guid: edecc155bacf8844cae61888d169f4d8,
+        type: 3}
+      propertyPath: turret
+      value: 
+      objectReference: {fileID: 11400000, guid: f4dde467895e84a40a524455eff89c14,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edecc155bacf8844cae61888d169f4d8, type: 3}
 --- !u!1001 &811509353
