@@ -39,7 +39,7 @@ namespace SM
         if (projectile != null)
         {
           Quaternion tempRotation = turretController.transform.rotation * calcAccuracyDeviation();
-          SMProjectile tempProjectile = Instantiate(projectile, turretController.transform.position, tempRotation);
+          SMProjectile tempProjectile = Instantiate(projectile, turretController.CurrentFiringPosition.position, tempRotation);
           tempProjectile.source = turretController.transform.parent.gameObject;
         }
       }
