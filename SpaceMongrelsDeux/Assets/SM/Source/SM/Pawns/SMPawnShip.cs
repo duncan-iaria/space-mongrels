@@ -7,15 +7,18 @@ namespace SM
 {
   public class SMPawnShip : SMPawn, IDamageable, ITargetable
   {
+    [Header("Ship Data")]
     public SMShip ship;
     public SMReactor reactor;
+    public float thrustThreshold = 0.1f;
+
+    [Header("Controllers")]
     public SMSensorController sensorController;
     public SMTurretController turretController;
 
     // These are set by the ship object
     [HideInInspector]
     public float moveSpeed, horizontalDampening = .5f, rotationSpeed, boostSpeed, boostCooldown, thrustSpeed;
-    public float thrustThreshold = 0.1f;
 
     [HideInInspector]
     public int maxHealth, currentHealth;
@@ -137,6 +140,7 @@ namespace SM
       // mini boost
       if (tYAxis >= thrustThreshold && isThrustEligible)
       {
+        Debug.Log("Mini boosted");
         reactor.boost(_rigidbody, thrustSpeed);
         isThrustEligible = false;
       }
