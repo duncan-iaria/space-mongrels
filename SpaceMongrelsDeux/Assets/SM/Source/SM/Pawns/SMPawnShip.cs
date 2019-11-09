@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using SNDL;
+﻿using SNDL;
 using UnityEngine;
 
 namespace SM
@@ -11,12 +9,13 @@ namespace SM
     public SMShip ship;
     public SMReactor reactor;
     public float thrustThreshold = 0.1f;
+    public float allowedRotationalDeviation = 0.1f;
 
     [Header("Controllers")]
     public SMSensorController sensorController;
     public SMTurretController turretController;
 
-    // These are set by the ship object
+    // These are set by the ship object SOs (Reactor/Sensors, etc)
     [HideInInspector]
     public float moveSpeed, horizontalDampening = .5f, rotationSpeed, boostSpeed, boostCooldown, thrustSpeed;
 
@@ -25,6 +24,10 @@ namespace SM
 
     protected float nextBoostTime;
     protected bool isThrustEligible = true;
+
+    // This is for providing some dampening to the rotation of the AI
+    // When they're rotating the ship 
+    protected float AIRotationDampening = 0.75f;
 
     //=======================
     // Initialization
@@ -72,6 +75,37 @@ namespace SM
           break;
         default:
           break;
+      }
+    }
+
+    //=======================
+    // Pawn AI Controls
+    //=======================
+    public void moveForward(float tValue = 1)
+    {
+      onAxis(InputAxis.Vertical, tValue);
+    }
+
+    public void rotateTowardTarget(Transform tTarget)
+    {
+      if (tTarget != null)
+      {
+        // we use the right vector to tell what direction it needs to correct in
+        float dotProd = Vector2.Dot((Vector2)transform.right, (Vector2)(tTarget.position - transform.position).normalized);
+        float directionalDotProd = Vector2.Dot((Vector2)transform.up, (Vector2)(tTarget.position - transform.position).normalized);
+
+        // if the direction moving and the direction facing is close to opposite ( -1 being opposite ) then apply additional boost
+        // multiplied by dotProd so that the closer it is to target rotation, the slower it rotates 
+        if (dotProd > allowedRotationalDeviation)
+        {
+          // Rotate Right
+          rotate(-1 * AIRotationDampening);
+        }
+        else if (dotProd < -allowedRotationalDeviation || directionalDotProd < -.7f)
+        {
+          // Rotate Left
+          rotate(1 * AIRotationDampening);
+        }
       }
     }
 

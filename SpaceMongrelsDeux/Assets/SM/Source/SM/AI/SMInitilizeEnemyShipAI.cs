@@ -12,6 +12,8 @@ namespace SM
   public class SMInitilizeEnemyShipAI : Action
   {
     public SharedFloat sensorRange;
+    public SharedFloat moveSpeed;
+    public SharedFloat rotationSpeed;
     public SharedTransformList levelPawns;
     public SharedTransformList patrolWaypoints;
     public override void OnStart()
@@ -21,10 +23,13 @@ namespace SM
       if (tempPawnShip != null)
       {
         sensorRange.Value = tempPawnShip.sensorController.range;
+        moveSpeed.Value = tempPawnShip.moveSpeed;
+        rotationSpeed.Value = tempPawnShip.rotationSpeed;
       }
 
       levelPawns.Value = getLevelPawns();
       patrolWaypoints.Value = getLevelPatrolWaypoints();
+
     }
 
     private List<Transform> getLevelPawns()
