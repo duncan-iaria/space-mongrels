@@ -9,6 +9,9 @@ namespace SM
     public SharedFloat moveSpeed;
     public SharedFloat rotationSpeed;
     public SharedTransform currentTarget;
+
+    [BehaviorDesigner.Runtime.Tasks.Tooltip("How close the pawn needs to be to consider this task a success")]
+    public float successDistance = 0.25f;
     private SMPawnShip shipPawn;
 
 
@@ -25,7 +28,7 @@ namespace SM
     public override TaskStatus OnUpdate()
     {
       // Return a task status of success once we've reached the target
-      if (Vector3.SqrMagnitude(transform.position - currentTarget.Value.position) < 0.1f)
+      if (Vector3.SqrMagnitude(transform.position - currentTarget.Value.position) < successDistance)
       {
         return TaskStatus.Success;
       }
