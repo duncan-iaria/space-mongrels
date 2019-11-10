@@ -59,10 +59,12 @@ namespace SM
     {
       SMLevel tempLevel = getCurrentLevel();
 
-      if (tempLevel != null)
+      if (tempLevel != null && tempLevel.AIManager != null)
       {
         return tempLevel.AIManager.patrolWaypoints;
       }
+
+      Debug.LogWarning("No level, or no level AI manager assigned.");
       return new List<Transform>();
     }
 

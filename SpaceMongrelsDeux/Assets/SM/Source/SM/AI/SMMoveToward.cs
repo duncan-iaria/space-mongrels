@@ -27,6 +27,11 @@ namespace SM
 
     public override TaskStatus OnUpdate()
     {
+      if (currentTarget.Value == null)
+      {
+        return TaskStatus.Failure;
+      }
+
       // Return a task status of success once we've reached the target
       if (Vector3.SqrMagnitude(transform.position - currentTarget.Value.position) < successDistance)
       {

@@ -32,6 +32,11 @@ namespace SM
           _patrolWaypoints.Add(child);
         }
       }
+      else
+      {
+        _patrolWaypoints = new List<Transform>();
+        Debug.LogWarning("No Patrol Waypoint was set, patrols won't work!");
+      }
     }
   }
 
