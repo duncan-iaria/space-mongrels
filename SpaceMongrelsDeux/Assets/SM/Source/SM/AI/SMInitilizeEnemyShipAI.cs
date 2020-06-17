@@ -16,6 +16,7 @@ namespace SM
     public SharedFloat rotationSpeed;
     public SharedTransformList levelPawns;
     public SharedTransformList patrolWaypoints;
+
     public override void OnStart()
     {
       SMPawnShip tempPawnShip = this.transform.GetComponent<SMPawnShip>();
@@ -29,13 +30,11 @@ namespace SM
 
       levelPawns.Value = getLevelPawns();
       patrolWaypoints.Value = getLevelPatrolWaypoints();
-
     }
 
     private List<Transform> getLevelPawns()
     {
       SMLevel tempLevel = getCurrentLevel();
-
 
       if (tempLevel != null)
       {
@@ -47,7 +46,6 @@ namespace SM
         }
 
         return tempLevelPawnTransforms;
-
       }
 
       Debug.LogWarning("NO SMGAME FOUND IN AI INITIALIZATION — THIS IS MOST LIKELY A PROBLEM");

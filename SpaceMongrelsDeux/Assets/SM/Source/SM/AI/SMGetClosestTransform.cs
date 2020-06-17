@@ -11,6 +11,7 @@ namespace SM
     public SharedTransformList potentialTargets;
     [BehaviorDesigner.Runtime.Tasks.Tooltip("Result of comparison gets set as the current target")]
     public SharedTransform currentTarget;
+
     public override void OnStart()
     {
       base.OnStart();
