@@ -6,7 +6,13 @@ namespace SM
   {
     public LineRenderer lineRenderer;
     public bool isRenderInGame = true;
+    public bool isRedrawEnabled = false;
+
+    public int framesUntilUpdate = 10;
     private Vector3[] bouyArray;
+
+    private int frameCount = 0;
+
 
     void Start()
     {
@@ -20,6 +26,22 @@ namespace SM
         {
           Debug.LogWarning("No LineRendered Assigned, Boundary will not render in game.");
         }
+      }
+    }
+
+    void FixedUpdate()
+    {
+      if (!isRenderInGame || !isRedrawEnabled)
+      {
+        enabled = false;
+      }
+
+      frameCount++;
+
+      if (frameCount > framesUntilUpdate)
+      {
+        createBoundary();
+        frameCount = 0;
       }
     }
 
