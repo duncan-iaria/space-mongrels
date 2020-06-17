@@ -220,20 +220,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6744413258689736133, guid: 0c2f029f10834484fb359f53bc99a357,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114798485848318930, guid: 0c2f029f10834484fb359f53bc99a357,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114798485848318930, guid: 0c2f029f10834484fb359f53bc99a357,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
+    - target: {fileID: 1835867837398938, guid: 0c2f029f10834484fb359f53bc99a357, type: 3}
+      propertyPath: m_Name
+      value: GUI
       objectReference: {fileID: 0}
     - target: {fileID: 4632195443284356, guid: 0c2f029f10834484fb359f53bc99a357, type: 3}
       propertyPath: m_LocalPosition.x
@@ -267,29 +256,16 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3669129730245415554, guid: 0c2f029f10834484fb359f53bc99a357,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
+    - target: {fileID: 4632195443284356, guid: 0c2f029f10834484fb359f53bc99a357, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3669129730245415554, guid: 0c2f029f10834484fb359f53bc99a357,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
+    - target: {fileID: 4632195443284356, guid: 0c2f029f10834484fb359f53bc99a357, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3669129730245415554, guid: 0c2f029f10834484fb359f53bc99a357,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3669129730245415554, guid: 0c2f029f10834484fb359f53bc99a357,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3669129730245415554, guid: 0c2f029f10834484fb359f53bc99a357,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
+    - target: {fileID: 4632195443284356, guid: 0c2f029f10834484fb359f53bc99a357, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

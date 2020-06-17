@@ -188,6 +188,7 @@ MonoBehaviour:
   currentInteractable: {fileID: 0}
   ship: {fileID: 11400000, guid: aa0486dcbc8702e4eb3236e1dc3c105a, type: 2}
   reactor: {fileID: 11400000, guid: 9c17780c0b6780045b395f7d69b6a5af, type: 2}
+  thrustThreshold: 0.1
   sensorController: {fileID: 114657652479426284}
   turretController: {fileID: 5361110490568133260}
   moveSpeed: 0
@@ -196,7 +197,6 @@ MonoBehaviour:
   boostSpeed: 0
   boostCooldown: 0
   thrustSpeed: 0
-  thrustThreshold: 0.1
   maxHealth: 0
   currentHealth: 0
 --- !u!60 &60451754347784930

@@ -14,6 +14,7 @@ Progress/
 */**.sln
 */**.suo
 *.DS_Store
+Plugins/*
 
 =====================================
 Tac Lab
