@@ -2,16 +2,16 @@
 
 namespace SNDL
 {
-    public class Level : MonoBehaviour
+  public class Level : MonoBehaviour
+  {
+    protected Game game;
+    public string levelName;
+
+    protected virtual void Awake()
     {
-        protected Game game;
-        public string levelName;
-
-        protected virtual void Awake()
-        {
-            game = Game.GetGame<Game>();
-        }
-
-        protected virtual void Start() { }
+      game = Game.GetGame<Game>();
     }
+
+    protected virtual void Start() { }
+  }
 }
