@@ -6,8 +6,11 @@ namespace SM
 {
   public class SMUINavHelper : MonoBehaviour
   {
-    public SMLevelGate gate;
+    [Tooltip("This is the object that the UI Nav Helper will be displayed for")]
+    public Transform pointOfInterest;
     public TextMeshPro textMesh;
+    public string navUiTitle;
+
     [Range(0f, 1f)]
     public float hintPositionOffset = 0.05f;
     private Animator _animator;
@@ -25,9 +28,16 @@ namespace SM
       _gameCamera = _game.view.cam;
       _player = _game.controller.currentPawn.transform;
       _animator = this.GetComponent<Animator>();
+
+      // Set the text (and figure out the size)
+      textMesh.text = navUiTitle;
+      textMesh.ForceMeshUpdate();
+
+      // TODO figure out how to set the offset to include the size of the text
+      // Debug.Log(textMesh.textBounds.extents);
+
       _minHintPosition = 0 + hintPositionOffset;
       _maxHintPosition = 1 - hintPositionOffset;
-      textMesh.text = gate.sourceLevel.displayName;
     }
 
     // Update is called once per frame
@@ -37,8 +47,8 @@ namespace SM
       {
 
         // Check if the hint PoI is in view
-        Renderer tempGateRenderer = gate.gameObject.GetComponent<Renderer>();
-        if (RendererExtensions.IsVisibleFrom(tempGateRenderer, _gameCamera))
+        Renderer tempPoiRenderer = pointOfInterest.gameObject.GetComponent<Renderer>();
+        if (RendererExtensions.IsVisibleFrom(tempPoiRenderer, _gameCamera))
         {
           // If it's now in view, and it previously wasn't
           if (!_isInView)
@@ -57,7 +67,7 @@ namespace SM
         }
 
 
-        Vector3 tempGatePoint = _gameCamera.WorldToViewportPoint(gate.transform.position);
+        Vector3 tempGatePoint = _gameCamera.WorldToViewportPoint(pointOfInterest.transform.position);
 
         // Min is a value like .05f and Max is a val like .95f
         float tempX = Mathf.Clamp(tempGatePoint.x, _minHintPosition, _maxHintPosition);
