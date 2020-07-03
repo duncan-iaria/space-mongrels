@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 734045705}
   - component: {fileID: 734045704}
   m_Layer: 0
-  m_Name: GateHintText
+  m_Name: NavHelperText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -665,7 +665,7 @@ GameObject:
   - component: {fileID: 1181921445}
   - component: {fileID: 1181921446}
   m_Layer: 8
-  m_Name: GateNavigationHint
+  m_Name: NavHelper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

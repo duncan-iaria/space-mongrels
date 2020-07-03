@@ -4,8 +4,7 @@ using SNDL;
 
 namespace SM
 {
-  // TODO move this to the GUI layer (so text remains the same size)
-  public class SMUIGateNavigationGuide : MonoBehaviour
+  public class SMUINavHelper : MonoBehaviour
   {
     public SMLevelGate gate;
     public TextMeshPro textMesh;
@@ -36,25 +35,25 @@ namespace SM
     {
       if (_player != null && _gameCamera != null)
       {
+
+        // Check if the hint PoI is in view
         Renderer tempGateRenderer = gate.gameObject.GetComponent<Renderer>();
         if (RendererExtensions.IsVisibleFrom(tempGateRenderer, _gameCamera))
         {
+          // If it's now in view, and it previously wasn't
           if (!_isInView)
           {
-            // TODO in view now, turn off
             _isInView = true;
-            // textMesh.gameObject.SetActive(false);
             _animator.SetTrigger(_turnOffHash);
           }
           return;
         }
 
+        // If it was previously IN view, but now isn't
         if (_isInView)
         {
           _isInView = false;
-          // TODO turn on
           _animator.SetTrigger(_turnOnHash);
-          // textMesh.gameObject.SetActive(true);
         }
 
 
@@ -65,8 +64,6 @@ namespace SM
         float tempY = Mathf.Clamp(tempGatePoint.y, _minHintPosition, _maxHintPosition);
 
         Vector3 tempPos = new Vector3(tempX, tempY, 15);
-
-        // Debug.Log("tempGatePoint: " + tempGatePoint + " adjusted position: " + tempPos);
         this.transform.position = _gameCamera.ViewportToWorldPoint(tempPos);
       }
       else
