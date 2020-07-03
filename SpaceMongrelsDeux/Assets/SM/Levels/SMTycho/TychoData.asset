@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -13,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: SMTycho
   displayName: Tycho
-  levelType: 1
   isAdditiveLevel: 0
+  levelType: 1
+  interiorOffset: {fileID: 0}
   connectedLevels:
   - {fileID: 11400000, guid: eaeb9510e9373724da3864b19ed51387, type: 2}
+  - {fileID: 11400000, guid: 114cac2f3b1562c4286ef1f83303bf93, type: 2}
