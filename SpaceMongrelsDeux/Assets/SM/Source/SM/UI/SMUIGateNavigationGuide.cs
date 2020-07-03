@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using SNDL;
 
 namespace SM
@@ -24,10 +22,14 @@ namespace SM
     {
       if (player != null && gameCamera != null)
       {
-        this.transform.position = player.position;
-        Vector3 screenPoint = gameCamera.WorldToScreenPoint(gate.transform.position);
+        Vector3 tempGatePoint = gameCamera.WorldToViewportPoint(gate.transform.position);
 
-        Debug.Log("screen point " + screenPoint);
+        float tempX = Mathf.Clamp(tempGatePoint.x, -1, 1);
+        float tempY = Mathf.Clamp(tempGatePoint.y, -1, 1);
+
+        Vector3 tempPos = new Vector3(tempX, tempY, 15);
+        this.transform.position = gameCamera.ViewportToWorldPoint(tempPos);
+        // Debug.Log("screen point " + tempX + " " + tempY);
       }
       else
       {
