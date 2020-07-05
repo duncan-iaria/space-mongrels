@@ -15,12 +15,16 @@ namespace SM
     public SMSensorController sensorController;
     public SMTurretController turretController;
 
+    [Header("Debug")]
+    public bool isDebugMode = true;
+
     // These are set by the ship object SOs (Reactor/Sensors, etc)
     [HideInInspector]
     public float moveSpeed, horizontalDampening = .5f, rotationSpeed, boostSpeed, boostCooldown, thrustSpeed;
 
     [HideInInspector]
     public int maxHealth, currentHealth;
+
 
     protected float nextBoostTime;
     protected bool isThrustEligible = true;
@@ -94,7 +98,7 @@ namespace SM
         float dotProd = Vector2.Dot((Vector2)transform.right, (Vector2)(tTarget.position - transform.position).normalized);
         float directionalDotProd = Vector2.Dot((Vector2)transform.up, (Vector2)(tTarget.position - transform.position).normalized);
 
-        // if the direction moving and the direction facing is close to opposite ( -1 being opposite ) then apply additional boost
+        // if the direction moving and the direction facing is close to opposite (-1 being opposite) then apply additional boost
         // multiplied by dotProd so that the closer it is to target rotation, the slower it rotates 
         if (dotProd > allowedRotationalDeviation)
         {
@@ -236,6 +240,26 @@ namespace SM
       {
         tReticule.transform.SetPositionAndRotation(this.transform.position, Quaternion.identity);
         tReticule.transform.SetParent(this.transform);
+      }
+    }
+
+    public void OnDrawGizmos()
+    {
+      if (false)
+      {
+        float collisionCheckSweepAngle = 15f;
+        float visualSensorRange = this.sensorController.sensor.range * 0.5f;
+
+
+        Vector3 leftAngleDirection = Quaternion.AngleAxis(collisionCheckSweepAngle, Vector3.forward) * transform.up;
+        Vector3 rightAngleDirection = Quaternion.AngleAxis(-collisionCheckSweepAngle, Vector3.forward) * transform.up;
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(this.transform.position, leftAngleDirection * visualSensorRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(this.transform.position, rightAngleDirection * visualSensorRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(this.transform.position, transform.up * visualSensorRange);
       }
     }
   }
