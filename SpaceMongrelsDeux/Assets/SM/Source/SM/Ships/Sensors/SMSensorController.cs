@@ -8,7 +8,7 @@ namespace SM
     public ITargetable currentTarget = null;
 
     [HideInInspector]
-    public float range, scanSpeed, sortRate;
+    public float range, scanSpeed, sortRate, collisionCheckSweepAngle = 12f;
 
     [HideInInspector]
     public CircleCollider2D sensorCollider;
@@ -47,6 +47,11 @@ namespace SM
     public void clearAllTargets()
     {
       sensor.clearTargetList();
+    }
+
+    public CollisionDirection checkForCollisions()
+    {
+      return sensor.checkForCollisions(this.transform);
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D tCollider)

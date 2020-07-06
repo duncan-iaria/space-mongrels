@@ -90,6 +90,12 @@ namespace SM
       onAxis(InputAxis.Vertical, tValue);
     }
 
+    public void moveBackward(float tValue = -5)
+    {
+      Debug.Log("moving backwards at: " + tValue);
+      onAxis(InputAxis.Vertical, tValue);
+    }
+
     public void rotateTowardTarget(Transform tTarget)
     {
       if (tTarget != null)
@@ -102,15 +108,23 @@ namespace SM
         // multiplied by dotProd so that the closer it is to target rotation, the slower it rotates 
         if (dotProd > allowedRotationalDeviation)
         {
-          // Rotate Right
-          rotate(-1 * AIRotationDampening);
+          rotateRight();
         }
         else if (dotProd < -allowedRotationalDeviation || directionalDotProd < -.7f)
         {
-          // Rotate Left
-          rotate(1 * AIRotationDampening);
+          rotateLeft();
         }
       }
+    }
+
+    public void rotateRight(float tValue = 1f)
+    {
+      rotate(-1 * tValue * AIRotationDampening);
+    }
+
+    public void rotateLeft(float tValue = 1f)
+    {
+      rotate(1 * tValue * AIRotationDampening);
     }
 
     public override void onAxis(InputAxis tAxis, float tValue)
@@ -240,26 +254,6 @@ namespace SM
       {
         tReticule.transform.SetPositionAndRotation(this.transform.position, Quaternion.identity);
         tReticule.transform.SetParent(this.transform);
-      }
-    }
-
-    public void OnDrawGizmos()
-    {
-      if (false)
-      {
-        float collisionCheckSweepAngle = 15f;
-        float visualSensorRange = this.sensorController.sensor.range * 0.5f;
-
-
-        Vector3 leftAngleDirection = Quaternion.AngleAxis(collisionCheckSweepAngle, Vector3.forward) * transform.up;
-        Vector3 rightAngleDirection = Quaternion.AngleAxis(-collisionCheckSweepAngle, Vector3.forward) * transform.up;
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay(this.transform.position, leftAngleDirection * visualSensorRange);
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(this.transform.position, rightAngleDirection * visualSensorRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(this.transform.position, transform.up * visualSensorRange);
       }
     }
   }

@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SM
 {
   [CreateAssetMenu(menuName = "SM/Ships/Sensor", order = 99)]
-  public class Sensor : SMSensor
+  public class SMSensor : Sensor
   {
     protected SMSensorController sensorController;
     public override void initialize(GameObject tObject)
@@ -13,6 +11,7 @@ namespace SM
       SMSensorController tempSensorController = tObject.GetComponent<SMSensorController>();
       if (tempSensorController != null)
       {
+        sensorController = tempSensorController;
         selectedTargetIndex = -1;
         tempSensorController.range = range;
         tempSensorController.sensorCollider.radius = range;
@@ -132,6 +131,73 @@ namespace SM
       {
         Debug.Log(tTarget.getTransform().gameObject);
       });
+    }
+
+    // TODO clean this all up
+    public override CollisionDirection checkForCollisions(Transform sourceTransform)
+    {
+      Vector3 leftAngleDirection = Quaternion.AngleAxis(sensorController.collisionCheckSweepAngle, Vector3.forward) * sourceTransform.up;
+      Vector3 rightAngleDirection = Quaternion.AngleAxis(-sensorController.collisionCheckSweepAngle, Vector3.forward) * sourceTransform.up;
+      RaycastHit2D hitR = Physics2D.Raycast(sourceTransform.position, rightAngleDirection, 5f, layerMask);
+      RaycastHit2D hitL = Physics2D.Raycast(sourceTransform.position, leftAngleDirection, 5f, layerMask);
+
+      Debug.DrawRay(sourceTransform.position, leftAngleDirection * 5f, Color.red);
+      Debug.DrawRay(sourceTransform.position, rightAngleDirection * 5f, Color.blue);
+
+
+      //a general hit check, and checks to see if it's the player
+      if (hitR.collider != null || hitL.collider != null)
+      {
+        //check what kind of hit we've got
+        //hit both
+        if (hitR.collider != null && hitL.collider != null)
+        {
+          Debug.Log("Hit BOTH!!!- REVERSE");
+          return CollisionDirection.Front;
+          // reverse();
+          //Debug.Log( hitR.collider + " " + hitL.collider );
+          //Debug.Log( "Avoid MIDDLE!" );
+        }
+        //hit right
+        else if (hitR.collider != null)
+        {
+          if (hitR.collider.CompareTag("Player"))
+          {
+            // pawn.controller.engageTarget = hitR.collider.transform;
+            // pawn.controller.currentState.toEngageState();
+            // return;
+          }
+          // checkLeft();
+          Debug.Log("Hit Left");
+          return CollisionDirection.Left;
+        }
+        //hit left
+        else if (hitL.collider != null)
+        {
+          if (hitL.collider.CompareTag("Player"))
+          {
+            // pawn.controller.engageTarget = hitL.collider.transform;
+            // pawn.controller.currentState.toEngageState();
+            // return;
+          }
+          // checkRight();
+          Debug.Log("Hit Right");
+          return CollisionDirection.Right;
+        }
+
+        //turn on avoidance mode
+        // pawn.engageAvoidanceMode();
+      }
+      //no hit
+      else
+      {
+        // Hit nothing
+        return CollisionDirection.None;
+        //start moving again
+        // pawn.resetSpeed();
+      }
+
+      return CollisionDirection.None;
     }
   }
 }

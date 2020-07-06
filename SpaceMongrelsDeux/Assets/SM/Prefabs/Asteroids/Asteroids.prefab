@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 212828839804929004}
   - component: {fileID: 58841199587708852}
   - component: {fileID: 50451547695879426}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Asteroid01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4198377310376512}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Asteroids
   m_TagString: Untagged
   m_Icon: {fileID: 0}

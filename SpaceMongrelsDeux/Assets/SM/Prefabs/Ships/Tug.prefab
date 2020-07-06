@@ -48,6 +48,7 @@ MonoBehaviour:
   range: 0
   scanSpeed: 0
   sortRate: 0
+  collisionCheckSweepAngle: 12
   sensorCollider: {fileID: 0}
 --- !u!58 &58166339376888578
 CircleCollider2D:
@@ -79,7 +80,7 @@ GameObject:
   - component: {fileID: 114556981515953000}
   - component: {fileID: 60451754347784930}
   - component: {fileID: 6421536855884345878}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Tug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,6 +195,7 @@ MonoBehaviour:
   allowedRotationalDeviation: 0.1
   sensorController: {fileID: 114657652479426284}
   turretController: {fileID: 5361110490568133260}
+  isDebugMode: 1
   moveSpeed: 0
   horizontalDampening: 0
   rotationSpeed: 0
@@ -264,7 +266,7 @@ MonoBehaviour:
   - {x: -0.4849752, y: 0.0681345, z: 0}
   m_ShapePathHash: 1375607686
   m_Mesh: {fileID: 0}
-  m_InstanceId: 26006
+  m_InstanceId: -1736
 --- !u!1 &1294389144830492
 GameObject:
   m_ObjectHideFlags: 0
