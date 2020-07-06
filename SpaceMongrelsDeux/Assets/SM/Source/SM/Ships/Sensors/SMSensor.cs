@@ -133,7 +133,7 @@ namespace SM
       });
     }
 
-    // TODO clean this all up
+    // TODO clean this all up (use the sensor range for ranges (maybe / 2), etc)
     public override CollisionDirection checkForCollisions(Transform sourceTransform)
     {
       Vector3 leftAngleDirection = Quaternion.AngleAxis(sensorController.collisionCheckSweepAngle, Vector3.forward) * sourceTransform.up;
