@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensor: {fileID: 11400000, guid: 3417d04bf545bce4ea3bc45ba40fc389, type: 2}
+  collisionCheckSweepAngle: 12
   range: 0
   scanSpeed: 0
   sortRate: 0
-  collisionCheckSweepAngle: 12
   sensorCollider: {fileID: 0}
 --- !u!58 &58166339376888578
 CircleCollider2D:

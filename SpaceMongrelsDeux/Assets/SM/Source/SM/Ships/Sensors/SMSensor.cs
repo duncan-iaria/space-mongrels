@@ -138,11 +138,11 @@ namespace SM
     {
       Vector3 leftAngleDirection = Quaternion.AngleAxis(sensorController.collisionCheckSweepAngle, Vector3.forward) * sourceTransform.up;
       Vector3 rightAngleDirection = Quaternion.AngleAxis(-sensorController.collisionCheckSweepAngle, Vector3.forward) * sourceTransform.up;
-      RaycastHit2D hitR = Physics2D.Raycast(sourceTransform.position, rightAngleDirection, 5f, layerMask);
-      RaycastHit2D hitL = Physics2D.Raycast(sourceTransform.position, leftAngleDirection, 5f, layerMask);
+      RaycastHit2D hitL = Physics2D.Raycast(sourceTransform.position, leftAngleDirection, range, layerMask);
+      RaycastHit2D hitR = Physics2D.Raycast(sourceTransform.position, rightAngleDirection, range, layerMask);
 
-      Debug.DrawRay(sourceTransform.position, leftAngleDirection * 5f, Color.red);
-      Debug.DrawRay(sourceTransform.position, rightAngleDirection * 5f, Color.blue);
+      Debug.DrawRay(sourceTransform.position, leftAngleDirection * range, Color.red);
+      Debug.DrawRay(sourceTransform.position, rightAngleDirection * range, Color.blue);
 
 
       //a general hit check, and checks to see if it's the player
@@ -168,8 +168,8 @@ namespace SM
             // return;
           }
           // checkLeft();
-          Debug.Log("Hit Left");
-          return CollisionDirection.Left;
+          Debug.Log("Hit Right");
+          return CollisionDirection.Right;
         }
         //hit left
         else if (hitL.collider != null)
@@ -181,8 +181,8 @@ namespace SM
             // return;
           }
           // checkRight();
-          Debug.Log("Hit Right");
-          return CollisionDirection.Right;
+          Debug.Log("Hit Left");
+          return CollisionDirection.Left;
         }
 
         //turn on avoidance mode

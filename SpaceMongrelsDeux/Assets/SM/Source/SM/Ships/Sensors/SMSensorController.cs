@@ -7,8 +7,10 @@ namespace SM
     public SMSensor sensor;
     public ITargetable currentTarget = null;
 
+    public float collisionCheckSweepAngle = 7f;
+
     [HideInInspector]
-    public float range, scanSpeed, sortRate, collisionCheckSweepAngle = 12f;
+    public float range, scanSpeed, sortRate;
 
     [HideInInspector]
     public CircleCollider2D sensorCollider;

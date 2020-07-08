@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7362dc269baf76949b08b6f6bf4e1829, type: 3}
   m_Name: SensorMk2
   m_EditorClassIdentifier: 
-  range: 10
+  range: 12
   scanSpeed: 1
   sortRate: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 7168
   targetReticuleSource: {fileID: 1632033107223162, guid: 5abe3c465add4dc46b755251ed2c38fb,
     type: 3}
