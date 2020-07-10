@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SM
@@ -33,7 +34,7 @@ namespace SM
     public abstract void clearTargetList();
     public abstract bool sortTargets(Vector3 tSensorOrigin);
 
-    public abstract CollisionDirection checkForCollisions(Transform sourceTransform);
+    public abstract CollisionDirection checkForCollisions(Transform sourceTransform, Action<Transform> onDetectEnemy);
     public abstract ITargetable selectNextTarget(Vector3 tSensorOrigin);
     public abstract ITargetable selectPreviousTarget(Vector3 tSensorOrigin);
   }

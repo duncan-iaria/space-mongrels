@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace SM
 {
@@ -51,9 +52,9 @@ namespace SM
       sensor.clearTargetList();
     }
 
-    public CollisionDirection checkForCollisions()
+    public CollisionDirection checkForCollisions(Action<Transform> onSetTarget)
     {
-      return sensor.checkForCollisions(this.transform);
+      return sensor.checkForCollisions(this.transform, onSetTarget);
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D tCollider)

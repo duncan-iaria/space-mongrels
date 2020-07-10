@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace SM
 {
@@ -134,16 +135,16 @@ namespace SM
     }
 
     // TODO clean this all up (use the sensor range for ranges (maybe / 2), etc)
-    public override CollisionDirection checkForCollisions(Transform sourceTransform)
+    public override CollisionDirection checkForCollisions(Transform sourceTransform, Action<Transform> onDetectEnemy)
     {
+      float tempCollisionCheckRange = range * 0.5f;
       Vector3 leftAngleDirection = Quaternion.AngleAxis(sensorController.collisionCheckSweepAngle, Vector3.forward) * sourceTransform.up;
       Vector3 rightAngleDirection = Quaternion.AngleAxis(-sensorController.collisionCheckSweepAngle, Vector3.forward) * sourceTransform.up;
-      RaycastHit2D hitL = Physics2D.Raycast(sourceTransform.position, leftAngleDirection, range, layerMask);
-      RaycastHit2D hitR = Physics2D.Raycast(sourceTransform.position, rightAngleDirection, range, layerMask);
+      RaycastHit2D hitL = Physics2D.Raycast(sourceTransform.position, leftAngleDirection, tempCollisionCheckRange, layerMask);
+      RaycastHit2D hitR = Physics2D.Raycast(sourceTransform.position, rightAngleDirection, tempCollisionCheckRange, layerMask);
 
-      Debug.DrawRay(sourceTransform.position, leftAngleDirection * range, Color.red);
-      Debug.DrawRay(sourceTransform.position, rightAngleDirection * range, Color.blue);
-
+      Debug.DrawRay(sourceTransform.position, leftAngleDirection * tempCollisionCheckRange, Color.red);
+      Debug.DrawRay(sourceTransform.position, rightAngleDirection * tempCollisionCheckRange, Color.blue);
 
       //a general hit check, and checks to see if it's the player
       if (hitR.collider != null || hitL.collider != null)
@@ -154,15 +155,13 @@ namespace SM
         {
           Debug.Log("Hit BOTH!!!- REVERSE");
           return CollisionDirection.Front;
-          // reverse();
-          //Debug.Log( hitR.collider + " " + hitL.collider );
-          //Debug.Log( "Avoid MIDDLE!" );
         }
         //hit right
         else if (hitR.collider != null)
         {
           if (hitR.collider.CompareTag("Player"))
           {
+            onDetectEnemy?.Invoke(sourceTransform);
             // pawn.controller.engageTarget = hitR.collider.transform;
             // pawn.controller.currentState.toEngageState();
             // return;
@@ -176,6 +175,7 @@ namespace SM
         {
           if (hitL.collider.CompareTag("Player"))
           {
+            onDetectEnemy?.Invoke(sourceTransform);
             // pawn.controller.engageTarget = hitL.collider.transform;
             // pawn.controller.currentState.toEngageState();
             // return;

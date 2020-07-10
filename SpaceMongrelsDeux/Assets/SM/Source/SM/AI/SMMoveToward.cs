@@ -38,18 +38,20 @@ namespace SM
         return TaskStatus.Success;
       }
 
-      CollisionDirection tempCollisionDirection = _shipPawn.sensorController.checkForCollisions();
+      CollisionDirection tempCollisionDirection = _shipPawn.sensorController.checkForCollisions(onDetectEnemy);
 
       switch (tempCollisionDirection)
       {
         case CollisionDirection.Front:
-          _shipPawn.rotateRight(15);
+          _shipPawn.rotateRight();
           _shipPawn.moveBackward(-45);
           return TaskStatus.Failure;
         case CollisionDirection.Right:
           _shipPawn.rotateLeft();
+          _shipPawn.moveForward();
           return TaskStatus.Running;
         case CollisionDirection.Left:
+          _shipPawn.moveForward();
           _shipPawn.rotateRight();
           return TaskStatus.Running;
         default:
@@ -59,6 +61,12 @@ namespace SM
       _shipPawn.rotateTowardTarget(currentTarget.Value);
       _shipPawn.moveForward();
       return TaskStatus.Running;
+    }
+
+    // TODO implement what happens what an enemy is detechted
+    private void onDetectEnemy(Transform target)
+    {
+      Debug.Log("enemy target detected at: " + target.position);
     }
   }
 }
