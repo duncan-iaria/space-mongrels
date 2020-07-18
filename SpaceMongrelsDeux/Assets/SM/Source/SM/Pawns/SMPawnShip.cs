@@ -10,6 +10,7 @@ namespace SM
     public SMReactor reactor;
     public float thrustThreshold = 0.1f;
     public float allowedRotationalDeviation = 0.1f;
+    public float mass = 0.2f;
 
     [Header("Controllers")]
     public SMSensorController sensorController;
@@ -42,13 +43,29 @@ namespace SM
       rebuildShipData();
     }
 
-    protected virtual void rebuildShipData()
+    public virtual void rebuildShipData()
     {
       if (ship != null && reactor != null)
       {
         ship.initialize(gameObject);
         reactor.initialize(gameObject);
         sensorController.clearAllTargets();
+
+        setMass();
+      }
+    }
+
+    public virtual void setMass()
+    {
+      Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
+
+      if (rb)
+      {
+        rb.mass = mass;
+      }
+      else
+      {
+        Debug.LogWarning("No rigidbody found, could not set mass!");
       }
     }
 

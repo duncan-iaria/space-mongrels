@@ -167,9 +167,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.2
-  m_LinearDrag: 1
-  m_AngularDrag: 2.5
+  m_Mass: 1
+  m_LinearDrag: 0.5
+  m_AngularDrag: 2
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -193,6 +193,7 @@ MonoBehaviour:
   reactor: {fileID: 11400000, guid: 9c17780c0b6780045b395f7d69b6a5af, type: 2}
   thrustThreshold: 0.1
   allowedRotationalDeviation: 0.1
+  mass: 0.2
   sensorController: {fileID: 114657652479426284}
   turretController: {fileID: 5361110490568133260}
   isDebugMode: 1
@@ -266,7 +267,7 @@ MonoBehaviour:
   - {x: -0.4849752, y: 0.0681345, z: 0}
   m_ShapePathHash: 1375607686
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1736
+  m_InstanceId: 33840
 --- !u!1 &1294389144830492
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +420,7 @@ TrailRenderer:
   m_SortingLayerID: -580703973
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Time: 0.7
+  m_Time: 0.4
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -437,7 +438,7 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0.033816427
+        value: 0.0676299
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -782,7 +783,7 @@ TrailRenderer:
   m_SortingLayerID: -580703973
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Time: 0.7
+  m_Time: 0.4
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -800,7 +801,7 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0.033816427
+        value: 0.0676299
         inSlope: 0
         outSlope: 0
         tangentMode: 0

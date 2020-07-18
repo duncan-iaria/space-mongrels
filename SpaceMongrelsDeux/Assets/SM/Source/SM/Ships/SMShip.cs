@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using SNDL;
 
 namespace SM
 {
@@ -8,7 +8,9 @@ namespace SM
         public string shipName;
         public int maxHealth;
         public SMLevelData interiorLevel;
-        public float collisionModifier = 1;
+        public float collisionDamageModifier = 1;
+
+        public FloatVariable mass;
 
         public abstract void initialize(GameObject tObject);
         public abstract void takeDamage(GameObject tObject, int tAmt);

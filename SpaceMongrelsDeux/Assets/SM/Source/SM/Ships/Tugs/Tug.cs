@@ -12,6 +12,7 @@ public class Tug : SMShip
         {
             tempShip.maxHealth = maxHealth;
             tempShip.currentHealth = maxHealth;
+            tempShip.mass = mass.value;
         }
         else
         {
@@ -41,7 +42,7 @@ public class Tug : SMShip
         SMPawnShip tempShip = tObject.GetComponent<SMPawnShip>();
         if (tempShip)
         {
-            int tempImpactDamage = (int)((Mathf.Abs(tCollision.relativeVelocity.x) + Mathf.Abs(tCollision.relativeVelocity.y)) * collisionModifier);
+            int tempImpactDamage = (int)((Mathf.Abs(tCollision.relativeVelocity.x) + Mathf.Abs(tCollision.relativeVelocity.y)) * collisionDamageModifier);
             takeDamage(tObject, tempImpactDamage);
         }
     }
