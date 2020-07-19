@@ -34,6 +34,11 @@ namespace SM
     // When they're rotating the ship 
     protected float AIRotationDampening = 0.75f;
 
+    void OnGUI()
+    {
+
+    }
+
     //=======================
     // Initialization
     //=======================
