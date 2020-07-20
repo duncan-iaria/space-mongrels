@@ -12,6 +12,8 @@ namespace SM
     public float allowedRotationalDeviation = 0.1f;
     public float mass = 0.2f;
 
+    public Inventory inventory;
+
     [Header("Controllers")]
     public SMSensorController sensorController;
     public SMTurretController turretController;

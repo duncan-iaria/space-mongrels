@@ -19,7 +19,7 @@ namespace SM
 
           SMItem tempItem = tempItemGameObject.GetComponent<SMItem>();
           tempItem.Item = dropItem.item;
-          tempItem.drop();
+          tempItem.onDrop();
         }
       }
     }

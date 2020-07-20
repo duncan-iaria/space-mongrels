@@ -194,6 +194,7 @@ MonoBehaviour:
   thrustThreshold: 0.1
   allowedRotationalDeviation: 0.1
   mass: 0.2
+  inventory: {fileID: 11400000, guid: 5790cac4426271d4288eebe8670fe431, type: 2}
   sensorController: {fileID: 114657652479426284}
   turretController: {fileID: 5361110490568133260}
   isDebugMode: 1
