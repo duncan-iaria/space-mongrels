@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace SM
@@ -9,6 +8,7 @@ namespace SM
   public class Inventory : ScriptableObject, ISerializationCallbackReceiver
   {
     public bool isClearedOnReset = false;
+    public int maxItemSlots = 8;
     public List<InventoryItem> inventory;
 
     public void addToInventory(InventoryItem tItem)
