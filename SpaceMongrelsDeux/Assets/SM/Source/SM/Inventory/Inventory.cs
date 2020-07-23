@@ -9,9 +9,9 @@ namespace SM
   {
     public bool isClearedOnReset = false;
     public int maxItemSlots = 8;
-    public List<InventoryItem> inventory;
+    public List<Item> inventory;
 
-    public void addToInventory(InventoryItem tItem)
+    public void addToInventory(Item tItem)
     {
       if (tItem)
       {

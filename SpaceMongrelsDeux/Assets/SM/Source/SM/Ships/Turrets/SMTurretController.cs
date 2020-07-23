@@ -94,7 +94,7 @@ namespace SM
     {
       if (isWeaponsFree)
       {
-        Transform tempTarget = sensor.currentTarget.getTransform();
+        Transform tempTarget = sensor.currentTarget?.getTransform();
 
         if (tempTarget == null)
         {

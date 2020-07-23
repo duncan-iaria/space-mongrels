@@ -4,7 +4,7 @@ namespace SM
 {
   [CreateAssetMenu(menuName = "SM/Inventory/Item", order = 100)]
   [System.Serializable]
-  public class InventoryItem : ScriptableObject
+  public class Item : ScriptableObject
   {
     public string displayName;
     public string id;

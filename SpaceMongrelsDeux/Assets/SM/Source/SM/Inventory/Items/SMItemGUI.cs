@@ -6,7 +6,7 @@ namespace SM
 {
   public class SMItemGUI : MonoBehaviour
   {
-    public InventoryItem Item
+    public Item Item
     {
       get { return item; }
       set { item = value; init(); }
@@ -15,7 +15,7 @@ namespace SM
     public Image uiSpriteImage;
     public TextMeshProUGUI uiQuantityText;
 
-    private InventoryItem item;
+    private Item item;
 
     public void init()
     {

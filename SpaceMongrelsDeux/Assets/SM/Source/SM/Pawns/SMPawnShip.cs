@@ -1,5 +1,6 @@
 ﻿using SNDL;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SM
 {
@@ -17,6 +18,9 @@ namespace SM
     [Header("Controllers")]
     public SMSensorController sensorController;
     public SMTurretController turretController;
+
+    [Header("Events")]
+    public UnityEvent onOpenInventory;
 
     [Header("Debug")]
     public bool isDebugMode = true;
@@ -100,6 +104,9 @@ namespace SM
           break;
         case InputButton.SpecialAction1:
           turretController.toggleWeaponsFree();
+          break;
+        case InputButton.Inventory:
+          onOpenInventory?.Invoke();
           break;
         default:
           break;

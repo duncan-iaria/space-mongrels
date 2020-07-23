@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using SNDL;
 
 namespace SM
@@ -6,8 +7,8 @@ namespace SM
   public class SMItem : MonoBehaviour
   {
     [SerializeField]
-    private InventoryItem item;
-    public InventoryItem Item
+    private Item item;
+    public Item Item
     {
       get { return item; }
       set
@@ -20,6 +21,9 @@ namespace SM
     public Rigidbody2D rb;
     public FloatVariable dropSpeed;
     public FloatVariable pullSpeed;
+
+    [Header("Events")]
+    public UnityEvent onAddInventoryItem;
 
     // Pull probably not right word... but
     // It relates to gravitating toward the player
@@ -88,6 +92,7 @@ namespace SM
 
         // Add to inventory
         tempPawn.inventory.addToInventory(Item);
+        onAddInventoryItem?.Invoke();
 
         // Cleanup
         Destroy(this.gameObject);
