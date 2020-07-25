@@ -91,11 +91,18 @@ namespace SM
         SMPawnShip tempPawn = tOtherCollision.collider.GetComponent<SMPawnShip>();
 
         // Add to inventory
-        tempPawn.inventory.addToInventory(Item);
-        onAddInventoryItem?.Invoke();
+        if (tempPawn.inventory.addToInventory(Item))
+        {
+          onAddInventoryItem?.Invoke();
 
-        // Cleanup
-        Destroy(this.gameObject);
+          // Cleanup
+          Destroy(this.gameObject);
+        }
+        else
+        {
+          // No longer attract to the object
+          pullTarget = null;
+        }
       }
     }
 

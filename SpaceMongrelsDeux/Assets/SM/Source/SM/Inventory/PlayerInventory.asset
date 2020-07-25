@@ -12,7 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61d2cb49532fcf41b62b98b1ae1d582, type: 3}
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
-  isClearedOnReset: 1
+  isClearedOnReset: 0
   maxItemSlots: 8
   inventory:
-  - {fileID: 11400000, guid: ff427dc85a2ebe74f888520cd81be12f, type: 2}
+  - item: {fileID: 11400000, guid: ff427dc85a2ebe74f888520cd81be12f, type: 2}
+    quantity: 10
+  - item: {fileID: 11400000, guid: cc1671c21340c484ea3faa7fd8291441, type: 2}
+    quantity: 5
+  - item: {fileID: 11400000, guid: cc1671c21340c484ea3faa7fd8291441, type: 2}
+    quantity: 5
+  - item: {fileID: 11400000, guid: cc1671c21340c484ea3faa7fd8291441, type: 2}
+    quantity: 5
+  - item: {fileID: 11400000, guid: ff427dc85a2ebe74f888520cd81be12f, type: 2}
+    quantity: 9
+  - item: {fileID: 11400000, guid: cc1671c21340c484ea3faa7fd8291441, type: 2}
+    quantity: 5
+  - item: {fileID: 11400000, guid: cc1671c21340c484ea3faa7fd8291441, type: 2}
+    quantity: 5
+  - item: {fileID: 11400000, guid: cc1671c21340c484ea3faa7fd8291441, type: 2}
+    quantity: 5
+  onInventoryFull:
+    m_PersistentCalls:
+      m_Calls: []
+  onInventoryItemAdded:
+    m_PersistentCalls:
+      m_Calls: []

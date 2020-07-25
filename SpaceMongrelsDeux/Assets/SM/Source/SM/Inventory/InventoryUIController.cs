@@ -42,7 +42,7 @@ namespace SM
 
     private void drawInventoryUi()
     {
-      foreach (Item item in inventory.inventory)
+      foreach (InventoryItem item in inventory.inventory)
       {
         GameObject tempItemObject = Instantiate(itemGuiPrefab);
         tempItemObject.transform.SetParent(inventoryPanel.transform, false);
