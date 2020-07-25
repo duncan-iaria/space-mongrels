@@ -9,6 +9,11 @@ namespace SM
     public GameObject inventoryPanel;
     public GameObject itemGuiPrefab;
 
+    public void Start()
+    {
+      buildInventoryUi(false);
+    }
+
     public void buildInventoryUi(bool isInEditMode = false)
     {
       if (inventory && inventoryPanel && itemGuiPrefab)

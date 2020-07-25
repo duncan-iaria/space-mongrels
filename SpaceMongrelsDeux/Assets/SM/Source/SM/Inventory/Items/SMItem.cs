@@ -25,8 +25,8 @@ namespace SM
     [Header("Events")]
     public UnityEvent onAddInventoryItem;
 
-    // Pull probably not right word... but
-    // It relates to gravitating toward the player
+    // Pull probably not right word... but it
+    // relates to gravitating toward the player (target)
     private Transform pullTarget;
     public void Start()
     {
