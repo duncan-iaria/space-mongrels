@@ -34,15 +34,15 @@ MonoBehaviour:
   onInventoryFull:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: c4d01a9320bebab4692bb07b3673e7ce, type: 2}
+      - m_Target: {fileID: 11400000, guid: cdd88b69e7c42f44b86ce01c3ce71c27, type: 2}
         m_MethodName: raise
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Inventory Full!
           m_BoolArgument: 0
         m_CallState: 2
   onInventoryItemAdded:

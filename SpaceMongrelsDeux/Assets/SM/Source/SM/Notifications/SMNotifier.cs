@@ -1,29 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SM
 {
-    public class SMNotifier : MonoBehaviour
+  public class SMNotifier : MonoBehaviour
+  {
+    public string message;
+    public Transform notificationLocation;
+    public NotificationEvent notificationEvent;
+
+    public void setMessage(string tMessage)
     {
-        public string message;
-        public Transform notificationLocation;
-        public NotificationEvent notificationEvent;
-
-        public void setMessage(string tMessage)
-        {
-            message = tMessage;
-        }
-
-        public void setNofiticationEvent(NotificationEvent tEvent)
-        {
-            notificationEvent = tEvent;
-        }
-
-        public void sendNotification()
-        {
-            Vector3 tempPos = notificationLocation != null ? notificationLocation.position : transform.position;
-            notificationEvent.raise(message, tempPos);
-        }
+      message = tMessage;
     }
+
+    public void setNofiticationEvent(NotificationEvent tEvent)
+    {
+      notificationEvent = tEvent;
+    }
+
+    public void sendNotification()
+    {
+      Vector3 tempPos = notificationLocation != null ? notificationLocation.position : transform.position;
+      notificationEvent.raise(message, tempPos);
+    }
+  }
 }

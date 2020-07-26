@@ -19,10 +19,8 @@ namespace SM
 
     public void init()
     {
-      Debug.Log("Creating new GUI item");
       if (item != null)
       {
-        Debug.Log("GUI Item successfully created");
         uiSpriteImage.sprite = item.item.inventorySprite;
         uiQuantityText.text = item.quantity.ToString();
       }

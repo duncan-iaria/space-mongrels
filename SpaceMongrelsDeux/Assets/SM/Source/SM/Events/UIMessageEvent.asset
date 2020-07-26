@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6787519d9b6602c40ad8ff208f01d924, type: 3}
-  m_Name: InventoryFullEvent
+  m_Name: UIMessageEvent
   m_EditorClassIdentifier: 
