@@ -49,6 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e8698e5aff9ad44a985d72f527e47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  removeAnimationDuration: 0.5
+  removeAnimationDistance: 25
+  removeAnimationScaleTarget: 0.8
   messageTextUI: {fileID: 3960515683625609865}
 --- !u!1 &8020085088539951868
 GameObject:

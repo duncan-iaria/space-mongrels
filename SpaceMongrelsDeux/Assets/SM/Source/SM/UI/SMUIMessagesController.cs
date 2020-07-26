@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Events;
-using SNDL;
 
 namespace SM
 {
@@ -12,26 +9,20 @@ namespace SM
     public GameObject messageUIPanel;
 
     public int messageLimit = 5;
-    public float messageDuration = 5f;
-    // public UnityEvent onShowMessage;
-    public Queue<string> messageQueue = new Queue<string>();
+    public float messageDuration = 3f;
 
-    public void showMessage(StringVariable tMessage)
-    {
-      messageQueue.Enqueue(tMessage.value);
-      buildMessageUI();
-    }
+    public Queue<SMUIMessage> messageQueue = new Queue<SMUIMessage>();
 
     // plain ole string variant
     public void showMessage(string tMessage)
     {
-      // GameObject SMUIMessage = Instantiate(messageUIPrefab);
-      Debug.Log("showing message...");
-      messageQueue.Enqueue(tMessage);
-      buildMessageUI();
+      SMUIMessage tempMessageUi = createMessage();
+      tempMessageUi.Message = tMessage;
+      messageQueue.Enqueue(tempMessageUi);
 
       if (messageQueue.Count > 5)
       {
+        // Remove oldest message from queue ASAP
         removeOldestMessage();
       }
       else
@@ -40,23 +31,27 @@ namespace SM
       }
     }
 
+    private SMUIMessage createMessage()
+    {
+      GameObject tempMessageObject = Instantiate(messageUIPrefab);
+      tempMessageObject.transform.SetParent(messageUIPanel.transform, false);
+      SMUIMessage tempMessageUi = tempMessageObject.GetComponent<SMUIMessage>();
+
+      return tempMessageUi;
+    }
+
 
     private void removeOldestMessage()
     {
-      messageQueue.Dequeue();
-      // buildMessageUI();
+      SMUIMessage tempMessageUi = messageQueue.Dequeue();
+      tempMessageUi.remove();
     }
 
-    private void buildMessageUI()
+    public void clearMessageUi(bool isInEditMode = false)
     {
-      // clearMessageUi();
-      drawMessageUi();
+      // Clear message queue
+      messageQueue = new Queue<SMUIMessage>();
 
-      Debug.Log("rebuilding UI");
-    }
-
-    private void clearMessageUi(bool isInEditMode = false)
-    {
       // Clear current UI
       SMUIMessage[] allUiItems = messageUIPanel.GetComponentsInChildren<SMUIMessage>(true);
 
@@ -69,21 +64,6 @@ namespace SM
         else
         {
           Destroy(uiMessage.gameObject);
-        }
-      }
-    }
-
-    private void drawMessageUi()
-    {
-      foreach (string tempMessage in messageQueue)
-      {
-        GameObject tempMessageObject = Instantiate(messageUIPrefab);
-        tempMessageObject.transform.SetParent(messageUIPanel.transform, false);
-        SMUIMessage tempMessageUi = tempMessageObject.GetComponent<SMUIMessage>();
-
-        if (tempMessageUi)
-        {
-          tempMessageUi.Message = tempMessage;
         }
       }
     }
