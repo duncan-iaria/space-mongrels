@@ -62,15 +62,12 @@ namespace SM
 
     public void toggleInventory()
     {
-      Debug.Log("toggling inventory...");
       if (inventoryPanel.activeSelf)
       {
-        Debug.Log("it's on, turning off...");
         inventoryPanel.SetActive(false);
       }
       else
       {
-        Debug.Log("it's off, turning on...");
         inventoryPanel.SetActive(true);
       }
     }

@@ -24,7 +24,7 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: cc1671c21340c484ea3faa7fd8291441, type: 2}
     quantity: 5
   - item: {fileID: 11400000, guid: ff427dc85a2ebe74f888520cd81be12f, type: 2}
-    quantity: 9
+    quantity: 10
   - item: {fileID: 11400000, guid: cc1671c21340c484ea3faa7fd8291441, type: 2}
     quantity: 5
   - item: {fileID: 11400000, guid: cc1671c21340c484ea3faa7fd8291441, type: 2}
@@ -42,7 +42,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Inventory Full!
+          m_StringArgument: Inventory Full
           m_BoolArgument: 0
         m_CallState: 2
   onInventoryItemAdded:

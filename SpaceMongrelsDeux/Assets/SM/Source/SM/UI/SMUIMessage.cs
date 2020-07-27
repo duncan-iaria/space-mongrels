@@ -27,7 +27,7 @@ namespace SM
     public void remove()
     {
       LeanTween.moveY(this.gameObject, transform.position.y + removeAnimationDistance, removeAnimationDuration).setEaseInSine().setOnComplete(onRemove);
-      LeanTween.scale(this.gameObject, new Vector3(removeAnimationScaleTarget, removeAnimationScaleTarget, removeAnimationScaleTarget), removeAnimationDuration).setEaseInSine();
+      LeanTweenExt.LeanAlphaText(messageTextUI, 0, removeAnimationDuration).setEaseInSine();
     }
 
     public void onRemove()

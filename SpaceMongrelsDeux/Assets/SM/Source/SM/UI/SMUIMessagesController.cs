@@ -16,6 +16,20 @@ namespace SM
     // plain ole string variant
     public void showMessage(string tMessage)
     {
+      // Checke if the message already exists
+      if (messageQueue.Count > 0)
+      {
+        foreach (SMUIMessage tempMessage in messageQueue)
+        {
+          if (tempMessage.Message == tMessage)
+          {
+            // Cancel adding if the same message already exists
+            return;
+          }
+        }
+      }
+
+      // Add a new message
       SMUIMessage tempMessageUi = createMessage();
       tempMessageUi.Message = tMessage;
       messageQueue.Enqueue(tempMessageUi);
