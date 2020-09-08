@@ -27,23 +27,19 @@ namespace SM
 
     // These are set by the ship object SOs (Reactor/Sensors, etc)
     [HideInInspector]
-    public float moveSpeed, horizontalDampening = .5f, rotationSpeed, boostSpeed, boostCooldown, thrustSpeed;
+    public float moveSpeed, horizontalDampening = .5f, rotationalDampeningUnderThrust = 0f, rotationSpeed, boostSpeed, boostCooldown, thrustSpeed;
 
     [HideInInspector]
     public int maxHealth, currentHealth;
 
 
-    protected float nextBoostTime;
+    protected float nextBoostTime, nextUnlockForwardAccelTime; // for next available boost/when we can stop restricting rotation caused by player acceleration
+    protected float accelerationThreshold = .2f; // what registers as the player giving some forward/backward motion
     protected bool isThrustEligible = true;
 
     // This is for providing some dampening to the rotation of the AI
     // When they're rotating the ship 
     protected float AIRotationDampening = 0.75f;
-
-    void OnGUI()
-    {
-
-    }
 
     //=======================
     // Initialization
@@ -198,13 +194,20 @@ namespace SM
 
     protected virtual void accelerate(Vector2 tVector, float tDampening = 1f)
     {
+      // This is for affecting the rotation - we rotate slower when the player is accelerating
+      if (tVector.y > Mathf.Abs(accelerationThreshold))
+      {
+        nextUnlockForwardAccelTime = Time.time + 0.02f;
+      }
+
       _rigidbody.AddForce((transform.right * tVector.x * tDampening) * moveSpeed * Time.deltaTime);
       _rigidbody.AddForce((transform.up * tVector.y) * moveSpeed * Time.deltaTime);
     }
 
     protected virtual void rotate(float tRotationValue)
     {
-      _rigidbody.AddTorque(tRotationValue * rotationSpeed * Time.deltaTime);
+      float tempRotationSpeed = nextUnlockForwardAccelTime > Time.time ? rotationSpeed * rotationalDampeningUnderThrust : rotationSpeed;
+      _rigidbody.AddTorque(tRotationValue * tempRotationSpeed * Time.deltaTime);
     }
 
     // boost is an action taken by the player via a special input button
