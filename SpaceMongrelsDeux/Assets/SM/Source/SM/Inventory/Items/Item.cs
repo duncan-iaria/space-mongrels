@@ -10,13 +10,10 @@ namespace SM
   {
     public string displayName;
     public string id;
-
     public int itemValue;
 
     public ItemType itemType;
-
     public float itemMass = 1f;
-
     public int maxStackSize = 1;
 
     [Header("Art")]
